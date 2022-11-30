@@ -1,3 +1,4 @@
+import "./styles/index.css";
 import LinkBankButton from "./features/bank_link/components/LinkBankButton";
 
 function App() {

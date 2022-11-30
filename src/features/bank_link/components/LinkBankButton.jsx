@@ -16,7 +16,11 @@ const LinkBankButton = () => {
   const isReadyToLink = ready && linkToken != null;
 
   return (
-    <button onClick={open} disabled={!isReadyToLink}>
+    <button
+      className="btn btn-primary"
+      onClick={open}
+      disabled={!isReadyToLink}
+    >
       Connect a bank account
     </button>
   );
