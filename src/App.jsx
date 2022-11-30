@@ -1,10 +1,9 @@
-import Link from "./components/Link";
+import LinkBankButton from "./features/bank_link/components/LinkBankButton";
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello World</h1>
-      <Link />
+      <LinkBankButton />
     </div>
   );
 }
