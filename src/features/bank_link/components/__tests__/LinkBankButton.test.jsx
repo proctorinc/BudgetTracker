@@ -1,7 +1,6 @@
 import LinkBankButton from "../LinkBankButton";
 import { describe, it, expect } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 
 describe("Link bank button", () => {
   it("button renders on screen", () => {
