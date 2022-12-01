@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getLinkTokenForUser } from "../features/bank_link/api/getLinkTokenForUser";
+import { getLinkTokenForUser } from "../features/bank_link";
 import useUser from "./useUser";
 
 const useLinkToken = () => {

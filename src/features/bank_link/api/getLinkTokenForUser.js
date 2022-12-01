@@ -5,7 +5,6 @@ export const getLinkTokenForUser = async (user) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${user.jwtToken}`,
     },
-    body: JSON.stringify({ user_id: user.id }),
   })
     .then((response) => response.json())
     .then(({ link_token }) => link_token);

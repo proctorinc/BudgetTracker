@@ -1,11 +1,26 @@
-import LinkBankButton from "../LinkBankButton"
+import LinkBankButton from "../LinkBankButton";
+import { describe, it, expect } from "vitest";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 describe("Link bank button", () => {
-    test("button renders on screen", () => {
-        render(<LinkBankButton />)
+  it("button renders on screen", () => {
+    render(<LinkBankButton />);
+    const linkBankButton = screen.getByRole("button");
+    expect(linkBankButton).toBeInTheDocument();
+  });
 
-        const linkBankButton = screen.getByRole("button")
+  it("button starts out disabled initially", () => {
+    render(<LinkBankButton />);
+    const linkBankButton = screen.getByRole("button");
+    expect(linkBankButton).toBeDisabled();
+  });
 
-        expect(linkBankButton).
-    })
-})
+  it("button is enabled after a short duration", async () => {
+    render(<LinkBankButton />);
+    const linkBankButton = screen.getByRole("button");
+    await waitFor(() => expect(linkBankButton).toBeEnabled(), {
+      timeout: 2000,
+    });
+  });
+});

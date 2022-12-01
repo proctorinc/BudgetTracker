@@ -6,21 +6,20 @@ import { sendPublicTokenToServer } from "../api/sendPublicTokenToServer";
 const LinkBankButton = () => {
   const { user } = useUser();
   const { linkToken } = useLinkToken();
+
+  const onSuccessfulLink = (public_token, metadata) => {
+    sendPublicTokenToServer(public_token, user);
+  };
+
   const { open, ready } = usePlaidLink({
     token: linkToken,
-    onSuccess: (public_token, metadata) => {
-      sendPublicTokenToServer(public_token, user);
-    },
+    onSuccess: onSuccessfulLink,
   });
 
-  const isReadyToLink = ready && linkToken != null;
+  const isReadyToLink = ready || linkToken != null;
 
   return (
-    <button
-      className="btn btn-primary"
-      onClick={open}
-      disabled={!isReadyToLink}
-    >
+    <button className="btn" onClick={open} disabled={!isReadyToLink}>
       Connect a bank account
     </button>
   );
