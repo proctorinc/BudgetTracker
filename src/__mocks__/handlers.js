@@ -6,6 +6,7 @@ import {
   mockInvestmentAccounts,
   mockLoanAccounts,
 } from "./mock_data/accounts";
+import { mockFunds } from "./mock_data/funds";
 
 export const handlers = [
   rest.get(
@@ -59,4 +60,11 @@ export const handlers = [
       );
     }
   ),
+  rest.get("http://localhost:4090/bank/funds", (req, res, ctx) => {
+    return res(
+      ctx.json({
+        funds: [...mockFunds],
+      })
+    );
+  }),
 ];

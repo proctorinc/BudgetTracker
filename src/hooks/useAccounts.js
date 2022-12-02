@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllAccounts } from "../features/accounts/api/getAllAccounts";
+import { getAllAccounts } from "../features/accounts";
 import useUser from "./useUser";
 
 const useAccounts = () => {
