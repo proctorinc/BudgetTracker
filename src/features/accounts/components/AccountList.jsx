@@ -1,14 +1,21 @@
 import useAccounts from "../../../hooks/useAccounts";
-import AccountEntry from "./AccountEntry";
+import AccountCategoryEntry from "./AccountCategoryEntry";
 
 const AccountList = () => {
-  const { accounts } = useAccounts();
+  const { cashAccounts, creditAccounts, investmentAccounts, loanAccounts } =
+    useAccounts();
 
-  const accountEntries = accounts.map((account) => {
-    return <AccountEntry key={account.account_id} account={account} />;
-  });
-
-  return <div role="accounts-list">{accountEntries}</div>;
+  return (
+    <>
+      <AccountCategoryEntry category="cash" accounts={cashAccounts} />
+      <AccountCategoryEntry category="credit" accounts={creditAccounts} />
+      <AccountCategoryEntry
+        category="investment"
+        accounts={investmentAccounts}
+      />
+      <AccountCategoryEntry category="loan" accounts={loanAccounts} />
+    </>
+  );
 };
 
 export default AccountList;

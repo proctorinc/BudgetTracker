@@ -1,72 +1,41 @@
 import { rest } from "msw";
+import {
+  mockAccountsTotalBalance,
+  mockCashAccounts,
+  mockCreditAccounts,
+  mockInvestmentAccounts,
+  mockLoanAccounts,
+} from "./mock_data/accounts";
 
 export const handlers = [
   rest.get(
-    "http://localhost:4090/bank/accounts/balance/current",
+    "http://localhost:4090/bank/accounts/categorized",
     (req, res, ctx) => {
       return res(
         ctx.json({
-          balance: 1234567.89,
+          total_balance: mockAccountsTotalBalance,
+          categories: {
+            cash: {
+              subtotal: 150.01,
+              accounts: [...mockCashAccounts],
+            },
+            credit: {
+              subtotal: 23490.34,
+              accounts: [...mockCreditAccounts],
+            },
+            investment: {
+              subtotal: 2408.0,
+              accounts: [...mockInvestmentAccounts],
+            },
+            loan: {
+              subtotal: 234,
+              accounts: [...mockLoanAccounts],
+            },
+          },
         })
       );
     }
   ),
-  rest.get("http://localhost:4090/bank/accounts", (req, res, ctx) => {
-    return res(
-      ctx.json({
-        accounts: [
-          {
-            balances: {
-              available: null,
-              current: 410,
-              iso_currency_code: "USD",
-              limit: 2000,
-              unofficial_currency_code: null,
-            },
-            _id: "6386f736c50233ef04a985ce",
-            account_id: "ndGpR83vPeTW5L6dQrQgSw7exLr9EDUEerkMa",
-            mask: "3333",
-            name: "Plaid Credit Card",
-            official_name: "Plaid Diamond 12.5% APR Interest Credit Card",
-            subtype: "credit card",
-            type: "credit",
-          },
-          {
-            balances: {
-              available: null,
-              current: 320.76,
-              iso_currency_code: "USD",
-              limit: null,
-              unofficial_currency_code: null,
-            },
-            _id: "6386f736c50233ef04a985d0",
-            account_id: "mxGLM8BvN7sVr1Dy4K4dheKmvgQ8NVHPmxjQB",
-            mask: "5555",
-            name: "Plaid IRA",
-            official_name: null,
-            subtype: "ira",
-            type: "investment",
-          },
-          {
-            balances: {
-              available: null,
-              current: 23631.98,
-              iso_currency_code: "USD",
-              limit: null,
-              unofficial_currency_code: null,
-            },
-            _id: "6386f736c50233ef04a985d2",
-            account_id: "y1X3k8ZwgyhW8bXQDzDPS1p3Dm9odWh53jd8N",
-            mask: "6666",
-            name: "Plaid 401k",
-            official_name: null,
-            subtype: "401k",
-            type: "investment",
-          },
-        ],
-      })
-    );
-  }),
   rest.post(
     "http://localhost:4090/bank/token/create/link_token",
     (req, res, ctx) => {

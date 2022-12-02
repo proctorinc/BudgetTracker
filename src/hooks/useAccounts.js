@@ -1,33 +1,28 @@
 import { useEffect, useState } from "react";
 import { getAllAccounts } from "../features/accounts/api/getAllAccounts";
-import { getAllAccountsBalance } from "../features/accounts/api/getAllAccountsBalance";
 import useUser from "./useUser";
 
 const useAccounts = () => {
-  const [accounts, setAccounts] = useState([]);
-  const [totalBalance, setTotalBalance] = useState(0);
-
+  const [accountsData, setAccountsData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { user } = useUser();
 
   useEffect(() => {
     getAllAccounts(user)
-      .then(setAccounts)
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  useEffect(() => {
-    getAllAccountsBalance(user)
-      .then(setTotalBalance)
+      .then(setAccountsData)
+      .then(() => setLoading(false))
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
   return {
-    accounts,
-    totalBalance,
+    cashAccounts: accountsData.categories?.cash,
+    creditAccounts: accountsData.categories?.credit,
+    investmentAccounts: accountsData.categories?.investment,
+    loanAccounts: accountsData.categories?.loan,
+    totalBalance: accountsData.total_balance,
+    loading,
   };
 };
 

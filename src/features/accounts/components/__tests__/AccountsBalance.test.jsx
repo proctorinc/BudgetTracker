@@ -1,6 +1,6 @@
 import { describe, it } from "vitest";
 import { render, screen } from "@testing-library/react";
-import AccountsBalance from "../AccountsBalance";
+import AccountsBalance from "../AccountsTotalBalance";
 
 describe("Accounts balance", () => {
   it("renders properly with title", () => {

@@ -1,11 +1,11 @@
 import useAccounts from "../../../hooks/useAccounts";
 import { formatCurrency } from "../../../utils/currency";
 
-const AccountsBalance = () => {
+const AccountsTotalBalance = () => {
   const { totalBalance } = useAccounts();
 
   return (
-    <div className="border border-gray-600 p-4 m-2 rounded-lg">
+    <div className="border border-gray-600 p-4 rounded-lg">
       <h1 className="text-3xl">
         Total Balance: {formatCurrency(totalBalance)}
       </h1>
@@ -13,4 +13,4 @@ const AccountsBalance = () => {
   );
 };
 
-export default AccountsBalance;
+export default AccountsTotalBalance;

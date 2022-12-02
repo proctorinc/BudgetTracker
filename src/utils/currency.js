@@ -3,5 +3,5 @@ export const formatCurrency = (amount) => {
     style: "currency",
     currency: "USD",
   });
-  return USD.format(amount);
+  return amount ? USD.format(amount) : "$0.00";
 };

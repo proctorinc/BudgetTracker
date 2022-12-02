@@ -2,12 +2,16 @@ import { formatCurrency } from "../../../utils/currency";
 
 const AccountEntry = ({ account }) => {
   return (
-    <div className="border border-gray-600 p-4 m-2 rounded-lg">
-      <p className="text-2xl">{account.name}</p>
-      <p className="text-md">Type: {account.subtype}</p>
-      <p className="text-3xl pt-2">
-        {formatCurrency(account.balances.current)}
-      </p>
+    <div className="flex border border-gray-600 px-4 py-2 rounded-lg">
+      <div>
+        <p className="text-2xl">{account.name}</p>
+        <p className="text-md">
+          {account.subtype} - {account.mask}
+        </p>
+      </div>
+      <div className="flex justify-end flex-grow">
+        <p className="text-3xl">{formatCurrency(account.balances.current)}</p>
+      </div>
     </div>
   );
 };
