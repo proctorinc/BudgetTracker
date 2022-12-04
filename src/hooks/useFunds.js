@@ -1,17 +1,15 @@
-import { useEffect, useState } from "react";
 import { getFunds } from "../features/funds";
-import useUser from "./useUser";
+import useFetch from "./useFetch";
 
 const useFunds = () => {
-  const [funds, setFunds] = useState();
-  const { user } = useUser();
-
-  useEffect(() => {
-    getFunds(user).then(setFunds);
-  }, []);
+  const { data, isLoading, error } = useFetch({
+    query: getFunds,
+  });
 
   return {
-    funds,
+    funds: !isLoading && !error ? data.funds : [],
+    isLoading,
+    error,
   };
 };
 

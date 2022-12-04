@@ -1,17 +1,13 @@
-import { useEffect, useState } from "react";
 import { getLinkTokenForUser } from "../features/bank_link";
-import useUser from "./useUser";
+import useFetch from "./useFetch";
 
 const useLinkToken = () => {
-  const [linkToken, setLinkToken] = useState();
-  const { user } = useUser();
-
-  useEffect(() => {
-    getLinkTokenForUser(user).then(setLinkToken);
-  }, []);
+  const { data, isLoading, error } = useFetch({
+    query: getLinkTokenForUser,
+  });
 
   return {
-    linkToken,
+    linkToken: !isLoading && !error ? data.link_token : null,
   };
 };
 

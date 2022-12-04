@@ -1,9 +1,7 @@
-export const getAllAccounts = async (user) => {
-  return fetch("http://localhost:4090/bank/accounts/categorized", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${user.jwtToken}`,
-    },
-  }).then((response) => response.json());
+import { fetchQuery } from "../../../lib/fetchQuery";
+
+export const getAllAccounts = async () => {
+  return fetchQuery({
+    endpoint: "/bank/accounts/categorized",
+  });
 };

@@ -1,28 +1,19 @@
-import { useEffect, useState } from "react";
 import { getAllAccounts } from "../features/accounts";
-import useUser from "./useUser";
+import useFetch from "./useFetch";
 
 const useAccounts = () => {
-  const [accountsData, setAccountsData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const { user } = useUser();
-
-  useEffect(() => {
-    getAllAccounts(user)
-      .then(setAccountsData)
-      .then(() => setLoading(false))
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const { data, isLoading, error } = useFetch({
+    query: getAllAccounts,
+  });
 
   return {
-    cashAccounts: accountsData.categories?.cash,
-    creditAccounts: accountsData.categories?.credit,
-    investmentAccounts: accountsData.categories?.investment,
-    loanAccounts: accountsData.categories?.loan,
-    totalBalance: accountsData.total_balance,
-    loading,
+    cashAccounts: data?.categories.cash,
+    creditAccounts: data?.categories.credit,
+    investmentAccounts: data?.categories.investment,
+    loanAccounts: data?.categories.loan,
+    totalBalance: data?.total_balance,
+    isLoading,
+    error,
   };
 };
 
