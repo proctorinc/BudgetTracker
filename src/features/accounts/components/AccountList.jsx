@@ -1,4 +1,4 @@
-import useAccounts from "@/hooks/useAccounts";
+import useAccounts from "../hooks/useAccounts";
 import AccountCategoryEntry from "./AccountCategoryEntry";
 
 const AccountList = () => {

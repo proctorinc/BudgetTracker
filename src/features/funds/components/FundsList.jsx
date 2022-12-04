@@ -1,4 +1,4 @@
-import useFunds from "@/hooks/useFunds";
+import useFunds from "../hooks/useFunds";
 import FundEntry from "./FundEntry";
 
 const FundsList = () => {

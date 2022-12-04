@@ -1,5 +1,5 @@
-import { getLinkTokenForUser } from "../features/bank_link";
-import useFetch from "./useFetch";
+import useFetch from "@/hooks/useFetch";
+import { getLinkTokenForUser } from "../api/getLinkTokenForUser";
 
 const useLinkToken = () => {
   const { data, isLoading, error } = useFetch({

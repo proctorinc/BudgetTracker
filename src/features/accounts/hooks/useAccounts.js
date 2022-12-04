@@ -1,5 +1,5 @@
-import { getAllAccounts } from "../features/accounts";
-import useFetch from "./useFetch";
+import useFetch from "@/hooks/useFetch";
+import { getAllAccounts } from "../api/getAllAccounts";
 
 const useAccounts = () => {
   const { data, isLoading, error } = useFetch({

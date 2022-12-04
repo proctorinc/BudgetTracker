@@ -1,5 +1,5 @@
-import { getFunds } from "../features/funds";
-import useFetch from "./useFetch";
+import useFetch from "@/hooks/useFetch";
+import { getFunds } from "../api/getFunds";
 
 const useFunds = () => {
   const { data, isLoading, error } = useFetch({

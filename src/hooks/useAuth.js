@@ -1,4 +1,4 @@
-const useUser = () => {
+const useAuth = () => {
   const user = {
     id: "63812fc0b5fe500754c113a9",
     _id: "63812fc0b5fe500754c113a9",
@@ -12,4 +12,4 @@ const useUser = () => {
   };
 };
 
-export default useUser;
+export default useAuth;

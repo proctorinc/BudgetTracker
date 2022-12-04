@@ -1,6 +1,6 @@
 import { usePlaidLink } from "react-plaid-link";
-import useLinkToken from "@/hooks/useLinkToken";
 import { sendPublicTokenToServer } from "../api/sendPublicTokenToServer";
+import useLinkToken from "../hooks/useLinkToken";
 
 const LinkBankButton = () => {
   const { linkToken } = useLinkToken();
