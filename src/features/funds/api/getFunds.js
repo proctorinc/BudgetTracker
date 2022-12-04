@@ -1,4 +1,4 @@
-import { fetchQuery } from "../../../lib/fetchQuery";
+import { fetchQuery } from "@/lib/fetchQuery";
 
 export const getFunds = async (user) => {
   return fetchQuery({

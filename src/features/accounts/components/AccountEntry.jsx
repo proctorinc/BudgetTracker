@@ -1,6 +1,6 @@
-import { formatCurrency } from "../../../utils/currency";
+import { formatCurrency } from "@/utils/currency";
 
-const AccountEntry = ({ account }) => {
+const AccountEntry = ({ account, loading }) => {
   return (
     <div className="flex border border-gray-600 px-4 py-2 rounded-lg">
       <div>

@@ -7,19 +7,19 @@ describe("Account list", () => {
     render(<AccountList />);
 
     const cashAccountsLabel = screen.getByRole("heading", {
-      name: /cash: \$/i,
+      name: /cash:/i,
       exact: false,
     });
     const investmentsAccountsLabel = screen.getByRole("heading", {
-      name: /investment: \$/i,
+      name: /investment:/i,
       exact: false,
     });
     const loansAccountsLabel = screen.getByRole("heading", {
-      name: /loan: \$/i,
+      name: /loan:/i,
       exact: false,
     });
     const creditLabel = screen.getByRole("heading", {
-      name: /credit: \$/i,
+      name: /credit:/i,
       exact: false,
     });
 

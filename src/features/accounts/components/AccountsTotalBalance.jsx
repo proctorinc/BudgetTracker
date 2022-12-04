@@ -1,5 +1,5 @@
-import useAccounts from "../../../hooks/useAccounts";
-import { formatCurrency } from "../../../utils/currency";
+import useAccounts from "@/hooks/useAccounts";
+import { formatCurrency } from "@/utils/currency";
 
 const AccountsTotalBalance = () => {
   const { totalBalance } = useAccounts();

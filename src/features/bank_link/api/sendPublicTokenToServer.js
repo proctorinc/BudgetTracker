@@ -1,4 +1,4 @@
-import { fetchQuery } from "../../../lib/fetchQuery";
+import { fetchQuery } from "@/lib/fetchQuery";
 
 export const sendPublicTokenToServer = async (public_token) => {
   return fetchQuery({

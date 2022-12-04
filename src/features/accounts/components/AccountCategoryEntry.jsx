@@ -1,8 +1,8 @@
-import { capitalizeFirstLetter } from "../../../utils";
-import { formatCurrency } from "../../../utils/currency";
+import { capitalizeFirstLetter } from "@/utils";
+import { formatCurrency } from "@/utils/currency";
 import AccountEntry from "./AccountEntry";
 
-const AccountCategoryEntry = ({ category, accounts }) => {
+const AccountCategoryEntry = ({ category, accounts, loading, error }) => {
   const accountEntries = accounts?.accounts.map((account) => (
     <AccountEntry key={account._id} account={account} />
   ));
@@ -10,12 +10,18 @@ const AccountCategoryEntry = ({ category, accounts }) => {
   const subtotal = formatCurrency(accounts?.subtotal);
   const categoryHeading = capitalizeFirstLetter(category);
 
+  const loader = (
+    <div className="flex border border-gray-600 px-4 py-2 rounded-lg">
+      Loading...
+    </div>
+  );
+
   return (
     <div className="flex flex-col gap-2 pt-5">
       <h3 className="text-3xl">
-        {categoryHeading}: {subtotal}
+        {categoryHeading}: {loading ? "Loading..." : subtotal}
       </h3>
-      {accountEntries}
+      {loading ? loader : accountEntries}
     </div>
   );
 };
