@@ -3,7 +3,7 @@ import { screen, render } from "@testing-library/react";
 import FundsList from "../components/FundsList";
 
 describe("fund list", () => {
-  it("renders correctly", () => {
+  it("renders Funds Label", () => {
     render(<FundsList />);
     const fundListLabel = screen.getByRole("heading", {
       name: /funds:/i,

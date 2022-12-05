@@ -6,7 +6,7 @@ describe("Accounts balance", () => {
   it("renders properly with title", () => {
     render(<AccountsBalance />);
 
-    const totalBalanceText = screen.getByText(/total balance:/i, {
+    const totalBalanceText = screen.getByText(/net worth:/i, {
       exact: false,
     });
 
@@ -17,7 +17,7 @@ describe("Accounts balance", () => {
     render(<AccountsBalance />);
 
     const totalBalanceText = await screen.findByText(
-      "Total Balance: $1,234,567.89"
+      "Net Worth: $1,234,567.89"
     );
 
     expect(totalBalanceText).toBeInTheDocument();

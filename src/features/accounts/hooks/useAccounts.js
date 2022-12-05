@@ -7,11 +7,8 @@ const useAccounts = () => {
   });
 
   return {
-    cashAccounts: data?.categories.cash,
-    creditAccounts: data?.categories.credit,
-    investmentAccounts: data?.categories.investment,
-    loanAccounts: data?.categories.loan,
-    totalBalance: data?.total_balance,
+    accounts: data?.categories,
+    netBalance: data?.total_balance,
     isLoading,
     error,
   };

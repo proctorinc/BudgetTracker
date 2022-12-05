@@ -2,7 +2,7 @@ import { capitalizeFirstLetter } from "@/utils";
 import { formatCurrency } from "@/utils/currency";
 import AccountEntry from "./AccountEntry";
 
-const AccountCategoryEntry = ({ category, accounts, loading, error }) => {
+const AccountCategoryEntry = ({ category, accounts, loading }) => {
   const accountEntries = accounts?.accounts.map((account) => (
     <AccountEntry key={account._id} account={account} />
   ));
