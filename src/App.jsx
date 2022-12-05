@@ -1,14 +1,11 @@
 import "@/styles/index.css";
-import AccountList from "@/features/accounts/components/AccountList";
-import AccountsBalance from "@/features/accounts/components/AccountsTotalBalance";
 import { AppProvider } from "@/provider/app";
+import { AppRoutes } from "./routes";
 
 function App() {
   return (
     <AppProvider>
-      <AccountsBalance />
-      <AccountList />
-      {/* <AppRoutes /> */}
+      <AppRoutes />
     </AppProvider>
   );
 }
