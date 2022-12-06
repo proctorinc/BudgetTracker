@@ -9,6 +9,6 @@ export const protectedRoutes = [
   {
     path: "/",
     element: <App />,
-    children: [{ path: "/funds", element: <FundRoutes /> }],
+    children: [{ path: "/funds/*", element: <FundRoutes /> }],
   },
 ];

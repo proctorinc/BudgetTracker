@@ -1,8 +1,8 @@
 import { describe, it, vi } from "vitest";
 import { screen, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Funds from "../Funds";
 import { BrowserRouter as Router } from "react-router-dom";
+import CreateFund from "../CreateFund";
 
 const mockedNavigator = vi.fn();
 vi.mock("react-router-dom", async () => ({
@@ -10,44 +10,26 @@ vi.mock("react-router-dom", async () => ({
   useNavigate: () => mockedNavigator,
 }));
 
-describe("Funds Route", () => {
-  it("renders funds list", () => {
+describe("Create Fund Route", () => {
+  it("renders create fund form", () => {
     render(
       <Router>
-        <Funds />
+        <CreateFund />
       </Router>
     );
-    const fundListLabel = screen.getByRole("heading", {
-      name: /funds:/i,
+
+    const fundNameInput = screen.getByRole("textbox", {
+      name: /name:/i,
     });
-    expect(fundListLabel).toBeInTheDocument();
-  });
-
-  it("renders funds chart", () => {
-    render(
-      <Router>
-        <Funds />
-      </Router>
-    );
-
-    const fundsChart = screen.getByRole("heading", {
-      name: /funds chart/i,
+    const fundInitialAmountInput = screen.getByRole("spinbutton", {
+      name: /initial balance:/i,
     });
-
-    expect(fundsChart).toBeInTheDocument();
-  });
-
-  it("renders create fund button", () => {
-    render(
-      <Router>
-        <Funds />
-      </Router>
-    );
-
     const createFundButton = screen.getByRole("button", {
-      name: /new fund/i,
+      name: /create fund/i,
     });
 
+    expect(fundNameInput).toBeInTheDocument();
+    expect(fundInitialAmountInput).toBeInTheDocument();
     expect(createFundButton).toBeInTheDocument();
   });
 
@@ -55,16 +37,16 @@ describe("Funds Route", () => {
     const user = userEvent.setup();
     render(
       <Router>
-        <Funds />
+        <CreateFund />
       </Router>
     );
 
     const createFundButton = screen.getByRole("button", {
-      name: /new fund/i,
+      name: /create fund/i,
     });
 
     await user.click(createFundButton);
 
-    expect(mockedNavigator).toHaveBeenCalledWith("/funds/create");
+    expect(mockedNavigator).toHaveBeenCalledWith("/funds");
   });
 });

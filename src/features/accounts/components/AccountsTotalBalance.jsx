@@ -5,7 +5,7 @@ const AccountsTotalBalance = () => {
   const { netBalance } = useAccounts();
 
   return (
-    <div className="border border-gray-600 p-4 rounded-lg">
+    <div className="flex justify-center p-4">
       <h1 className="text-3xl">Net Worth: {formatCurrency(netBalance)}</h1>
     </div>
   );

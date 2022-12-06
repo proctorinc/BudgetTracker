@@ -2,15 +2,27 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/Elements/Button";
 import FundsChart from "../components/FundsChart";
 import FundsList from "../components/FundsList";
+import AccountsTotalBalance from "../../accounts/components/AccountsTotalBalance";
+import useFunds from "../hooks/useFunds";
+import { MainLayout } from "@/components/Layout";
 
 const Funds = () => {
-  const navigateTo = useNavigate();
+  const navigate = useNavigate();
+  const { funds, unallocatedBalance, isLoading } = useFunds();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <>
-      <FundsChart />
-      <FundsList />
-      <Button text="New Fund" onClick={() => navigateTo("/funds/create")} />
-    </>
+    <MainLayout>
+      <AccountsTotalBalance />
+      <FundsChart funds={funds} unallocatedBalance={unallocatedBalance} isLoading={isLoading} />
+      <FundsList funds={funds} unallocatedBalance={unallocatedBalance}/>
+      <div className="flex justify-center p-5">
+        <Button text="New Fund" onClick={() => navigate("/funds/create")} />
+      </div>
+    </MainLayout>
   );
 };
 

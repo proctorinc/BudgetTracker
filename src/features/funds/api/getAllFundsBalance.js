@@ -1,7 +1,7 @@
 import { fetchQuery } from "@/lib/fetchQuery";
 
-export const getFunds = async () => {
+export const getAllFundsBalance = () => {
   return fetchQuery({
-    endpoint: "/bank/funds",
+    endpoint: "/bank/funds/balance",
   });
 };
