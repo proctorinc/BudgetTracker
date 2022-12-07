@@ -5,6 +5,7 @@ import { Input } from "@/components/Form/Input";
 import { createFund } from "../api/createFund";
 import useFunds from "../hooks/useFunds";
 import { formatCurrency } from "@/utils/currency";
+import { MainLayout } from "@/components/Layout";
 
 const CreateFund = () => {
   const { unallocatedBalance } = useFunds();
@@ -15,6 +16,7 @@ const CreateFund = () => {
   const navigate = useNavigate();
 
   const handleCreateFund = (event) => {
+    console.log(fundInitialBalance + " " + fundName)
     event.preventDefault();
     if (fundInitialBalance <= unallocatedBalance) {
       setIsFormLoading(true);
@@ -35,7 +37,7 @@ const CreateFund = () => {
   };
 
   return (
-    <>
+    <MainLayout>
       <Button text="back" onClick={() => navigate("/funds")} />
       {error && <div className="flex justify-center p-2 bg-red-300 my-2">Error: {error}</div>}
       {isFormLoading && <div>Loading...</div>}
@@ -59,7 +61,7 @@ const CreateFund = () => {
           <Button text="Create Fund" disabled={isFormLoading} />
         </div>
       </form>
-    </>
+    </MainLayout>
   );
 };
 

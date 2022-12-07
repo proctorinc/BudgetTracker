@@ -8,17 +8,21 @@ import { MainLayout } from "@/components/Layout";
 
 const Funds = () => {
   const navigate = useNavigate();
-  const { funds, unallocatedBalance, isLoading } = useFunds();
+  const { funds, isLoading } = useFunds();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+    <div className="flex justify-center align-center items-center w-screen h-screen">
+      Loading...
+    </div>
+    );
   }
 
   return (
     <MainLayout>
       <AccountsTotalBalance />
-      <FundsChart funds={funds} unallocatedBalance={unallocatedBalance} isLoading={isLoading} />
-      <FundsList funds={funds} unallocatedBalance={unallocatedBalance}/>
+      <FundsChart funds={funds} />
+      <FundsList funds={funds} />
       <div className="flex justify-center p-5">
         <Button text="New Fund" onClick={() => navigate("/funds/create")} />
       </div>

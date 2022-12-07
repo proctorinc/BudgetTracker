@@ -37,6 +37,7 @@ export const handlers = [
       );
     }
   ),
+
   rest.post(
     "http://localhost:4090/bank/token/create/link_token",
     (req, res, ctx) => {
@@ -47,6 +48,7 @@ export const handlers = [
       );
     }
   ),
+
   rest.get(
     "http://localhost:4090/bank/token/create/access_token",
     (req, res, ctx) => {
@@ -60,6 +62,7 @@ export const handlers = [
       );
     }
   ),
+
   rest.get("http://localhost:4090/bank/funds", (req, res, ctx) => {
     return res(
       ctx.json({
@@ -67,4 +70,31 @@ export const handlers = [
       })
     );
   }),
+
+  rest.get("http://localhost:4090/bank/funds/create", (req, res, ctx) => {
+    return res(
+      ctx.json({
+        message: "Successfully created fund",
+      })
+    );
+  }),
+
+  rest.get("http://localhost:4090/bank/funds/balance", (req, res, ctx) => {
+    return res(
+      ctx.json({
+        balance: 123456.78,
+      })
+    );
+  }),
+
+  rest.get(
+    "http://localhost:4090/bank/funds/unallocated/balance",
+    (req, res, ctx) => {
+      return res(
+        ctx.json({
+          unallocated_balance: 123456.78,
+        })
+      );
+    }
+  ),
 ];

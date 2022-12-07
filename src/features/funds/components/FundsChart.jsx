@@ -1,17 +1,8 @@
 import { ResponsivePie } from "@nivo/pie";
 
-const FundsChart = ({ funds, unallocatedBalance, isLoading }) => {
+const FundsChart = ({ funds }) => {
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  const unallocatedFunds = {
-    name: "unallocated",
-    initial_amount: unallocatedBalance,
-  }
-
-  const data = [unallocatedFunds, ...funds].filter((fund) => fund.initial_amount > 0)
+  const data = funds.filter((fund) => fund.initial_amount > 0)
     .map((fund, index) => {
       if (fund.initial_amount > 0) {
         return {
@@ -31,12 +22,19 @@ const FundsChart = ({ funds, unallocatedBalance, isLoading }) => {
         padAngle={0.7}
         cornerRadius={3}
         activeOuterRadiusOffset={10}
-        colors={{ scheme: "greys" }}
+        colors={{ scheme: "pastel2" }}
         borderWidth={2}
         borderColor={
           {"from":"color","modifiers":[["darker", 0.2]]}
         }
         enableArcLinkLabels={false}
+        arcLinkLabelsSkipAngle={10}
+        arcLinkLabelsTextColor="#333333"
+        arcLinkLabelsThickness={2}
+        arcLinkLabelsColor={{ from: 'color', "modifiers":[["darker", 0.2]]}}
+        sortByValue={true}
+        arcLabel="id"
+        arcLabelsSkipAngle={15}
         onClick={(node, event) => console.log(node)}
       />
     </div>
