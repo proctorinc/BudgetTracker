@@ -1,4 +1,5 @@
 import AccountRoutes from "@/features/accounts/routes";
+import TransactionRoutes from "@/features/transactions/routes";
 import { Outlet } from "react-router-dom";
 import FundRoutes from "../features/funds/routes";
 
@@ -12,7 +13,8 @@ export const protectedRoutes = [
     element: <App />,
     children: [
       { path: "/funds/*", element: <FundRoutes /> },
-      { path: "/accounts/*", element: <AccountRoutes />},
-  ],
+      { path: "/accounts/*", element: <AccountRoutes /> },
+      { path: "/transactions/*", element: <TransactionRoutes /> },
+    ],
   },
 ];

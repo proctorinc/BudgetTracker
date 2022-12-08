@@ -1,14 +1,23 @@
+import { formatCurrency } from "@/utils/currency";
+import { useNavigate } from "react-router-dom";
+
 const TransactionEntry = ({ transaction }) => {
+  const navigate = useNavigate();
+  const sourceType = transaction.source.type;
+
+  const handleClick = () => {
+    navigate(`/transactions/${transaction._id}`);
+  };
+
   return (
-    <div className="flex border border-gray-600 px-4 py-3 rounded-lg">
-      <div>
-        <p className="text-xl">{transaction.name}</p>
-      </div>
-      <div className="flex justify-end flex-grow">
-        <p className="text-xl">{transaction.category[0]}</p>
-        <p className="text-xl">{transaction.date}</p>
-        <p className="text-xl">{formatCurrency(transaction.amount)}</p>
-      </div>
+    <div
+      onClick={handleClick}
+      className="flex justify-between border border-gray-600 px-4 py-1 rounded-lg text-md"
+    >
+      <p>{transaction.name}</p>
+      <p>{formatCurrency(transaction.amount)}</p>
+      {sourceType && <p>{sourceType}</p>}
+      <p>{new Date(transaction.date).toLocaleDateString()}</p>
     </div>
   );
 };
