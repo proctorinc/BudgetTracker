@@ -10,6 +10,8 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.5",
+    "@heroicons/react": "^2.0.13",
     "@nivo/core": "^0.80.0",
     "@nivo/pie": "^0.80.0",
     "daisyui": "^2.42.1",

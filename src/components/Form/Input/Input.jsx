@@ -1,9 +1,11 @@
 export const Input = ({ label, type, value, onChange, placeholder }) => {
   return (
     <>
-      <label htmlFor={`${label}-input`} className="label">
-        {label}
-      </label>
+      {label && (
+        <label htmlFor={`${label}-input`} className="label">
+          {label}
+        </label>
+      )}
       <input
         className="input input-bordered"
         id={`${label}-input`}

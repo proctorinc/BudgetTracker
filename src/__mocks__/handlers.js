@@ -7,6 +7,7 @@ import {
   mockLoanAccounts,
 } from "./mock_data/accounts";
 import { mockFunds } from "./mock_data/funds";
+import { mockTransactions } from "./mock_data/transactions";
 
 export const handlers = [
   rest.get(
@@ -93,6 +94,17 @@ export const handlers = [
       return res(
         ctx.json({
           unallocated_balance: 123456.78,
+        })
+      );
+    }
+  ),
+
+  rest.get(
+    "http://localhost:4090/bank/transactions/6390fa3cc50233ef043b61e1",
+    (req, res, ctx) => {
+      return res(
+        ctx.json({
+          transaction: mockTransactions[0],
         })
       );
     }
