@@ -6,11 +6,7 @@ import { Router } from "react-router-dom";
 
 describe("fund list", () => {
   it("renders Funds Label", () => {
-    render(
-      <Router>
-        <FundsList funds={mockFunds} />
-      </Router>
-    );
+    render(<FundsList funds={mockFunds} />);
     const fundListLabel = screen.getByRole("heading", {
       name: /funds:/i,
     });
@@ -18,11 +14,7 @@ describe("fund list", () => {
   });
 
   it("loads list of funds", async () => {
-    render(
-      <Router>
-        <FundsList funds={mockFunds} />
-      </Router>
-    );
+    render(<FundsList funds={mockFunds} />);
 
     const carFund = await screen.findByText("Car Fund");
     const vacationFund = await screen.findByText("Vacation Fund");
