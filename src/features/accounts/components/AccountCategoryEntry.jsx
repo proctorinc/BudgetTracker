@@ -1,15 +1,13 @@
+import AccountEntry from "./AccountEntry";
 import { capitalizeFirstLetter } from "@/utils";
 import { formatCurrency } from "@/utils/currency";
-import AccountEntry from "./AccountEntry";
 
-const AccountCategoryEntry = ({ category, accounts, isLoading, error }) => {
-  // console.log(`${category}: ${accounts}`);
-  console.log(accounts);
-  const accountEntries = accounts.map((account) => (
+const AccountCategoryEntry = ({ category, accountData, isLoading, error }) => {
+  const accountEntries = accountData?.accounts.map((account) => (
     <AccountEntry key={account._id} account={account} />
   ));
 
-  const subtotal = formatCurrency(accounts?.subtotal);
+  const subtotal = formatCurrency(accountData?.subtotal);
   const categoryHeading = capitalizeFirstLetter(category);
 
   const loader = (

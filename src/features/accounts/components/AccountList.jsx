@@ -1,19 +1,17 @@
-import { useAccounts } from "../hooks/useAccounts";
 import AccountCategoryEntry from "./AccountCategoryEntry";
+import { useAccounts } from "../hooks/useAccounts";
+import { ACCOUNT_CATEGORIES } from "@/constants";
 
 const AccountList = () => {
-  const categories = ["cash", "credit", "investment", "loan"];
-  const accounts = useAccounts();
+  const { data, isLoading, error } = useAccounts();
 
-  console.log(accounts);
-
-  const categoryEntries = categories.map((category) => (
+  const categoryEntries = ACCOUNT_CATEGORIES.map((category) => (
     <AccountCategoryEntry
       key={category}
-      accounts={!accounts.isLoading ? accounts.data.categories[category] : []}
+      accountData={data?.categories[category]}
       category={category}
-      isLoading={accounts.isLoading}
-      error={accounts.error}
+      isLoading={isLoading}
+      error={error}
     />
   ));
 
