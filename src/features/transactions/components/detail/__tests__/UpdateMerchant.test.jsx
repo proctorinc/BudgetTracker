@@ -1,6 +1,6 @@
 import { render, screen } from "@/test-utils.jsx";
 import { describe, it, vi } from "vitest";
-import UpdateMerchant from "../UpdateMerchant";
+import UpdateMerchant from "../MerchantDetail";
 
 const mockInitialMerchant = "Demo Merchant";
 

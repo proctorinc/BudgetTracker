@@ -2,7 +2,7 @@ import { AutocompleteInput } from "@/components/Form/AutocompleteInput";
 import { render, screen } from "@/test-utils.jsx";
 import { describe, it, vi } from "vitest";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import TransactionUpdateDetail from "../UpdateDetail";
+import TransactionUpdateDetail from "../TransactionDetail";
 
 const mockLabel = "Source";
 const mockIcon = <ChevronUpDownIcon data-testid="test-icon" />;

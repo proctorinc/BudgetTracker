@@ -1,12 +1,14 @@
+import { MainLayout } from "@/components/Layout";
 import { formatCurrency } from "@/utils/currency";
 import { useParams } from "react-router-dom";
-import UpdateMerchant from "../components/UpdateDetail/UpdateMerchant";
-import UpdateSource from "../components/UpdateDetail/UpdateSource";
+import MerchantDetail from "../components/detail/MerchantDetail";
+import SourceDetail from "../components/detail/SourceDetail";
 import useTransaction from "../hooks/useTransaction";
 
 const Transaction = () => {
   const { transactionId } = useParams();
-  const { transaction, isLoading, error } = useTransaction({ transactionId });
+  const { data, isLoading, error } = useTransaction({ transactionId });
+  const transaction = data?.transaction;
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -16,13 +18,20 @@ const Transaction = () => {
     return <div>Error: {error}</div>;
   }
 
+  const categories = transaction.category.map((category, i) => {
+    return <p key={i}>{category}</p>;
+  });
+
   return (
-    <>
-      <div className="flex flex-col items-center gap-1">
+    <MainLayout>
+      <div className="flex flex-col items-center gap-1 py-5">
         <h1 className="text-6xl">{formatCurrency(transaction.amount)}</h1>
         <h3>{transaction.merchant_name}</h3>
-        <p>{transaction.date}</p>
-        <p>{transaction.category[0]}</p>
+        <div className="flex gap-2 border border-black rounded-md px-3">
+          {categories}
+        </div>
+        <p>{new Date(transaction.date).toLocaleString()}</p>
+
         {transaction.pending && (
           <p className="border border-black rounded-md p-1 font-thin">
             Transaction is pending
@@ -30,10 +39,10 @@ const Transaction = () => {
         )}
       </div>
       <div className="flex flex-col gap-1">
-        <UpdateMerchant merchant={transaction.merchant} />
-        <UpdateSource source={transaction.source} />
+        <MerchantDetail merchant={transaction.merchant_name} />
+        <SourceDetail source={transaction.source} />
       </div>
-    </>
+    </MainLayout>
   );
 };
 

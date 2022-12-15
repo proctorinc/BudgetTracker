@@ -20,9 +20,9 @@ const Transactions = () => {
   return (
     <>
       <h3 className="text-3xl">Unallocated:</h3>
-      <TransactionsList transactions={unallocated} />
+      <TransactionsList transactions={unallocatedQuery.data.transactions} />
       <h3 className="text-3xl">Allocated:</h3>
-      <TransactionsList transactions={allocated} />
+      <TransactionsList transactions={allocatedQuery.data.transactions} />
     </>
   );
 };

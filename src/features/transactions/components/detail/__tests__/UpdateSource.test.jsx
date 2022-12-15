@@ -1,7 +1,7 @@
 import { render, screen } from "@/test-utils.jsx";
 import { describe, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
-import UpdateSource from "../UpdateSource";
+import UpdateSource from "../SourceDetail";
 import { mockFunds } from "@/__mocks__/mock_data/funds";
 import { mockBudgets } from "@/__mocks__/mock_data/budgets";
 

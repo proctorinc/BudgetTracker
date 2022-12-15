@@ -8,7 +8,7 @@ import { MainLayout } from "@/components/Layout";
 
 const Funds = () => {
   const navigate = useNavigate();
-  const { funds, isLoading } = useFunds();
+  const { data, isLoading, error } = useFunds();
 
   if (isLoading) {
     return (
@@ -18,11 +18,15 @@ const Funds = () => {
     );
   }
 
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <MainLayout>
       <AccountsTotalBalance />
-      <FundsChart funds={funds} />
-      <FundsList funds={funds} />
+      <FundsChart funds={data.funds} />
+      <FundsList funds={data.funds} />
       <div className="flex justify-center p-5">
         <Button text="New Fund" onClick={() => navigate("/funds/create")} />
       </div>
