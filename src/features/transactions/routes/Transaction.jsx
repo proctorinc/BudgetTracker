@@ -27,13 +27,13 @@ const Transaction = () => {
       <div className="flex flex-col items-center gap-1 py-5">
         <h1 className="text-6xl">{formatCurrency(transaction.amount)}</h1>
         <h3>{transaction.merchant_name}</h3>
-        <div className="flex gap-2 border border-black rounded-md px-3">
+        <div className="flex gap-2 border border-gray-600 rounded-md px-3">
           {categories}
         </div>
         <p>{new Date(transaction.date).toLocaleString()}</p>
 
         {transaction.pending && (
-          <p className="border border-black rounded-md p-1 font-thin">
+          <p className="border border-gray-600 rounded-md p-1 font-thin">
             Transaction is pending
           </p>
         )}

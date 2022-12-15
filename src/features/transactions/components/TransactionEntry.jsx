@@ -12,7 +12,7 @@ const TransactionEntry = ({ transaction }) => {
   return (
     <div
       onClick={handleClick}
-      className="flex justify-between border border-gray-600 px-4 py-1 rounded-lg text-md"
+      className="flex justify-between border border-gray-600 px-4 py-1 rounded-lg text-md hover:bg-gray-200"
     >
       <p>{transaction.name}</p>
       <p>{formatCurrency(transaction.amount)}</p>

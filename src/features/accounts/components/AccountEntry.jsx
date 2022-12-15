@@ -2,7 +2,7 @@ import { formatCurrency } from "@/utils/currency";
 
 const AccountEntry = ({ account, loading }) => {
   return (
-    <div className="flex border border-gray-600 px-4 py-2 rounded-lg">
+    <div className="flex border border-gray-600 px-4 py-2 rounded-lg hover:bg-gray-200">
       <div>
         <p className="text-2xl">{account.name}</p>
         <p className="text-md">

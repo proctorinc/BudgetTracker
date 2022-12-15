@@ -2,9 +2,9 @@ const UpdateDetail = ({ label, icon, onClick, children }) => {
   return (
     <div
       onClick={onClick}
-      className="flex items-center gap-1 w-full border border-black rounded-md px-2 hover:bg-gray-200"
+      className="flex items-center gap-1 w-full border border-gray-600 rounded-md px-2 hover:bg-gray-200"
     >
-      <div className="flex w-10 h-10 border border-black rounded-full p-1 justify-center items-center">
+      <div className="flex w-10 h-10 border border-gray-600 rounded-full p-1 justify-center items-center">
         {icon}
       </div>
       <div className="p-2">
