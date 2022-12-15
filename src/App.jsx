@@ -6,6 +6,7 @@ import { MainLayout } from "./components/Layout";
 import UpdateMerchant from "./features/transactions/components/UpdateDetail/UpdateMerchant";
 import { formatCurrency } from "./utils/currency";
 import LinkBankButton from "./features/bank_link/components/LinkBankButton";
+import CreateFund from "./features/funds/routes/CreateFund";
 
 function App() {
   const source = {
@@ -33,7 +34,7 @@ function App() {
     //   </div>
     // </MainLayout>
     <AppProvider>
-      <LinkBankButton />
+      <CreateFund />
       {/* <AppRoutes /> */}
     </AppProvider>
   );

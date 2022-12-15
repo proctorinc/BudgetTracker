@@ -68,6 +68,8 @@ export const handlers = [
   rest.get("http://localhost:4090/bank/funds", (req, res, ctx) => {
     return res(
       ctx.json({
+        total_balance: 12345,
+        unallocated_balance: 3490,
         funds: [...mockFunds],
       })
     );

@@ -47,6 +47,12 @@ describe("Create Fund Route", () => {
       name: /balance/i,
     });
 
+    const maxBalance = await screen.findByText("Unallocated:", {
+      exact: false,
+    });
+
+    console.log(maxBalance);
+
     await user.type(fundNameInput, "Testing This Fund");
     await user.type(fundInitialAmountInput, "1000");
     await user.click(createFundButton);

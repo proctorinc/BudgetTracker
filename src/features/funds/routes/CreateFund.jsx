@@ -8,7 +8,7 @@ import { formatCurrency } from "@/utils/currency";
 import { MainLayout } from "@/components/Layout";
 
 const CreateFund = () => {
-  const { unallocatedBalance } = useFunds();
+  const fundsQuery = useFunds();
   const [isFormLoading, setIsFormLoading] = useState(false);
   const [error, setError] = useState();
   const [fundName, setFundName] = useState("");
@@ -16,9 +16,8 @@ const CreateFund = () => {
   const navigate = useNavigate();
 
   const handleCreateFund = (event) => {
-    console.log(fundInitialBalance + " " + fundName);
     event.preventDefault();
-    if (fundInitialBalance <= unallocatedBalance) {
+    if (fundInitialBalance <= fundsQuery.data.unallocated_balance) {
       setIsFormLoading(true);
       createFund({
         name: fundName,
@@ -44,10 +43,10 @@ const CreateFund = () => {
           Error: {error}
         </div>
       )}
-      {isFormLoading && <div>Loading...</div>}
+      {fundsQuery.isLoading && <div>Loading...</div>}
       <form className="flex flex-col items-center" onSubmit={handleCreateFund}>
         <h2 className="text-2xl">
-          Unallocated: {formatCurrency(unallocatedBalance)}
+          Unallocated: {formatCurrency(fundsQuery.data?.unallocated_balance)}
         </h2>
         <div className="flex flex-col align-center items-right justify-center w-full">
           <Input
