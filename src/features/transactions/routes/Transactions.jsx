@@ -1,8 +1,13 @@
 import TransactionsList from "../components/TransactionsList";
-import useTransactions from "../hooks/useTransactions";
+import { useAllocatedTransactions } from "../hooks/useAllocatedTransactions";
+import { useUnallocatedTransactions } from "../hooks/useUnallocatedTransactions";
 
 const Transactions = () => {
-  const { unallocated, allocated, isLoading, error } = useTransactions();
+  const allocatedQuery = useAllocatedTransactions();
+  const unallocatedQuery = useUnallocatedTransactions();
+
+  const isLoading = allocatedQuery.isLoading || unallocatedQuery.isLoading;
+  const error = allocatedQuery.error || unallocatedQuery.error;
 
   if (isLoading) {
     return <div>Loading...</div>;

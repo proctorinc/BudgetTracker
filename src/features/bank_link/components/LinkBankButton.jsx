@@ -3,23 +3,22 @@ import { sendPublicTokenToServer } from "../api/sendPublicTokenToServer";
 import useLinkToken from "../hooks/useLinkToken";
 
 const LinkBankButton = () => {
-  const { linkToken } = useLinkToken();
+  const { data, error, isLoading } = useLinkToken();
 
   const onSuccessfulLink = (public_token, metadata) => {
-    const response = sendPublicTokenToServer(public_token);
-    console.log(response);
+    sendPublicTokenToServer(public_token);
   };
 
   const { open, ready } = usePlaidLink({
-    token: linkToken,
+    token: data?.link_token,
     onSuccess: onSuccessfulLink,
   });
 
-  const isReadyToLink = ready || linkToken != null;
+  const isReadyToLink = ready && !isLoading;
 
   return (
     <button className="btn" onClick={open} disabled={!isReadyToLink}>
-      Connect a bank account
+      {isReadyToLink ? "Connect a bank account" : "Loading..."}
     </button>
   );
 };

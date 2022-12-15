@@ -3,9 +3,9 @@ import { screen, render } from "@/test-utils.jsx";
 import userEvent from "@testing-library/user-event";
 import Funds from "../Funds";
 
-vi.mock("../../components/FundsChart", () => () => {
-  return <div data-testid="funds-chart"></div>;
-});
+// vi.mock("../../components/FundsChart", () => () => {
+//   return <div data-testid="funds-chart"></div>;
+// });
 
 const mockedNavigator = vi.fn();
 vi.mock("react-router-dom", async () => ({

@@ -1,6 +1,16 @@
 import LinkBankButton from "../LinkBankButton";
-import { describe, it, expect } from "vitest";
-import { render, screen, waitFor } from "@/test-utils.jsx";
+import { describe, it, expect, vi } from "vitest";
+import { render, screen } from "@/test-utils.jsx";
+import userEvent from "@testing-library/user-event";
+
+const mockOpenFunction = vi.fn();
+vi.mock("react-plaid-link", async () => ({
+  ...(await vi.importActual("react-plaid-link")),
+  usePlaidLink: () => ({
+    ready: true,
+    open: mockOpenFunction,
+  }),
+}));
 
 describe("Link bank button", () => {
   it("button renders on screen", () => {
@@ -16,10 +26,15 @@ describe("Link bank button", () => {
   });
 
   it("button is enabled after a short duration", async () => {
+    const user = userEvent.setup();
     render(<LinkBankButton />);
-    const linkBankButton = screen.getByRole("button");
-    await waitFor(() => expect(linkBankButton).toBeEnabled(), {
-      timeout: 2000,
+    const linkBankButton = await screen.findByRole("button", {
+      name: "Connect a bank account",
     });
+    user.click(linkBankButton);
+
+    expect(mockOpenFunction).toHaveBeenCalledOnce();
   });
+
+  it("opens plaid link on click", () => {});
 });
