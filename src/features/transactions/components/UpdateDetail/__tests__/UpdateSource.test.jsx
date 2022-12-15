@@ -1,51 +1,88 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "@/test-utils.jsx";
 import { describe, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import UpdateSource from "../UpdateSource";
+import { mockFunds } from "@/__mocks__/mock_data/funds";
+import { mockBudgets } from "@/__mocks__/mock_data/budgets";
 
 const mockInitialSource = {
-  name: "Test",
-  id: "d897h3d98h3d",
+  name: mockFunds[0].name,
+  id: mockFunds[0]._id,
   type: "fund",
 };
-const mockInitialSourceType = "Fund";
-const mockInitialSourceItem = "";
-const mockFinalSourceItem = "";
-
-const mockTypes = ["funds", "budget"];
-const mockBudgets = ["Rent", "Eating out", "Shopping", "Misc Expenses"];
-const mockFunds = [
-  "Car Funds",
-  "House Fund",
-  "Annika Allowance",
-  "Matt Allowance",
-];
 
 describe("Update source", () => {
-  it("renders correctly", () => {
-    render(<UpdateSource source={mockInitialSource} />);
+  it("renders correctly", async () => {
+    render(<UpdateSource initialSource={mockInitialSource} />);
 
-    const listbox = screen.getByRole("button", {
-      name: mockInitialSourceType,
+    const typeBox = await screen.findByRole("button", {
+      name: "Type:",
     });
-    const autocompleteinput = screen.getByRole("combobox");
+    const nameBox = await screen.findByRole("button", {
+      name: "Name:",
+    });
 
-    expect(listbox).toBeInTheDocument();
-    expect(autocompleteinput).toHaveTextContent(mockInitialSourceItem);
+    expect(typeBox).toHaveTextContent("fund");
+    expect(nameBox).toHaveTextContent(mockFunds[0].name);
   });
 
-  it("changes second input choices by changing first input", () => {
+  it("shows the list of funds when type is fund and button is clicked", async () => {
     const user = userEvent.setup();
-    render(<UpdateSource source={mockInitialSource} />);
+    render(<UpdateSource initialSource={mockInitialSource} />);
 
-    const listbox = screen.getByRole("button", {
-      name: defaultInitialValue,
+    const nameBox = await screen.findByRole("button", {
+      name: "Name:",
     });
-    user.click(listbox);
-    const listItems = screen.queryAllByRole("option");
-    user.click(listItems[0]);
-    const autocompleteinput = screen.getByRole("combobox");
+    user.click(nameBox);
+    const listItems = await screen.findAllByRole("option");
 
-    expect(autocompleteinput).toHaveTextContent(mockFinalSourceItem);
+    expect(listItems).toHaveLength(mockFunds.length);
+    listItems.forEach((item, i) => {
+      expect(item).toHaveTextContent(mockFunds[i].name);
+    });
+  });
+
+  it("shows list of budgets when type is changed and button is clicked", async () => {
+    const user = userEvent.setup();
+    render(<UpdateSource initialSource={mockInitialSource} />);
+
+    const typeBox = await screen.findByRole("button", {
+      name: "Type:",
+    });
+    user.click(typeBox);
+    const listItems = await screen.findAllByRole("option");
+    user.click(listItems[1]);
+    expect(typeBox).toHaveTextContent("budget");
+    // const typeText = screen.getByText("budget");
+
+    const nameBox = await screen.findByRole("button", {
+      name: "Name:",
+    });
+
+    user.click(nameBox);
+    const budgetItems = await screen.findAllByRole("option");
+    console.table(budgetItems);
+    expect(budgetItems).toHaveLength(mockBudgets.length);
+    budgetItems.forEach((item, i) => {
+      expect(item).toHaveTextContent(mockBudgets[i].name);
+    });
+
+    screen.logTestingPlaygroundURL();
+  });
+
+  it("type changes when new type selected", async () => {
+    const user = userEvent.setup();
+    render(<UpdateSource initialSource={mockInitialSource} />);
+
+    const typeBox = await screen.findByRole("button", {
+      name: "Type:",
+    });
+    user.click(typeBox);
+    const listItems = await screen.findAllByRole("option");
+    user.click(listItems[1]);
+    const typeText = screen.getByText("budget");
+
+    expect(listItems).toHaveLength(2);
+    expect(typeText).toBeInTheDocument();
   });
 });

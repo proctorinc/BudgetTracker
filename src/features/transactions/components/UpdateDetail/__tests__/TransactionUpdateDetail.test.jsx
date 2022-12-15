@@ -1,5 +1,5 @@
 import { AutocompleteInput } from "@/components/Form/AutocompleteInput";
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "@/test-utils.jsx";
 import { describe, it, vi } from "vitest";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import TransactionUpdateDetail from "../UpdateDetail";
@@ -21,13 +21,7 @@ const mockInputTwo = (
 
 describe("Transaction update detail", () => {
   it("renders correctly with one input", () => {
-    render(
-      <TransactionUpdateDetail
-        label={mockLabel}
-        icon={mockIcon}
-        inputs={[mockInputOne]}
-      />
-    );
+    render(<TransactionUpdateDetail label={mockLabel} icon={mockIcon} />);
 
     const label = screen.getByText(mockLabel);
     const icon = screen.getByTestId("test-icon");
@@ -39,13 +33,7 @@ describe("Transaction update detail", () => {
   });
 
   it("renders correctly with two inputs", () => {
-    render(
-      <TransactionUpdateDetail
-        label={mockLabel}
-        icon={mockIcon}
-        inputs={[mockInputOne, mockInputTwo]}
-      />
-    );
+    render(<TransactionUpdateDetail label={mockLabel} icon={mockIcon} />);
 
     const label = screen.getByText(mockLabel);
     const icon = screen.getByTestId("test-icon");

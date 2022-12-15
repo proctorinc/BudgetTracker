@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/Elements/Button";
 import { Input } from "@/components/Form/Input";
 import { createFund } from "../api/createFund";
-import useFunds from "../hooks/useFunds";
+import { useFunds } from "../hooks/useFunds";
 import { formatCurrency } from "@/utils/currency";
 import { MainLayout } from "@/components/Layout";
 
@@ -16,7 +16,7 @@ const CreateFund = () => {
   const navigate = useNavigate();
 
   const handleCreateFund = (event) => {
-    console.log(fundInitialBalance + " " + fundName)
+    console.log(fundInitialBalance + " " + fundName);
     event.preventDefault();
     if (fundInitialBalance <= unallocatedBalance) {
       setIsFormLoading(true);
@@ -32,17 +32,23 @@ const CreateFund = () => {
           }
         });
     } else {
-      setError("Initial Balance exceeds unallocated funds left")
+      setError("Initial Balance exceeds unallocated funds left");
     }
   };
 
   return (
     <MainLayout>
       <Button text="back" onClick={() => navigate("/funds")} />
-      {error && <div className="flex justify-center p-2 bg-red-300 my-2">Error: {error}</div>}
+      {error && (
+        <div className="flex justify-center p-2 bg-red-300 my-2">
+          Error: {error}
+        </div>
+      )}
       {isFormLoading && <div>Loading...</div>}
       <form className="flex flex-col items-center" onSubmit={handleCreateFund}>
-        <h2 className="text-2xl">Unallocated: {formatCurrency(unallocatedBalance)}</h2>
+        <h2 className="text-2xl">
+          Unallocated: {formatCurrency(unallocatedBalance)}
+        </h2>
         <div className="flex flex-col align-center items-right justify-center w-full">
           <Input
             label="Name"

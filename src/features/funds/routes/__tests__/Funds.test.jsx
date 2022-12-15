@@ -1,5 +1,5 @@
 import { describe, it, vi } from "vitest";
-import { screen, render } from "@testing-library/react";
+import { screen, render } from "@/test-utils.jsx";
 import userEvent from "@testing-library/user-event";
 import Funds from "../Funds";
 import { BrowserRouter as Router } from "react-router-dom";

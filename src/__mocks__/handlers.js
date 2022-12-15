@@ -6,6 +6,7 @@ import {
   mockInvestmentAccounts,
   mockLoanAccounts,
 } from "./mock_data/accounts";
+import { mockBudgets } from "./mock_data/budgets";
 import { mockFunds } from "./mock_data/funds";
 import { mockTransactions } from "./mock_data/transactions";
 
@@ -109,4 +110,12 @@ export const handlers = [
       );
     }
   ),
+
+  rest.get("http://localhost:4090/bank/budgets", (req, res, ctx) => {
+    return res(
+      ctx.json({
+        budgets: mockBudgets,
+      })
+    );
+  }),
 ];

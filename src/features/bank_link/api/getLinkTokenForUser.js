@@ -1,4 +1,4 @@
-import { fetchQuery } from "@/lib/fetchQuery";
+import { fetchQuery } from "@/lib/fetch";
 
 export const getLinkTokenForUser = async () => {
   return fetchQuery({

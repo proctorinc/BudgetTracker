@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "@/test-utils.jsx";
 import { describe, it, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { ListBoxInput } from "./ListBoxInput";
@@ -26,9 +26,7 @@ describe("List box input", () => {
   it("renders text input correctly", () => {
     render(ListBox);
 
-    const listbox = screen.getByRole("button", {
-      name: mockInitialValue,
-    });
+    const listbox = screen.getByRole("button");
 
     expect(listbox).toBeInTheDocument();
   });

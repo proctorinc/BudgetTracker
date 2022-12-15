@@ -2,8 +2,10 @@ import { capitalizeFirstLetter } from "@/utils";
 import { formatCurrency } from "@/utils/currency";
 import AccountEntry from "./AccountEntry";
 
-const AccountCategoryEntry = ({ category, accounts, loading }) => {
-  const accountEntries = accounts?.accounts.map((account) => (
+const AccountCategoryEntry = ({ category, accounts, isLoading, error }) => {
+  // console.log(`${category}: ${accounts}`);
+  console.log(accounts);
+  const accountEntries = accounts.map((account) => (
     <AccountEntry key={account._id} account={account} />
   ));
 
@@ -16,12 +18,16 @@ const AccountCategoryEntry = ({ category, accounts, loading }) => {
     </div>
   );
 
+  if (error) {
+    return <div>Error {error}</div>;
+  }
+
   return (
     <div className="flex flex-col gap-2 pt-5">
       <h3 className="text-3xl">
-        {categoryHeading}: {loading ? "Loading..." : subtotal}
+        {categoryHeading}: {isLoading ? "Loading..." : subtotal}
       </h3>
-      {loading ? loader : accountEntries}
+      {isLoading ? loader : accountEntries}
     </div>
   );
 };

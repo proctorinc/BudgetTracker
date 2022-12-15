@@ -1,5 +1,5 @@
 import { formatCurrency } from "@/utils/currency";
-import useAccounts from "../hooks/useAccounts";
+import { useAccounts } from "../hooks/useAccounts";
 
 const AccountsTotalBalance = () => {
   const { netBalance } = useAccounts();

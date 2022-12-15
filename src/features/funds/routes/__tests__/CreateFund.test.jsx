@@ -1,5 +1,5 @@
 import { describe, it, vi } from "vitest";
-import { screen, render } from "@testing-library/react";
+import { screen, render } from "@/test-utils.jsx";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter as Router } from "react-router-dom";
 import CreateFund from "../CreateFund";
@@ -7,7 +7,7 @@ import CreateFund from "../CreateFund";
 const mockedNavigator = vi.fn();
 
 vi.mock("../../components/FundsChart", () => () => {
-  return <MockFundChart data-testid="fund-chart"/>;
+  return <MockFundChart data-testid="fund-chart" />;
 });
 
 vi.mock("react-router-dom", async () => ({
@@ -56,8 +56,8 @@ describe("Create Fund Route", () => {
       name: /balance/i,
     });
 
-    await user.type(fundNameInput, "Testing This Fund")
-    await user.type(fundInitialAmountInput, "1000")
+    await user.type(fundNameInput, "Testing This Fund");
+    await user.type(fundInitialAmountInput, "1000");
     await user.click(createFundButton);
 
     expect(mockedNavigator).toHaveBeenCalledWith("/funds");

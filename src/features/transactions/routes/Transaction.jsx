@@ -1,5 +1,7 @@
 import { formatCurrency } from "@/utils/currency";
 import { useParams } from "react-router-dom";
+import UpdateMerchant from "../components/UpdateDetail/UpdateMerchant";
+import UpdateSource from "../components/UpdateDetail/UpdateSource";
 import useTransaction from "../hooks/useTransaction";
 
 const Transaction = () => {

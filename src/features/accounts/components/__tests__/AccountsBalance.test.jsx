@@ -1,5 +1,5 @@
 import { describe, it } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "@/test-utils.jsx";
 import AccountsBalance from "../AccountsTotalBalance";
 
 describe("Accounts balance", () => {

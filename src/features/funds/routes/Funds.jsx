@@ -3,7 +3,7 @@ import { Button } from "@/components/Elements/Button";
 import FundsChart from "../components/FundsChart";
 import FundsList from "../components/FundsList";
 import AccountsTotalBalance from "../../accounts/components/AccountsTotalBalance";
-import useFunds from "../hooks/useFunds";
+import { useFunds } from "../hooks/useFunds";
 import { MainLayout } from "@/components/Layout";
 
 const Funds = () => {
@@ -12,9 +12,9 @@ const Funds = () => {
 
   if (isLoading) {
     return (
-    <div className="flex justify-center align-center items-center w-screen h-screen">
-      Loading...
-    </div>
+      <div className="flex justify-center align-center items-center w-screen h-screen">
+        Loading...
+      </div>
     );
   }
 

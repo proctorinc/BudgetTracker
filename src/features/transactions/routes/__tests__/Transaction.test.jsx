@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "@/test-utils.jsx";
 import { describe, it, vi } from "vitest";
 import Transaction from "../Transaction";
 
@@ -39,25 +39,5 @@ describe("Transaction screen", () => {
     expect(date).toBeInTheDocument();
     expect(category).toBeInTheDocument();
     expect(pending).toBeInTheDocument();
-  });
-
-  it("renders details to update", () => {
-    render(<UpdateTransactionForm transaction={mockTransactions[0]} />);
-
-    const merchantInput = screen.getByRole("textbox", {
-      name: /merchant/i,
-    });
-
-    const dateInput = screen.getByRole("textbox", {
-      name: /date/i,
-    });
-
-    const sourceInput = screen.getByRole("textbox", {
-      name: /source/i,
-    });
-
-    expect(merchantInput).toBeInTheDocument();
-    expect(dateInput).toBeInTheDocument();
-    expect(sourceInput).toBeInTheDocument();
   });
 });

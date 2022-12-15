@@ -1,5 +1,5 @@
 import { describe, it } from "vitest";
-import { render } from "@testing-library/react";
+import { render } from "@/test-utils.jsx";
 import TransactionsList from "../TransactionsList";
 import { mockTransactions } from "@/__mocks__/mock_data/transactions";
 import { Router } from "react-router-dom";

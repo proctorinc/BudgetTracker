@@ -1,17 +1,7 @@
-import useFetch from "@/hooks/useFetch";
+import { useQuery } from "react-query";
+
 import { getAllAccounts } from "../api/getAllAccounts";
 
-const useAccounts = () => {
-  const { data, isLoading, error } = useFetch({
-    query: getAllAccounts,
-  });
-
-  return {
-    accounts: data?.categories,
-    netBalance: data?.total_balance,
-    isLoading,
-    error,
-  };
+export const useAccounts = () => {
+  return useQuery("categories", getAllAccounts);
 };
-
-export default useAccounts;

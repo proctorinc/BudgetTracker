@@ -3,56 +3,68 @@ import { useState } from "react";
 import TransactionUpdateDetail from "./UpdateDetail";
 import { CurrencyDollarIcon } from "@heroicons/react/20/solid";
 import { ListBoxInput } from "@/components/Form/ListBoxInput";
+import { updateTransaction } from "../../api/updateTransaction";
+import { useBudgets } from "@/features/budgets";
+import { useFunds } from "@/features/funds";
 
-const UpdateSource = ({ source }) => {
-  const [selectedType, setSelectedType] = useState(source.type);
-  const [selectedSource, setSelectedSource] = useState(source.name);
+// source
+// {
+// id: either fund or budget id
+// type: "fund" or "budget"
+// name: name of fund or budget
+// }
 
-  //   const { budgets } = useBudgets();
-  //   const { funds } = useFunds();
-  //   const { sourceTypes } = useSources();
+const UpdateSource = ({ initialSource }) => {
+  const [selectedSource, setSelectedSource] = useState(initialSource);
+  const budgets = useBudgets();
+  const funds = useFunds();
+  const sourceTypes = ["fund", "budget"];
 
-  const sourceTypes = ["funds", "budget"];
-  const budgets = ["Rent", "Eating out", "Shopping", "Misc Expenses"];
-  const funds = [
-    "Car Funds",
-    "House Fund",
-    "Annika Allowance",
-    "Matt Allowance",
-  ];
+  if (budgets.isLoading || funds.isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (budgets.error) {
+    return <div>Error: {budgets.error}</div>;
+  }
+
+  if (funds.error) {
+    return <div>Error: {funds.error}</div>;
+  }
 
   const handleSelectType = (type) => {
-    console.log(type);
-    setSelectedType(type);
+    console.log(`TYPE: ${type}`);
     setSelectedSource(type === "budget" ? budgets[0] : funds[0]);
   };
-
-  const sourceTypesInput = (
-    <ListBoxInput
-      key="sourceTypes"
-      label="Type"
-      selected={selectedType}
-      setSelected={handleSelectType}
-      choices={sourceTypes}
-    />
-  );
-  const sourceInput = (
-    <ListBoxInput
-      key="source"
-      label="Name"
-      selected={selectedSource}
-      setSelected={setSelectedSource}
-      choices={selectedType === "budget" ? budgets : funds}
-    />
-  );
 
   return (
     <TransactionUpdateDetail
       label={"Source"}
       icon={<CurrencyDollarIcon />}
-      inputs={[sourceTypesInput, sourceInput]}
-      onSubmit={() => {}}
-    />
+      onSubmit={(event) => {
+        event.preventDefault();
+        updateTransaction({
+          source: { type: selectedSource.type, name: selectedSource },
+        });
+      }}
+    >
+      <ListBoxInput
+        label="Type"
+        selected={selectedSource.type}
+        setSelected={handleSelectType}
+        choices={sourceTypes}
+      />
+      <ListBoxInput
+        label="Name"
+        selected={selectedSource.name}
+        setSelected={setSelectedSource}
+        choices={
+          selectedSource.type === "budget"
+            ? budgets.data.map((budget) => budget.name)
+            : funds.data.map((fund) => fund.name)
+        }
+      />
+    </TransactionUpdateDetail>
   );
 };
 
