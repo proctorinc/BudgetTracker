@@ -2,11 +2,10 @@ import { describe, it, vi } from "vitest";
 import { screen, render } from "@/test-utils.jsx";
 import userEvent from "@testing-library/user-event";
 import Funds from "../Funds";
-import { BrowserRouter as Router } from "react-router-dom";
 
-// vi.mock("../../components/FundsChart", () => () => {
-//   return <div data-testid="funds-chart"></div>;
-// });
+vi.mock("../../components/FundsChart", () => () => {
+  return <div data-testid="funds-chart"></div>;
+});
 
 const mockedNavigator = vi.fn();
 vi.mock("react-router-dom", async () => ({
@@ -16,11 +15,7 @@ vi.mock("react-router-dom", async () => ({
 
 describe("Funds Route", () => {
   it("renders funds list", async () => {
-    render(
-      <Router>
-        <Funds />
-      </Router>
-    );
+    render(<Funds />);
     const fundListLabel = await screen.findByRole("heading", {
       name: /funds:/i,
     });
@@ -28,11 +23,7 @@ describe("Funds Route", () => {
   });
 
   it("renders funds chart", async () => {
-    render(
-      <Router>
-        <Funds />
-      </Router>
-    );
+    render(<Funds />);
 
     const fundsChart = await screen.findByTestId("funds-chart");
 
@@ -40,11 +31,7 @@ describe("Funds Route", () => {
   });
 
   it("renders create fund button", async () => {
-    render(
-      <Router>
-        <Funds />
-      </Router>
-    );
+    render(<Funds />);
 
     const createFundButton = await screen.findByRole("button", {
       name: /new fund/i,
@@ -55,11 +42,7 @@ describe("Funds Route", () => {
 
   it("create fund button navigates to create fund page", async () => {
     const user = userEvent.setup();
-    render(
-      <Router>
-        <Funds />
-      </Router>
-    );
+    render(<Funds />);
 
     const createFundButton = await screen.findByRole("button", {
       name: /new fund/i,

@@ -1,7 +1,6 @@
 import { describe, it, vi } from "vitest";
 import { screen, render } from "@/test-utils.jsx";
 import userEvent from "@testing-library/user-event";
-import { BrowserRouter as Router } from "react-router-dom";
 import CreateFund from "../CreateFund";
 
 const mockedNavigator = vi.fn();
@@ -17,11 +16,7 @@ vi.mock("react-router-dom", async () => ({
 
 describe("Create Fund Route", () => {
   it("renders create fund form", () => {
-    render(
-      <Router>
-        <CreateFund />
-      </Router>
-    );
+    render(<CreateFund />);
 
     const fundNameInput = screen.getByRole("textbox", {
       name: /name/i,
@@ -40,11 +35,7 @@ describe("Create Fund Route", () => {
 
   it("create fund button navigates to create fund page", async () => {
     const user = userEvent.setup();
-    render(
-      <Router>
-        <CreateFund />
-      </Router>
-    );
+    render(<CreateFund />);
 
     const createFundButton = screen.getByRole("button", {
       name: /create fund/i,
