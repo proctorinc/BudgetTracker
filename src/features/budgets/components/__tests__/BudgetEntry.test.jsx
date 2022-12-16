@@ -2,7 +2,7 @@ import { describe, it, vi } from "vitest";
 import { screen, render } from "@/test-utils.jsx";
 import userEvent from "@testing-library/user-event";
 import BudgetEntry from "../BudgetEntry";
-// import { BudgetBarChart } from "../BudgetBarChart";
+// import { BudgetProgressBar } from "../BudgetProgressBar";
 
 const mockBudget = {
   _id: "mock-budget-id",
@@ -18,9 +18,9 @@ vi.mock("react-router-dom", async () => ({
   useNavigate: () => mockedNavigator,
 }));
 
-// vi.mock("../BudgetBarChart", () => {
-//   const BudgetBarChart = <div data-testid="budget-bar-chart"></div>;
-//   return BudgetBarChart;
+// vi.mock("../BudgetProgressBar", () => {
+//   const BudgetProgressBar = <div data-testid="budget-bar-chart"></div>;
+//   return BudgetProgressBar;
 // });
 
 describe("Budget Entry", () => {

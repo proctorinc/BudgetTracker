@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { formatCurrency } from "@/utils/currency";
-import { BudgetBarChart } from "./BudgetBarChart";
+import { BudgetProgressBar } from "./BudgetProgressBar";
 
 const BudgetEntry = ({ budget }) => {
   const navigate = useNavigate();
@@ -12,15 +12,16 @@ const BudgetEntry = ({ budget }) => {
   const navigateToBudget = () => navigate(`/budgets/${budget._id}`);
 
   return (
-    <div onClick={navigateToBudget} className="flex flex-col">
-      <h3 className="text-xl font-semibold">{budget.name}</h3>
-      <BudgetBarChart budget={budget} />
-      <div className="w-full">
-        <p className="text-left">
-          {currentAmount} of {goal}
-        </p>
-        <p className="text-right">{leftover} left</p>
-      </div>
+    <div
+      onClick={navigateToBudget}
+      className="flex flex-col border border-gray-600 px-4 py-1 rounded-lg hover:bg-gray-200"
+    >
+      <h3 className="text-lg font-semibold">{budget.name}</h3>
+      <BudgetProgressBar budget={budget} />
+      <p className="w-full text-sm">
+        {currentAmount} of {goal}
+        <span className="float-right">{leftover} left</span>
+      </p>
     </div>
   );
 };
