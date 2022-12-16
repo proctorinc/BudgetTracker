@@ -1,18 +1,19 @@
 import { formatCurrency } from "@/utils/currency";
+import { AnimatedCard } from "@/components/Elements/AnimatedCard";
 
 const AccountEntry = ({ account, loading }) => {
   return (
-    <div className="flex border border-gray-600 px-4 py-2 rounded-lg hover:bg-gray-200">
+    <AnimatedCard>
       <div>
         <p className="text-2xl">{account.name}</p>
-        <p className="text-md">
+        <p className="text-md text-gray-400">
           {account.subtype} - {account.mask}
         </p>
       </div>
-      <div className="flex justify-end flex-grow">
+      <div className="flex justify-end flex-grow items-center">
         <p className="text-3xl">{formatCurrency(account.balances.current)}</p>
       </div>
-    </div>
+    </AnimatedCard>
   );
 };
 

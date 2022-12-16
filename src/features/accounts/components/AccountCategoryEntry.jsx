@@ -1,6 +1,9 @@
-import AccountEntry from "./AccountEntry";
 import { capitalizeFirstLetter } from "@/utils";
 import { formatCurrency } from "@/utils/currency";
+import { Loader } from "@/components/Elements/Loader";
+
+import AccountEntry from "./AccountEntry";
+import { AnimatedList } from "@/components/Elements/AnimatedList";
 
 const AccountCategoryEntry = ({ category, accountData, isLoading, error }) => {
   const accountEntries = accountData?.accounts.map((account) => (
@@ -11,9 +14,9 @@ const AccountCategoryEntry = ({ category, accountData, isLoading, error }) => {
   const categoryHeading = capitalizeFirstLetter(category);
 
   const loader = (
-    <div className="flex border border-gray-600 px-4 py-2 rounded-lg">
-      Loading...
-    </div>
+    <span className="flex border border-gray-300 bg-gray-50 p-4 rounded-md">
+      <Loader />
+    </span>
   );
 
   if (error) {
@@ -23,9 +26,9 @@ const AccountCategoryEntry = ({ category, accountData, isLoading, error }) => {
   return (
     <div className="flex flex-col gap-2 pb-5">
       <h3 className="text-3xl">
-        {categoryHeading}: {isLoading ? "Loading..." : subtotal}
+        {categoryHeading}: {subtotal}
       </h3>
-      {isLoading ? loader : accountEntries}
+      {accountEntries ? <AnimatedList>{accountEntries}</AnimatedList> : loader}
     </div>
   );
 };

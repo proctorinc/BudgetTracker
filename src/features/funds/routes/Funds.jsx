@@ -5,6 +5,7 @@ import FundsList from "../components/FundsList";
 import AccountsTotalBalance from "../../accounts/components/AccountsTotalBalance";
 import { useFunds } from "../hooks/useFunds";
 import { MainLayout } from "@/components/Layout";
+import { MainNav } from "@/components/Navbar/MainNav";
 
 const Funds = () => {
   const navigate = useNavigate();
@@ -23,14 +24,18 @@ const Funds = () => {
   }
 
   return (
-    <MainLayout>
-      <AccountsTotalBalance />
-      <FundsChart funds={data.funds} />
-      <FundsList funds={data.funds} />
-      <div className="flex justify-center p-5">
-        <Button text="New Fund" onClick={() => navigate("/funds/create")} />
-      </div>
-    </MainLayout>
+    <>
+      <MainNav />
+      <MainLayout>
+        <h1 className="text-6xl font-bold py-5">Funds</h1>
+        {/* <FundsChart funds={data.funds} /> */}
+        <AccountsTotalBalance />
+        <FundsList funds={data.funds} />
+        <div className="flex justify-center p-5">
+          <Button text="New Fund" onClick={() => navigate("/funds/create")} />
+        </div>
+      </MainLayout>
+    </>
   );
 };
 

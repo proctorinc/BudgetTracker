@@ -7,7 +7,7 @@ export const Input = ({ label, type, value, onChange, placeholder }) => {
         </label>
       )}
       <input
-        className="input input-bordered"
+        className="bg-white py-2 px-3 border-2 border-gray-300 rounded-md"
         id={`${label}-input`}
         type={type ? type : "text"}
         value={value}

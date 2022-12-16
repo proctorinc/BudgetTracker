@@ -2,7 +2,6 @@ import { describe, it, vi } from "vitest";
 import { screen, render } from "@/test-utils.jsx";
 import userEvent from "@testing-library/user-event";
 import BudgetEntry from "../BudgetEntry";
-// import { BudgetProgressBar } from "../BudgetProgressBar";
 
 const mockBudget = {
   _id: "mock-budget-id",
@@ -17,11 +16,6 @@ vi.mock("react-router-dom", async () => ({
   ...(await vi.importActual("react-router-dom")),
   useNavigate: () => mockedNavigator,
 }));
-
-// vi.mock("../BudgetProgressBar", () => {
-//   const BudgetProgressBar = <div data-testid="budget-bar-chart"></div>;
-//   return BudgetProgressBar;
-// });
 
 describe("Budget Entry", () => {
   it("renders properly", () => {
