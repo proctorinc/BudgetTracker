@@ -1,6 +1,6 @@
 import { AnimatedHeader } from "../Elements/AnimatedHeader";
 import { Footer } from "../Footer";
-import { MainNav } from "../Navbar/MainNav";
+import { Navbar } from "../Navbar";
 
 export const Layout = ({ title, size, children, returnUrl }) => {
   const calculateWidthScaling = () => {
@@ -20,7 +20,7 @@ export const Layout = ({ title, size, children, returnUrl }) => {
 
   return (
     <>
-      <MainNav returnUrl={returnUrl} />
+      <Navbar returnUrl={returnUrl} />
       <div className="flex flex-col items-center bg-gray-100 text-gray-800 min-h-screen pb-36">
         <div className={`${widthScaling} w-full p-4`}>
           <AnimatedHeader title={title} />

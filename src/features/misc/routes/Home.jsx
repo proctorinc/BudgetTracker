@@ -36,7 +36,7 @@ export const Home = () => {
           <h3 className="font-extrabold text-3xl py-2">
             Know what your goals are
           </h3>
-          <p className="">
+          <p>
             Our budgeting tools make it easy to set financial goals and stay on
             track. You can create a budget based on your income and expenses,
             and see how much you have left over to save or invest. Plus, our
@@ -50,7 +50,7 @@ export const Home = () => {
           </h3>
           <p>
             Dink is a{" "}
-            <span className=" font-extralight">
+            <span className="font-extralight">
               <u>comprehensive tool</u>
             </span>{" "}
             for managing your money. It provides a clear overview of your
@@ -67,7 +67,7 @@ export const Home = () => {
         <div>
           <h3 className="text-5xl font-extrabold py-2">Accounts</h3>
           <div className="flex">
-            <p className="w-2/3 h-32">
+            <p className="w-2/3 h-32 indent-5">
               With Dink, you can easily connect all of your bank accounts in one
               place. This allows you to see your current account balance, track
               your spending, and plan for your future. Dink also allows you to
@@ -82,7 +82,7 @@ export const Home = () => {
           <h3 className="text-5xl text-right font-extrabold py-2">Funds</h3>
           <div className="flex">
             <div className="w-1/3"></div>
-            <p className="text-right w-2/3 h-32">
+            <p className="text-right w-2/3 h-32 indent-5">
               Dink's savings tracker helps you see your progress towards your
               financial goals, so you can make adjustments along the way. You
               can also see how much you have left over to save or invest after
@@ -94,7 +94,7 @@ export const Home = () => {
         <div>
           <h3 className="text-5xl font-extrabold py-2">Budgets</h3>
           <div className="flex">
-            <p className="w-2/3 h-32">
+            <p className="w-2/3 h-32 indent-5">
               Dink's budgeting tools make it easy to set financial goals and
               stay on track. You can create a budget based on your income and
               expenses, and see how much you have left over to save or invest.
@@ -117,7 +117,7 @@ export const Home = () => {
               able to reach your financial goals?
             </i>
           </h3>
-          <p>
+          <p className="indent-5">
             Dink is here to help. Our comprehensive financial budgeting app
             makes it easy to{" "}
             <span className=" font-extralight">
@@ -142,7 +142,7 @@ export const Home = () => {
           </p>
         </div>
         <div className="flex justify-center">
-          <Button text="Sign Up" onClick={() => console.log("sign up")} />
+          <Button text="Sign Up" onClick={() => navigate("/sign-up")} />
         </div>
       </div>
     </Layout>
