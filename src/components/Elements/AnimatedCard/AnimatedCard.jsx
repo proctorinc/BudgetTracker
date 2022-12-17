@@ -4,13 +4,15 @@ export const AnimatedCard = ({ children, ...otherProps }) => {
   const variants = {
     hidden: {
       opacity: 0,
-      x: -50,
+      y: -30,
     },
     show: {
       opacity: 1,
-      x: 0,
+      y: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.5,
+        type: "spring",
+        stiffness: 80,
       },
     },
   };

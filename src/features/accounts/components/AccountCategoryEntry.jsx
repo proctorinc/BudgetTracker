@@ -13,12 +13,6 @@ const AccountCategoryEntry = ({ category, accountData, isLoading, error }) => {
   const subtotal = formatCurrency(accountData?.subtotal);
   const categoryHeading = capitalizeFirstLetter(category);
 
-  const loader = (
-    <span className="flex border border-gray-300 bg-gray-50 p-4 rounded-md">
-      <Loader />
-    </span>
-  );
-
   if (error) {
     return <div>Error {error}</div>;
   }
@@ -28,7 +22,11 @@ const AccountCategoryEntry = ({ category, accountData, isLoading, error }) => {
       <h3 className="text-3xl">
         {categoryHeading}: {subtotal}
       </h3>
-      {accountEntries ? <AnimatedList>{accountEntries}</AnimatedList> : loader}
+      {accountEntries ? (
+        <AnimatedList>{accountEntries}</AnimatedList>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };

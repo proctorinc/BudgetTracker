@@ -1,15 +1,17 @@
+import { Loader } from "@/components/Elements/Loader";
 import BudgetEntry from "./BudgetEntry";
 
 const BudgetList = ({ budgets, isLoading, error }) => {
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    console.log(error);
+    return <div>Error</div>;
   }
 
-  const budgetEntries = budgets.map((budget) => {
+  const budgetEntries = budgets?.map((budget) => {
     return (
       <li key={budget.name}>
         <BudgetEntry budget={budget} />

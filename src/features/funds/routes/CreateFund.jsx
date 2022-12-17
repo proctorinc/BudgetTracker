@@ -6,6 +6,7 @@ import { createFund } from "../api/createFund";
 import { useFunds } from "../hooks/useFunds";
 import { formatCurrency } from "@/utils/currency";
 import { MainLayout } from "@/components/Layout";
+import { Loader } from "@/components/Elements/Loader";
 
 const CreateFund = () => {
   const fundsQuery = useFunds();
@@ -43,7 +44,7 @@ const CreateFund = () => {
           Error: {error}
         </div>
       )}
-      {fundsQuery.isLoading && <div>Loading...</div>}
+      {fundsQuery.isLoading && <Loader />}
       <form className="flex flex-col items-center" onSubmit={handleCreateFund}>
         <h2 className="text-2xl">
           Unallocated: {formatCurrency(fundsQuery.data?.unallocated_balance)}

@@ -1,7 +1,18 @@
-export const MainLayout = ({ children }) => {
+import { AnimatedHeader } from "../Elements/AnimatedHeader";
+import { Footer } from "../Footer";
+import { MainNav } from "../Navbar/MainNav";
+
+export const MainLayout = ({ title, children }) => {
   return (
-    <div className="flex justify-center bg-gray-100 text-gray-800">
-      <div className="sm:max-w-xl w-full p-4">{children}</div>
-    </div>
+    <>
+      <MainNav />
+      <div className="flex flex-col items-center bg-gray-100 text-gray-800 min-h-screen pb-36">
+        <div className="sm:max-w-xl w-full p-4">
+          <AnimatedHeader title={title} />
+          {children}
+        </div>
+      </div>
+      <Footer />
+    </>
   );
 };

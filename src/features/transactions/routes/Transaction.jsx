@@ -1,3 +1,4 @@
+import { Loader } from "@/components/Elements/Loader";
 import { MainLayout } from "@/components/Layout";
 import { formatCurrency } from "@/utils/currency";
 import { useParams } from "react-router-dom";
@@ -11,7 +12,7 @@ const Transaction = () => {
   const transaction = data?.transaction;
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (error) {

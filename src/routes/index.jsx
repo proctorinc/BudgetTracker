@@ -1,15 +1,16 @@
 import { useRoutes } from "react-router-dom";
 
-import { protectedRoutes } from "./protected";
+import useAuth from "@/hooks/useAuth";
 import { Home, NotFound } from "@/features/misc";
 
-export const AppRoutes = () => {
-  const commonRoutes = [
-    { path: "/", element: <Home /> },
-    { path: "*", element: <NotFound /> },
-  ];
+import { publicRoutes } from "./public";
+import { protectedRoutes } from "./protected";
 
-  const routes = protectedRoutes;
+export const AppRoutes = () => {
+  const auth = useAuth();
+  const commonRoutes = [{ path: "*", element: <NotFound /> }];
+
+  const routes = auth.user ? protectedRoutes : publicRoutes;
   const element = useRoutes([...routes, ...commonRoutes]);
 
   return <>{element}</>;

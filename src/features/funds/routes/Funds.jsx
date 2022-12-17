@@ -1,11 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/Elements/Button";
-import FundsChart from "../components/FundsChart";
 import FundsList from "../components/FundsList";
-import AccountsTotalBalance from "../../accounts/components/AccountsTotalBalance";
 import { useFunds } from "../hooks/useFunds";
 import { MainLayout } from "@/components/Layout";
-import { MainNav } from "@/components/Navbar/MainNav";
+import { Loader } from "@/components/Elements/Loader";
 
 const Funds = () => {
   const navigate = useNavigate();
@@ -14,7 +12,7 @@ const Funds = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center align-center items-center w-screen h-screen">
-        Loading...
+        <Loader />
       </div>
     );
   }
@@ -24,18 +22,13 @@ const Funds = () => {
   }
 
   return (
-    <>
-      <MainNav />
-      <MainLayout>
-        <h1 className="text-6xl font-bold py-5">Funds</h1>
-        {/* <FundsChart funds={data.funds} /> */}
-        <AccountsTotalBalance />
-        <FundsList funds={data.funds} />
-        <div className="flex justify-center p-5">
-          <Button text="New Fund" onClick={() => navigate("/funds/create")} />
-        </div>
-      </MainLayout>
-    </>
+    <MainLayout title="Funds">
+      {/* <FundsChart funds={data.funds} /> */}
+      <FundsList funds={data.funds} />
+      <div className="flex justify-center p-5">
+        <Button text="New Fund" onClick={() => navigate("/funds/create")} />
+      </div>
+    </MainLayout>
   );
 };
 

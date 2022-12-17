@@ -1,18 +1,15 @@
 import { MainLayout } from "@/components/Layout";
-import { MainNav } from "@/components/Navbar/MainNav";
+import LinkBankButton from "@/features/bank_link/components/LinkBankButton";
 import AccountList from "../components/AccountList";
-import AccountsTotalBalance from "../components/AccountsTotalBalance";
 
 const Accounts = () => {
   return (
-    <>
-      <MainNav />
-      <MainLayout>
-        <h1 className="text-6xl font-bold py-5">Accounts</h1>
-        <AccountsTotalBalance />
-        <AccountList />
-      </MainLayout>
-    </>
+    <MainLayout title="Accounts">
+      <AccountList />
+      <div className="flex justify-center p-5">
+        <LinkBankButton />
+      </div>
+    </MainLayout>
   );
 };
 

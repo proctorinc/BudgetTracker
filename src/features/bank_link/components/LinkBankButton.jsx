@@ -1,3 +1,4 @@
+import { Loader } from "@/components/Elements/Loader";
 import { usePlaidLink } from "react-plaid-link";
 import { sendPublicTokenToServer } from "../api/sendPublicTokenToServer";
 import useLinkToken from "../hooks/useLinkToken";
@@ -18,7 +19,13 @@ const LinkBankButton = () => {
 
   return (
     <button className="btn" onClick={open} disabled={!isReadyToLink}>
-      {isReadyToLink ? "Connect a bank account" : "Loading..."}
+      {isReadyToLink ? (
+        "Add new account"
+      ) : (
+        <div className="w-32">
+          <Loader />
+        </div>
+      )}
     </button>
   );
 };

@@ -5,17 +5,19 @@ import { QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 import { queryClient } from "@/lib/react-query";
+import { Oops } from "@/features/misc";
+import { Loader } from "@/components/Elements/Loader";
 
 export const AppProvider = ({ children }) => {
   const ErrorFallback = () => {
-    return <div>Oops! Something went wrong!</div>;
+    return <Oops />;
   };
 
   return (
     <Suspense
       fallback={
         <div className="flex items-center justify-center w-screen h-screen">
-          Loading...
+          <Loader />
         </div>
       }
     >

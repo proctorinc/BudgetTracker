@@ -1,3 +1,4 @@
+import { Loader } from "@/components/Elements/Loader";
 import TransactionsList from "../components/TransactionsList";
 import { useAllocatedTransactions } from "../hooks/useAllocatedTransactions";
 import { useUnallocatedTransactions } from "../hooks/useUnallocatedTransactions";
@@ -10,7 +11,7 @@ const Transactions = () => {
   const error = allocatedQuery.error || unallocatedQuery.error;
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (error) {
