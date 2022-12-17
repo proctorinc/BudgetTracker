@@ -1,5 +1,5 @@
 import { Loader } from "@/components/Elements/Loader";
-import { MainLayout } from "@/components/Layout";
+import { Layout } from "@/components/Layout";
 import { formatCurrency } from "@/utils/currency";
 import { useParams } from "react-router-dom";
 import MerchantDetail from "../components/detail/MerchantDetail";
@@ -24,7 +24,7 @@ const Transaction = () => {
   });
 
   return (
-    <MainLayout>
+    <Layout>
       <div className="flex flex-col items-center gap-1 py-5">
         <h1 className="text-6xl">{formatCurrency(transaction.amount)}</h1>
         <h3>{transaction.merchant_name}</h3>
@@ -43,7 +43,7 @@ const Transaction = () => {
         <MerchantDetail merchant={transaction.merchant_name} />
         <SourceDetail source={transaction.source} />
       </div>
-    </MainLayout>
+    </Layout>
   );
 };
 

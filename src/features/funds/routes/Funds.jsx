@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/Elements/Button";
 import FundsList from "../components/FundsList";
 import { useFunds } from "../hooks/useFunds";
-import { MainLayout } from "@/components/Layout";
+import { Layout } from "@/components/Layout";
 import { Loader } from "@/components/Elements/Loader";
 
 const Funds = () => {
@@ -22,13 +22,13 @@ const Funds = () => {
   }
 
   return (
-    <MainLayout title="Funds">
+    <Layout title="Funds">
       {/* <FundsChart funds={data.funds} /> */}
       <FundsList funds={data.funds} />
       <div className="flex justify-center p-5">
         <Button text="New Fund" onClick={() => navigate("/funds/create")} />
       </div>
-    </MainLayout>
+    </Layout>
   );
 };
 

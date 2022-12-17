@@ -1,8 +1,8 @@
-import { MainLayout } from "@/components/Layout";
+import { Layout } from "@/components/Layout";
 
 export const PrivacyPolicy = () => {
   return (
-    <MainLayout title="Privacy Policy">
+    <Layout title="Privacy Policy">
       <div className="flex flex-col gap-3 text-sm leading-4">
         <p>Last updated: December 16, 2022</p>
         <p>
@@ -131,6 +131,6 @@ export const PrivacyPolicy = () => {
           </i>
         </p>
       </div>
-    </MainLayout>
+    </Layout>
   );
 };

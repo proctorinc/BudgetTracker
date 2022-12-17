@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { CurrencyDollarIcon } from "@heroicons/react/20/solid";
 
-import { MainLayout } from "@/components/Layout";
+import { Layout } from "@/components/Layout";
 import { Button } from "@/components/Elements/Button";
 
 export const Home = () => {
   const navigate = useNavigate();
   return (
-    <MainLayout>
+    <Layout size="lg">
       <div className="flex flex-col gap-20 font-light py-36">
         <div className="pb-40">
           <div className="flex w-full justify-center pr-10 pb-10">
@@ -145,6 +145,6 @@ export const Home = () => {
           <Button text="Sign Up" onClick={() => console.log("sign up")} />
         </div>
       </div>
-    </MainLayout>
+    </Layout>
   );
 };

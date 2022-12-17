@@ -1,8 +1,8 @@
-import { MainLayout } from "@/components/Layout";
+import { Layout } from "@/components/Layout";
 
 export const TermsOfService = () => {
   return (
-    <MainLayout title="Terms of Service">
+    <Layout title="Terms of Service">
       <div className="flex flex-col gap-3 text-sm leading-4">
         <p>Last updated: December 16, 2022</p>
         <p>
@@ -111,6 +111,6 @@ export const TermsOfService = () => {
           </i>
         </p>
       </div>
-    </MainLayout>
+    </Layout>
   );
 };

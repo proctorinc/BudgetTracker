@@ -5,7 +5,7 @@ import { Input } from "@/components/Form/Input";
 import { createFund } from "../api/createFund";
 import { useFunds } from "../hooks/useFunds";
 import { formatCurrency } from "@/utils/currency";
-import { MainLayout } from "@/components/Layout";
+import { Layout } from "@/components/Layout";
 import { Loader } from "@/components/Elements/Loader";
 
 const CreateFund = () => {
@@ -37,8 +37,7 @@ const CreateFund = () => {
   };
 
   return (
-    <MainLayout>
-      <Button text="back" onClick={() => navigate("/funds")} />
+    <Layout size="xs" title="Create Fund" returnUrl="/funds">
       {error && (
         <div className="flex justify-center p-2 bg-red-300 my-2">
           Error: {error}
@@ -67,7 +66,7 @@ const CreateFund = () => {
           <Button text="Create Fund" disabled={isFormLoading} />
         </div>
       </form>
-    </MainLayout>
+    </Layout>
   );
 };
 

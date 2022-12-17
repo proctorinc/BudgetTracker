@@ -1,21 +1,19 @@
-import { useNavigate } from "react-router-dom";
-import {
-  CurrencyDollarIcon,
-  ArrowLeftCircleIcon,
-} from "@heroicons/react/20/solid";
+import { Link, useNavigate } from "react-router-dom";
+import { CurrencyDollarIcon, UserCircleIcon } from "@heroicons/react/20/solid";
+import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 
 import { Button } from "@/components/Elements/Button";
 
-export const MainNav = ({ back }) => {
+export const MainNav = ({ returnUrl }) => {
   const navigate = useNavigate();
 
   return (
     <nav className="flex justify-center w-full bg-gray-100 border-b border-gray-300">
       <div className="flex w-full items-center gap-1 px-3 h-16 max-w-3xl">
-        {back && (
-          <div>
+        {returnUrl && (
+          <Link to={returnUrl}>
             <ArrowLeftCircleIcon className="h-8 text-gray-800" />
-          </div>
+          </Link>
         )}
         <button className="flex" onClick={() => navigate("/")}>
           <CurrencyDollarIcon className="h-8 text-gray-800" />
@@ -37,6 +35,11 @@ export const MainNav = ({ back }) => {
             style="ghost"
             onClick={() => navigate("/budgets")}
           />
+        </div>
+        <div className="flex justify-end flex-grow items-center gap-1">
+          <Link to="/user/profile">
+            <UserCircleIcon className="h-8 text-gray-800" />
+          </Link>
         </div>
       </div>
     </nav>
