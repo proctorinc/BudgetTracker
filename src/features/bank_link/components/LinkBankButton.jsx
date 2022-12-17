@@ -1,3 +1,4 @@
+import { Button } from "@/components/Elements/Button";
 import { Loader } from "@/components/Elements/Loader";
 import { usePlaidLink } from "react-plaid-link";
 import { sendPublicTokenToServer } from "../api/sendPublicTokenToServer";
@@ -16,18 +17,15 @@ const LinkBankButton = () => {
   });
 
   const isReadyToLink = ready && !isLoading;
-
-  return (
-    <button className="btn" onClick={open} disabled={!isReadyToLink}>
-      {isReadyToLink ? (
-        "Add new account"
-      ) : (
-        <div className="w-32">
-          <Loader />
-        </div>
-      )}
-    </button>
+  const buttonTitle = isReadyToLink ? (
+    "Add new account"
+  ) : (
+    <div className="w-32">
+      <Loader />
+    </div>
   );
+
+  return <Button text={buttonTitle} onClick={open} disabled={!isReadyToLink} />;
 };
 
 export default LinkBankButton;

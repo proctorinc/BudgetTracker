@@ -1,1 +1,16 @@
-export const icons = [];
+export const icons = [
+  "dollar",
+  "shopping-cart",
+  "shopping-bag",
+  "chart-bar",
+  "chart-pie",
+  "musical-note",
+  "library",
+  "office",
+  "store",
+  "home",
+  "home-modern",
+  "globe",
+  "device-mobile",
+  "device-tablet",
+];

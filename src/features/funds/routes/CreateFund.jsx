@@ -7,18 +7,25 @@ import { useFunds } from "../hooks/useFunds";
 import { formatCurrency } from "@/utils/currency";
 import { Layout } from "@/components/Layout";
 import { Loader } from "@/components/Elements/Loader";
+import { ListBoxInput } from "@/components/Form/ListBoxInput";
+import { icons } from "@/utils/icons";
+import { IconFromText } from "@/components/Misc/IconFromText/IconFromText";
 
 const CreateFund = () => {
   const fundsQuery = useFunds();
   const [isFormLoading, setIsFormLoading] = useState(false);
   const [error, setError] = useState();
+  const [icon, setIcon] = useState(icons[0]);
   const [fundName, setFundName] = useState("");
   const [fundInitialBalance, setFundInitialBalance] = useState(0);
   const navigate = useNavigate();
 
   const handleCreateFund = (event) => {
     event.preventDefault();
-    if (fundInitialBalance <= fundsQuery.data.unallocated_balance) {
+    console.log(fundsQuery.data.unallocated_balance);
+    if (fundsQuery.data.unallocated_balance <= 0) {
+      setError("No funds left to allocate");
+    } else if (fundInitialBalance <= fundsQuery.data.unallocated_balance) {
       setIsFormLoading(true);
       createFund({
         name: fundName,
@@ -39,16 +46,22 @@ const CreateFund = () => {
   return (
     <Layout size="xs" title="Create Fund" returnUrl="/funds">
       {error && (
-        <div className="flex justify-center p-2 bg-red-300 my-2">
-          Error: {error}
+        <div className="flex justify-center p-2 bg-gray-200 rounded-md border-2 border-gray-300 my-2">
+          {error}
         </div>
       )}
-      {fundsQuery.isLoading && <Loader />}
       <form className="flex flex-col items-center" onSubmit={handleCreateFund}>
         <h2 className="text-2xl">
           Unallocated: {formatCurrency(fundsQuery.data?.unallocated_balance)}
         </h2>
         <div className="flex flex-col align-center items-right justify-center w-full">
+          <ListBoxInput
+            label="Icon"
+            selected={icon}
+            setSelected={setIcon}
+            choices={icons}
+            renderItem={(item) => <IconFromText text={item} className="h-6" />}
+          />
           <Input
             label="Name"
             placeholder="Name"

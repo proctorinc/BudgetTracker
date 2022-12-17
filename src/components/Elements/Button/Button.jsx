@@ -18,7 +18,7 @@ export const Button = ({ text, onClick, style, ...otherProps }) => {
         opacity: 1,
         backgroundColor: "#111",
         color: "#FFF",
-        scale: 1.05,
+        scale: 1.2,
       }}
       initial={{
         backgroundColor: style === "ghost" ? "" : "#111",
