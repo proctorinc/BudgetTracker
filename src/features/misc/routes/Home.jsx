@@ -46,7 +46,7 @@ export const Home = () => {
         </div>
         <div className="text-center">
           <h3 className="font-extrabold text-3xl py-2">
-            Be in charge of your finances
+            Take charge of your finances
           </h3>
           <p>
             Dink is a{" "}
@@ -121,23 +121,14 @@ export const Home = () => {
             Dink is here to help. Our comprehensive financial budgeting app
             makes it easy to{" "}
             <span className=" font-extralight">
-              <u>connect all of your bank accounts</u>
+              connect all of your bank accounts
             </span>
-            ,{" "}
-            <span className=" font-extralight">
-              <u>track your spending</u>
-            </span>
-            ,{" "}
-            <span className=" font-extralight">
-              <u>set financial goals</u>
-            </span>
-            , and{" "}
-            <span className=" font-extralight">
-              <u>see your progress</u>
-            </span>{" "}
-            towards those goals. With Dink, you can take control of your money
-            and achieve financial success. Don't let your finances hold you back
-            any longer. Sign up for Dink now and start taking control of your
+            , <span className=" font-extralight">track your spending</span>,{" "}
+            <span className=" font-extralight">set financial goals</span>, and{" "}
+            <span className=" font-extralight">see your progress</span> towards
+            those goals. With Dink, you can take control of your money and
+            achieve financial success. Don't let your finances hold you back any
+            longer. Sign up for Dink now and start taking control of your
             financial future.
           </p>
         </div>

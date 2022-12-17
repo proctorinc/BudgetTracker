@@ -29,7 +29,7 @@ export const AnimatedCard = ({ children, ...otherProps }) => {
   return (
     <AnimatePresence>
       <motion.li
-        className="flex bg-gray-50 border-2 border-gray-300 px-4 py-2 rounded-md hover:bg-gray-200 text-gray-700"
+        className="flex items-center bg-gray-50 border-2 border-gray-300 px-4 py-2 rounded-md hover:bg-gray-200 text-gray-700"
         variants={variants}
         whileHover={{ scale: 1.05, transition: { duration: 0.25 } }}
         whileTap={{ scale: 0.95 }}

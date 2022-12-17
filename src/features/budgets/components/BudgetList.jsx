@@ -1,3 +1,4 @@
+import { AnimatedList } from "@/components/Elements/AnimatedList";
 import { Loader } from "@/components/Elements/Loader";
 import BudgetEntry from "./BudgetEntry";
 
@@ -7,19 +8,14 @@ const BudgetList = ({ budgets, isLoading, error }) => {
   }
 
   if (error) {
-    console.log(error);
     return <div>Error</div>;
   }
 
   const budgetEntries = budgets?.map((budget) => {
-    return (
-      <li key={budget.name}>
-        <BudgetEntry budget={budget} />
-      </li>
-    );
+    return <BudgetEntry key={budget.name} budget={budget} />;
   });
 
-  return <ul className="flex flex-col list-none gap-1">{budgetEntries}</ul>;
+  return <AnimatedList>{budgetEntries}</AnimatedList>;
 };
 
 export default BudgetList;
