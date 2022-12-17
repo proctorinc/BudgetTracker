@@ -1,4 +1,5 @@
 import { Loader } from "@/components/Elements/Loader";
+
 import TransactionsList from "../components/TransactionsList";
 import { useAllocatedTransactions } from "../hooks/useAllocatedTransactions";
 import { useUnallocatedTransactions } from "../hooks/useUnallocatedTransactions";

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-export const Button = ({ text, onClick, ...otherProps }) => {
+export const Button = ({ text, onClick, style, ...otherProps }) => {
   const variants = {
     hidden: {
       opacity: 0,
@@ -19,6 +19,10 @@ export const Button = ({ text, onClick, ...otherProps }) => {
         backgroundColor: "#111",
         color: "#FFF",
         scale: 1.05,
+      }}
+      initial={{
+        backgroundColor: style === "ghost" ? "" : "#111",
+        color: style === "ghost" ? "#111" : "#FFF",
       }}
       variants={variants}
       whileTap={{ scale: 0.95 }}
