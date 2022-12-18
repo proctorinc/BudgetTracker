@@ -36,7 +36,7 @@ const Transaction = () => {
               : transaction.name
           }
         />
-        <div className="flex gap-2 border border-gray-600 rounded-md px-3">
+        <div className="flex gap-2 border border-gray-500 bg-gray-200 text-gray-500 rounded-md px-3">
           {categories}
         </div>
         <p>{new Date(transaction.date).toLocaleString()}</p>

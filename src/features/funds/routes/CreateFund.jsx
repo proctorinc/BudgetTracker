@@ -44,7 +44,7 @@ const CreateFund = () => {
   };
 
   return (
-    <Layout size="xs" title="Create Fund" returnUrl="/funds">
+    <Layout back size="xs" title="Create Fund" returnUrl="/funds">
       {error && (
         <div className="flex justify-center p-2 bg-gray-200 rounded-md border-2 border-gray-300 my-2">
           {error}

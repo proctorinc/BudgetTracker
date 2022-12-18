@@ -2,7 +2,7 @@ import { AnimatedList } from "@/components/Elements/AnimatedList";
 import { Loader } from "@/components/Elements/Loader";
 import TransactionEntry from "./TransactionEntry";
 
-const TransactionsList = ({ transactions, title, isLoading, error }) => {
+export const TransactionsList = ({ transactions, title, isLoading, error }) => {
   if (isLoading) {
     return <Loader />;
   }
@@ -11,16 +11,14 @@ const TransactionsList = ({ transactions, title, isLoading, error }) => {
     return <div>Error: {error}</div>;
   }
 
-  const transactionEntries = transactions.map((transaction) => (
+  const transactionEntries = transactions?.map((transaction) => (
     <TransactionEntry key={transaction._id} transaction={transaction} />
   ));
 
   return (
-    <>
-      <h2 className="text-3xl font-extrabold pt-10 pb-2">{title}</h2>
+    <div className="pb-10">
+      <h2 className="text-3xl pb-2">{title}</h2>
       <AnimatedList>{transactionEntries}</AnimatedList>
-    </>
+    </div>
   );
 };
-
-export default TransactionsList;

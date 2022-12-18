@@ -1,6 +1,6 @@
 import { Layout } from "@/components/Layout";
 
-import TransactionsList from "../components/TransactionsList";
+import { TransactionsList } from "../components/TransactionsList";
 import { useTransactions } from "../hooks/useTransactions";
 import { useUnallocatedTransactions } from "../hooks/useUnallocatedTransactions";
 

@@ -3,7 +3,7 @@ import { AnimatedCard } from "@/components/Elements/AnimatedCard";
 const UpdateDetail = ({ label, icon, onClick, children }) => {
   return (
     <AnimatedCard onClick={onClick}>
-      <div className="flex w-10 h-10 border border-gray-600 rounded-full p-1 justify-center items-center">
+      <div className="flex w-10 h-10 border border-gray-600 bg-gray-200 rounded-full p-1 justify-center items-center">
         {icon}
       </div>
       <div className="p-2">

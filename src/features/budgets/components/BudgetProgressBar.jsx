@@ -4,11 +4,11 @@ export const BudgetProgressBar = ({ budget }) => {
   const percentComplete = (budget.currentAmount / budget.goal) * 100;
 
   const calculateColor = () => {
-    let color = "bg-emerald-400";
+    let color = "bg-green-300";
     if (percentComplete > 100) {
-      color = "bg-red-400";
+      color = "bg-red-300";
     } else if (percentComplete >= 90 && percentComplete < 100) {
-      color = "bg-yellow-400";
+      color = "bg-yellow-300";
     }
     return color;
   };
