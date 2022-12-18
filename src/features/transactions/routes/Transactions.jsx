@@ -1,31 +1,28 @@
-import { Loader } from "@/components/Elements/Loader";
+import { Layout } from "@/components/Layout";
 
 import TransactionsList from "../components/TransactionsList";
-import { useAllocatedTransactions } from "../hooks/useAllocatedTransactions";
+import { useTransactions } from "../hooks/useTransactions";
 import { useUnallocatedTransactions } from "../hooks/useUnallocatedTransactions";
 
 const Transactions = () => {
-  const allocatedQuery = useAllocatedTransactions();
   const unallocatedQuery = useUnallocatedTransactions();
-
-  const isLoading = allocatedQuery.isLoading || unallocatedQuery.isLoading;
-  const error = allocatedQuery.error || unallocatedQuery.error;
-
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  const transactionsQuery = useTransactions();
 
   return (
-    <>
-      <h3 className="text-3xl">Unallocated:</h3>
-      <TransactionsList transactions={unallocatedQuery.data.transactions} />
-      <h3 className="text-3xl">Allocated:</h3>
-      <TransactionsList transactions={allocatedQuery.data.transactions} />
-    </>
+    <Layout title="Transactions">
+      <TransactionsList
+        title="Unallocated"
+        transactions={unallocatedQuery.data?.transactions}
+        isLoading={unallocatedQuery.isLoading}
+        error={unallocatedQuery.error}
+      />
+      <TransactionsList
+        title="All Transactions"
+        transactions={transactionsQuery.data?.transactions}
+        isLoading={transactionsQuery.isLoading}
+        error={transactionsQuery.error}
+      />
+    </Layout>
   );
 };
 

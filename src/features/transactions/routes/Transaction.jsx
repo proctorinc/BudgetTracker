@@ -1,10 +1,12 @@
+import { AnimatedDetailHeader } from "@/components/Elements/AnimatedDetailHeader";
+import { AnimatedList } from "@/components/Elements/AnimatedList";
 import { Loader } from "@/components/Elements/Loader";
 import { Layout } from "@/components/Layout";
 import { formatCurrency } from "@/utils/currency";
 import { useParams } from "react-router-dom";
 import MerchantDetail from "../components/detail/MerchantDetail";
 import SourceDetail from "../components/detail/SourceDetail";
-import useTransaction from "../hooks/useTransaction";
+import { useTransaction } from "../hooks/useTransaction";
 
 const Transaction = () => {
   const { transactionId } = useParams();
@@ -24,10 +26,16 @@ const Transaction = () => {
   });
 
   return (
-    <Layout>
+    <Layout back={true}>
       <div className="flex flex-col items-center gap-1 py-5">
-        <h1 className="text-6xl">{formatCurrency(transaction.amount)}</h1>
-        <h3>{transaction.merchant_name}</h3>
+        <AnimatedDetailHeader
+          title={formatCurrency(transaction.amount)}
+          subtitle={
+            transaction.merchant_name
+              ? transaction.merchant_name
+              : transaction.name
+          }
+        />
         <div className="flex gap-2 border border-gray-600 rounded-md px-3">
           {categories}
         </div>
@@ -39,10 +47,10 @@ const Transaction = () => {
           </p>
         )}
       </div>
-      <div className="flex flex-col gap-1">
+      <AnimatedList>
         <MerchantDetail merchant={transaction.merchant_name} />
         <SourceDetail source={transaction.source} />
-      </div>
+      </AnimatedList>
     </Layout>
   );
 };

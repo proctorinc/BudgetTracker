@@ -1,3 +1,4 @@
+import { AnimatedCard } from "@/components/Elements/AnimatedCard";
 import { formatCurrency } from "@/utils/currency";
 import { useNavigate } from "react-router-dom";
 
@@ -10,15 +11,14 @@ const TransactionEntry = ({ transaction }) => {
   };
 
   return (
-    <div
-      onClick={handleClick}
-      className="flex justify-between border border-gray-600 px-4 py-1 rounded-lg text-md hover:bg-gray-200"
-    >
-      <p>{transaction.name}</p>
-      <p>{formatCurrency(transaction.amount)}</p>
-      {sourceType && <p>{sourceType}</p>}
-      <p>{new Date(transaction.date).toLocaleDateString()}</p>
-    </div>
+    <AnimatedCard onClick={handleClick}>
+      <div className="flex justify-between w-full">
+        <p>{transaction.name}</p>
+        <p>{formatCurrency(transaction.amount)}</p>
+        {sourceType && <p>{sourceType}</p>}
+        <p>{new Date(transaction.date).toLocaleDateString()}</p>
+      </div>
+    </AnimatedCard>
   );
 };
 

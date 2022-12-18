@@ -4,11 +4,15 @@ import BudgetList from "../components/BudgetList";
 import { useBudgets } from "../hooks/useBudgets";
 
 const Budgets = () => {
-  const { data, isLoading, error } = useBudgets();
+  const budgetsQuery = useBudgets();
 
   return (
     <Layout title="Budgets">
-      <BudgetList budgets={data?.budgets} isLoading={isLoading} error={error} />
+      <BudgetList
+        budgets={budgetsQuery.data?.budgets}
+        isLoading={budgetsQuery.isLoading}
+        error={budgetsQuery.error}
+      />
     </Layout>
   );
 };

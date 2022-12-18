@@ -102,6 +102,14 @@ export const handlers = [
     }
   ),
 
+  rest.get("http://localhost:4090/bank/fund/test-id-1", (req, res, ctx) => {
+    return res(
+      ctx.json({
+        fund: mockFunds[0],
+      })
+    );
+  }),
+
   rest.get(
     "http://localhost:4090/bank/transaction/6390fa3cc50233ef043b61e1",
     (req, res, ctx) => {

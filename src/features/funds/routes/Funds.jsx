@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
+
 import { Button } from "@/components/Elements/Button";
-import FundsList from "../components/FundsList";
-import { useFunds } from "../hooks/useFunds";
 import { Layout } from "@/components/Layout";
 import { Loader } from "@/components/Elements/Loader";
+
+import FundsChart from "../components/FundsChart";
+import FundsList from "../components/FundsList";
+import { useFunds } from "../hooks/useFunds";
 
 const Funds = () => {
   const navigate = useNavigate();
