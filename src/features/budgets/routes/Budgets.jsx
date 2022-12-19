@@ -1,18 +1,19 @@
 import { Layout } from "@/components/Layout";
+import { useActiveMonths } from "@/features/summary";
 
 import BudgetList from "../components/BudgetList";
-import { useBudgets } from "../hooks/useBudgets";
+import { Loader } from "@/components/Elements/Loader";
 
 const Budgets = () => {
-  const budgetsQuery = useBudgets();
+  const monthsQuery = useActiveMonths();
 
   return (
     <Layout title="Budgets">
-      <BudgetList
-        budgets={budgetsQuery.data?.budgets}
-        isLoading={budgetsQuery.isLoading}
-        error={budgetsQuery.error}
-      />
+      {monthsQuery.isLoading ? (
+        <Loader />
+      ) : (
+        <BudgetList months={monthsQuery.data} />
+      )}
     </Layout>
   );
 };

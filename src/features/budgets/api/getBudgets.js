@@ -1,7 +1,7 @@
 import { fetchQuery } from "@/lib/fetch";
 
-export const getBudgets = async () => {
+export const getBudgets = async (month) => {
   return fetchQuery({
-    endpoint: "/bank/budgets",
+    endpoint: `/bank/budgets?month=${month}`,
   });
 };

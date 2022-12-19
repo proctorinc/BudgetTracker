@@ -8,6 +8,7 @@ import FundRoutes from "@/features/funds/routes";
 import BudgetRoutes from "@/features/budgets/routes";
 import { Loader } from "@/components/Elements/Loader";
 import { Home } from "@/features/misc";
+import SummaryRoutes from "@/features/summary/routes";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ export const protectedRoutes = [
     path: "/",
     element: <App />,
     children: [
+      { path: "/summary/*", element: <SummaryRoutes /> },
       { path: "/funds/*", element: <FundRoutes /> },
       { path: "/accounts/*", element: <AccountRoutes /> },
       { path: "/transactions/*", element: <TransactionRoutes /> },

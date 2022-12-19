@@ -12,22 +12,10 @@ const Funds = () => {
   const navigate = useNavigate();
   const { data, isLoading, error } = useFunds();
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center align-center items-center w-screen h-screen">
-        <Loader />
-      </div>
-    );
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
   return (
     <Layout title="Funds">
       {/* <FundsChart funds={data.funds} /> */}
-      <FundsList funds={data.funds} />
+      <FundsList funds={data?.funds} isLoading={isLoading} error={error} />
       <div className="flex justify-center p-5">
         <Button text="New Fund" onClick={() => navigate("/funds/create")} />
       </div>

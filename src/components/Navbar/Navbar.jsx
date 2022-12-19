@@ -26,6 +26,11 @@ export const Navbar = ({ back }) => {
           {auth.user && (
             <>
               <Button
+                text={"Summary"}
+                style={location.pathname !== "/summary" ? "ghost" : null}
+                onClick={() => navigate("/summary")}
+              />
+              <Button
                 text={"Accounts"}
                 style={location.pathname !== "/accounts" ? "ghost" : null}
                 onClick={() => navigate("/accounts")}

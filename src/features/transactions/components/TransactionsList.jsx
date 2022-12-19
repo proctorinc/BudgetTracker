@@ -3,10 +3,6 @@ import { Loader } from "@/components/Elements/Loader";
 import TransactionEntry from "./TransactionEntry";
 
 export const TransactionsList = ({ transactions, title, isLoading, error }) => {
-  if (isLoading) {
-    return <Loader />;
-  }
-
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -18,7 +14,11 @@ export const TransactionsList = ({ transactions, title, isLoading, error }) => {
   return (
     <div className="pb-10">
       <h2 className="text-3xl pb-2">{title}</h2>
-      <AnimatedList>{transactionEntries}</AnimatedList>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <AnimatedList>{transactionEntries}</AnimatedList>
+      )}
     </div>
   );
 };
