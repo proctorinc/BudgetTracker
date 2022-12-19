@@ -36,9 +36,9 @@ export const Navbar = ({ back }) => {
                 onClick={() => navigate("/accounts")}
               />
               <Button
-                text={"Transactions"}
-                style={location.pathname !== "/transactions" ? "ghost" : null}
-                onClick={() => navigate("/transactions")}
+                text={"Budget"}
+                style={location.pathname !== "/budgets" ? "ghost" : null}
+                onClick={() => navigate("/budgets")}
               />
               <Button
                 text={"Funds"}
@@ -46,9 +46,9 @@ export const Navbar = ({ back }) => {
                 onClick={() => navigate("/funds")}
               />
               <Button
-                text={"Budget"}
-                style={location.pathname !== "/budgets" ? "ghost" : null}
-                onClick={() => navigate("/budgets")}
+                text={"Transactions"}
+                style={location.pathname !== "/transactions" ? "ghost" : null}
+                onClick={() => navigate("/transactions")}
               />
             </>
           )}

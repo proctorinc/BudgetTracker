@@ -6,13 +6,13 @@ import { AnimatedCard } from "@/components/Elements/AnimatedCard";
 
 import { BudgetProgressBar } from "./BudgetProgressBar";
 
-const BudgetEntry = ({ budget }) => {
+const BudgetEntry = ({ budget, month }) => {
   const navigate = useNavigate();
   const currentAmount = formatCurrency(budget.currentAmount);
   const goal = formatCurrency(budget.goal);
   const leftover = formatCurrency(budget.goal - budget.currentAmount);
 
-  const navigateToBudget = () => navigate(`/budgets/${budget._id}`);
+  const navigateToBudget = () => navigate(`/budgets/${budget._id}/${month}`);
 
   return (
     <AnimatedCard onClick={navigateToBudget}>

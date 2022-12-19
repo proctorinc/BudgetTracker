@@ -16,7 +16,7 @@ const BudgetList = ({ months }) => {
   }
 
   const budgetEntries = budgetsQuery.data?.map((budget) => {
-    return <BudgetEntry key={budget.name} budget={budget} />;
+    return <BudgetEntry key={budget.name} budget={budget} month={month} />;
   });
 
   return (

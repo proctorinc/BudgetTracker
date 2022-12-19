@@ -7,17 +7,16 @@ export const ListBoxInput = ({
   choices,
   renderItem,
 }) => {
-  // const filteredChoices = choices.filter((choice) => choice !== selected);
   return (
     <div>
       <Listbox value={selected} onChange={setSelected}>
-        <Listbox.Button className="flex items-center py-2 px-4 text-gray-600 font-light bg-gray-200 border-gray-300 rounded-md w-fit">
+        <Listbox.Button className="flex items-center py-2 px-4 text-gray-600 font-light bg-gray-200 border-2 border-gray-200 rounded-md w-fit">
           <div className="flex gap-2 items-center justify-center">
             {renderItem ? renderItem(selected) : selected}
             <CaretDown size={15} weight="bold" />
           </div>
         </Listbox.Button>
-        <Listbox.Options className="absolute my-1 overflow-auto rounded-md bg-gray-200 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-50 w-fit font-light text-gray-600">
+        <Listbox.Options className="absolute max-h-64 my-1 overflow-auto rounded-md bg-gray-200 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-50 w-fit font-light text-gray-600">
           {choices?.map((choice) => (
             <Listbox.Option
               key={choice}
