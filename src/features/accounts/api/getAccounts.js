@@ -1,6 +1,6 @@
 import { fetchQuery } from "@/lib/fetch";
 
-export const getAllAccounts = async () => {
+export const getAccounts = async () => {
   return fetchQuery({
     endpoint: "/bank/accounts/categorized",
   });

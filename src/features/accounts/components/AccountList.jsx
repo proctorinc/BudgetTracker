@@ -1,6 +1,7 @@
+import { ACCOUNT_CATEGORIES } from "@/constants";
+
 import AccountCategoryEntry from "./AccountCategoryEntry";
 import { useAccounts } from "../hooks/useAccounts";
-import { ACCOUNT_CATEGORIES } from "@/constants";
 
 const AccountList = () => {
   const { data, isLoading, error } = useAccounts();

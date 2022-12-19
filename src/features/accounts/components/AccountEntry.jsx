@@ -1,9 +1,17 @@
+import { useNavigate } from "react-router-dom";
+
 import { formatCurrency } from "@/utils/currency";
 import { AnimatedCard } from "@/components/Elements/AnimatedCard";
 
 const AccountEntry = ({ account, loading }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/accounts/${account._id}`);
+  };
+
   return (
-    <AnimatedCard>
+    <AnimatedCard onClick={handleClick}>
       <div>
         <p className="text-2xl">{account.name}</p>
         <p className="text-md text-gray-400">

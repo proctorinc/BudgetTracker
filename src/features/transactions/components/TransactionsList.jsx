@@ -1,5 +1,6 @@
 import { AnimatedList } from "@/components/Elements/AnimatedList";
 import { Loader } from "@/components/Elements/Loader";
+
 import TransactionEntry from "./TransactionEntry";
 
 export const TransactionsList = ({ transactions, title, isLoading, error }) => {

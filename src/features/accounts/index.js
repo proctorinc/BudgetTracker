@@ -1,1 +1,1 @@
-export * from "./api/getAllAccounts";
+export * from "./api/getAccounts";
