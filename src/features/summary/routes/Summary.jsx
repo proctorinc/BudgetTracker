@@ -11,6 +11,7 @@ import { formatMonthToURLFormat, getMonthFromURLFormat } from "@/utils";
 import { useMonthlySummary } from "../hooks/useMonthlySummary";
 import { useActiveMonths } from "../hooks/useActiveMonths";
 import { Oops } from "@/features/misc";
+import { SummaryStat } from "../components/SummaryStat";
 
 export const Summary = () => {
   const { month } = useParams();
@@ -65,7 +66,7 @@ export const Summary = () => {
               </div>
             </div>
           </div>
-          <div className="flex gap-2 border bg-gray-200 border-gray-200 p-3 rounded-md">
+          <div className="flex gap-2 border bg-gray-200 border-gray-200 p-3 rounded-md mb-10">
             <div className="flex flex-col justify-center">
               <p className="text-xl font-extralight">Leftover</p>
               <p className="text-lg font-bold">
@@ -75,25 +76,7 @@ export const Summary = () => {
               </p>
             </div>
           </div>
-
-          {/* <div className="flex flex-col gap-2 pb-5">
-            <h3 className="text-3xl">
-              Income: {formatCurrency(summaryQuery.data.income)}
-            </h3>
-          </div>
-          <div className="flex flex-col gap-2 pb-5">
-            <h3 className="text-3xl">
-              Expenses: -{formatCurrency(summaryQuery.data.expenses)}
-            </h3>
-          </div>
-          <div className="flex flex-col gap-2 pb-5">
-            <h3 className="text-3xl">
-              Total Leftover:{" "}
-              {formatCurrency(
-                summaryQuery.data.income - summaryQuery.data.expenses
-              )}
-            </h3>
-          </div> */}
+          {/* <SummaryStat /> */}
           <div className="pb-10">
             <h2 className="text-3xl pb-2">Budgets:</h2>
             <div className="flex gap-2 pb-2">
@@ -124,20 +107,6 @@ export const Summary = () => {
                 </div>
               </div>
             </div>
-            <AnimatedList>
-              <AnimatedCard>
-                Goal: {formatCurrency(summaryQuery.data.budget.goal)}
-              </AnimatedCard>
-              <AnimatedCard>
-                Spent: -{formatCurrency(summaryQuery.data.budget.spent)}
-              </AnimatedCard>
-              <AnimatedCard>
-                Leftover:{" "}
-                {formatCurrency(
-                  summaryQuery.data.budget.goal - summaryQuery.data.budget.spent
-                )}
-              </AnimatedCard>
-            </AnimatedList>
           </div>
           <div className="">
             <h2 className="text-3xl pb-2">Funds:</h2>
@@ -171,17 +140,6 @@ export const Summary = () => {
                 </div>
               </div>
             </div>
-            <AnimatedList>
-              <AnimatedCard>
-                Added: +{formatCurrency(summaryQuery.data.funds.added)}
-              </AnimatedCard>
-              <AnimatedCard>
-                Spent: -{formatCurrency(summaryQuery.data.funds.removed)}
-              </AnimatedCard>
-              <AnimatedCard>
-                End Total: {formatCurrency(summaryQuery.data.funds.total)}
-              </AnimatedCard>
-            </AnimatedList>
           </div>
         </>
       )}

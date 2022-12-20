@@ -1,11 +1,12 @@
+import { Receipt } from "phosphor-react";
+
 import TransactionUpdateDetail from "./TransactionDetail";
-import { CurrencyDollarIcon } from "@heroicons/react/20/solid";
 
 const UpdateSource = ({ source }) => {
   return (
     <TransactionUpdateDetail
       label={"Source"}
-      icon={<CurrencyDollarIcon />}
+      icon={<Receipt size={25} weight="fill" />}
       onClick={() => console.log("Go to update source")}
     >
       {source.name ? (

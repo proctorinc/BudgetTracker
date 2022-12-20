@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { AnimatedCard } from "../AnimatedCard";
 
 export const AnimatedList = ({ children, ...otherProps }) => {
   const variants = {
@@ -6,6 +7,8 @@ export const AnimatedList = ({ children, ...otherProps }) => {
       transition: { staggerChildren: 0.1, staggerDirection: 1 },
     },
   };
+
+  const noChildren = <AnimatedCard>None</AnimatedCard>;
 
   return (
     <motion.ul
@@ -15,7 +18,7 @@ export const AnimatedList = ({ children, ...otherProps }) => {
       animate="show"
       {...otherProps}
     >
-      {children}
+      {children.length > 0 ? children : noChildren}
     </motion.ul>
   );
 };

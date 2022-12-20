@@ -1,11 +1,12 @@
+import { Storefront } from "phosphor-react";
+
 import TransactionUpdateDetail from "./TransactionDetail";
-import { BuildingStorefrontIcon } from "@heroicons/react/20/solid";
 
 const MerchantDetail = ({ merchant }) => {
   return (
     <TransactionUpdateDetail
       label={"Merchant"}
-      icon={<BuildingStorefrontIcon />}
+      icon={<Storefront size={25} weight="fill" />}
       onClick={() => console.log("Go to update merchant")}
     >
       <p>{merchant}</p>
