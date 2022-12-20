@@ -29,11 +29,15 @@ const Budget = () => {
   return (
     <Layout back={true}>
       <div className="flex flex-col items-center gap-1 py-5">
-        <AnimatedDetailHeader title={budget.name} subtitle={month} />
+        <AnimatedDetailHeader
+          title={budget.name}
+          titleIcon={budget.icon}
+          subtitle={month}
+        />
+        <div className="">
+          {formatCurrency(budget.currentAmount)} / {formatCurrency(budget.goal)}
+        </div>
       </div>
-      <p>
-        {formatCurrency(budget.currentAmount)} / {formatCurrency(budget.goal)}
-      </p>
       <TransactionsList
         title="Transactions"
         transactions={transactionsQuery.data}

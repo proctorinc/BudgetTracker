@@ -4,11 +4,14 @@ import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 
 import { Button } from "@/components/Elements/Button";
 import useAuth from "@/hooks/useAuth";
+import { getCurrentMonthInURLFormat } from "@/utils";
 
 export const Navbar = ({ back }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const auth = useAuth();
+
+  const currentMonth = getCurrentMonthInURLFormat();
 
   return (
     <nav className="flex justify-center w-full bg-gray-100 border-b border-gray-300">
@@ -26,28 +29,36 @@ export const Navbar = ({ back }) => {
           {auth.user && (
             <>
               <Button
-                text={"Summary"}
-                style={location.pathname !== "/summary" ? "ghost" : null}
-                onClick={() => navigate("/summary")}
+                text="Summary"
+                style={
+                  location.pathname.startsWith("/summary") ? null : "ghost"
+                }
+                onClick={() => navigate(`/summary/${currentMonth}`)}
               />
               <Button
                 text={"Accounts"}
-                style={location.pathname !== "/accounts" ? "ghost" : null}
+                style={
+                  location.pathname.startsWith("/accounts") ? null : "ghost"
+                }
                 onClick={() => navigate("/accounts")}
               />
               <Button
-                text={"Budget"}
-                style={location.pathname !== "/budgets" ? "ghost" : null}
+                text="Budget"
+                style={
+                  location.pathname.startsWith("/budgets") ? null : "ghost"
+                }
                 onClick={() => navigate("/budgets")}
               />
               <Button
-                text={"Funds"}
-                style={location.pathname !== "/funds" ? "ghost" : null}
+                text="Funds"
+                style={location.pathname.startsWith("/funds") ? null : "ghost"}
                 onClick={() => navigate("/funds")}
               />
               <Button
-                text={"Transactions"}
-                style={location.pathname !== "/transactions" ? "ghost" : null}
+                text="Transactions"
+                style={
+                  location.pathname.startsWith("/transactions") ? null : "ghost"
+                }
                 onClick={() => navigate("/transactions")}
               />
             </>

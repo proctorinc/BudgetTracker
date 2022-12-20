@@ -6,7 +6,7 @@ const BudgetRoutes = () => {
   return (
     <Routes>
       <Route path="" element={<Budgets />} />
-      <Route path=":budgetId/:month" element={<Budget />} />
+      <Route path=":budgetId/month/:month" element={<Budget />} />
       <Route path="*" element={<Navigate to="." />} />
     </Routes>
   );

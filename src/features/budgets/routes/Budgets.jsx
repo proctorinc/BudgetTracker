@@ -1,8 +1,8 @@
 import { Layout } from "@/components/Layout";
 import { useActiveMonths } from "@/features/summary";
+import { Loader } from "@/components/Elements/Loader";
 
 import BudgetList from "../components/BudgetList";
-import { Loader } from "@/components/Elements/Loader";
 
 const Budgets = () => {
   const monthsQuery = useActiveMonths();

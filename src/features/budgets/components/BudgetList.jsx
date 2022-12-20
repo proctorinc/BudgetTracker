@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { AnimatedList } from "@/components/Elements/AnimatedList";
+import { DraggableList } from "@/components/Elements/DraggableList";
 import { Loader } from "@/components/Elements/Loader";
 import { ListBoxInput } from "@/components/Form/ListBoxInput";
 
@@ -32,7 +32,7 @@ const BudgetList = ({ months }) => {
         {budgetsQuery.isLoading ? (
           <Loader />
         ) : (
-          <AnimatedList>{budgetEntries}</AnimatedList>
+          <DraggableList>{budgetEntries}</DraggableList>
         )}
       </div>
     </>

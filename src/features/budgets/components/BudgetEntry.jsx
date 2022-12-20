@@ -12,7 +12,9 @@ const BudgetEntry = ({ budget, month }) => {
   const goal = formatCurrency(budget.goal);
   const leftover = formatCurrency(budget.goal - budget.currentAmount);
 
-  const navigateToBudget = () => navigate(`/budgets/${budget._id}/${month}`);
+  const navigateToBudget = () => {
+    navigate(`/budgets/${budget._id}/month/${month}`);
+  };
 
   return (
     <AnimatedCard onClick={navigateToBudget}>
