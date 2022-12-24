@@ -11,7 +11,7 @@ export const BudgetProgressBar = ({ budget }) => {
     //   color = "bg-yellow-300";
     // }
     // return color;
-    return "bg-gradient-to-r from-gray-400 to-gray-500";
+    return "bg-gradient-to-r from-gray-300 to-gray-500";
   };
 
   return (

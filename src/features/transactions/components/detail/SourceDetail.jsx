@@ -1,4 +1,4 @@
-import { Receipt } from "phosphor-react";
+import { Receipt, PlusCircle } from "phosphor-react";
 
 import TransactionUpdateDetail from "./TransactionDetail";
 
@@ -8,6 +8,7 @@ const UpdateSource = ({ source }) => {
       label={"Source"}
       icon={<Receipt size={25} weight="fill" />}
       onClick={() => console.log("Go to update source")}
+      actionItem={source.type ? null : <PlusCircle size={25} weight="light" />}
     >
       {source.name ? (
         <>

@@ -17,6 +17,10 @@ import MerchantDetail from "../components/detail/MerchantDetail";
 import SourceDetail from "../components/detail/SourceDetail";
 import { useTransaction } from "../hooks/useTransaction";
 import TransactionUpdateDetail from "../components/detail/TransactionDetail";
+import NotesDetail from "../components/detail/NotesDetail";
+import DateDetail from "../components/detail/DateDetail";
+import TransferDetail from "../components/detail/TransferDetail";
+import SplitDetail from "../components/detail/SplitDetail";
 
 const Transaction = () => {
   const { transactionId } = useParams();
@@ -34,8 +38,6 @@ const Transaction = () => {
   const categories = transaction.category.map((category, i) => {
     return <p key={i}>{category}</p>;
   });
-
-  const date = new Date(transaction.date);
 
   return (
     <Layout back={true}>
@@ -60,35 +62,10 @@ const Transaction = () => {
         <AnimatedList>
           <MerchantDetail merchant={transaction.merchant_name} />
           <SourceDetail source={transaction.source} />
-          <TransactionUpdateDetail
-            label={"Date"}
-            icon={<Calendar size={25} weight="fill" />}
-            onClick={() => console.log("Clicked on date detail")}
-          >
-            <p>{date.toDateString()}</p>
-          </TransactionUpdateDetail>
-          <TransactionUpdateDetail
-            label={"Notes"}
-            icon={<Note size={25} weight="fill" />}
-            onClick={() => console.log("Clicked on notes detail")}
-          >
-            <p>None</p>
-          </TransactionUpdateDetail>
-          <TransactionUpdateDetail
-            label={"Mark as Transfer"}
-            icon={<ArrowsClockwise size={25} weight="fill" />}
-            onClick={() => console.log("Clicked on split transaction detail")}
-          >
-            <p>Imagine a toggle here</p>
-          </TransactionUpdateDetail>
-          <TransactionUpdateDetail
-            label={"Split Transaction"}
-            icon={<GitFork size={25} weight="fill" />}
-            onClick={() => console.log("Clicked on split transaction detail")}
-            actionItem={<CaretRight size={25} weight="bold" />}
-          >
-            <p>Split</p>
-          </TransactionUpdateDetail>
+          <DateDetail date={transaction.date} />
+          <NotesDetail note={transaction.note} />
+          <TransferDetail />
+          <SplitDetail />
         </AnimatedList>
       </div>
     </Layout>

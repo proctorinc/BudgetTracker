@@ -1,23 +1,45 @@
+import { useNavigate } from "react-router-dom";
+import { PlusCircle } from "phosphor-react";
+
 import { AnimatedCard } from "@/components/Elements/AnimatedCard";
 import { formatCurrency } from "@/utils/currency";
-import { useNavigate } from "react-router-dom";
 
 const TransactionEntry = ({ transaction }) => {
   const navigate = useNavigate();
-  const sourceType = transaction.source.type;
+  const source = transaction.source;
+  // const sourceQuery = useTransactionSource({ source });
 
   const handleClick = () => {
     navigate(`/transactions/${transaction._id}`);
   };
 
+  const date = new Date(transaction.date);
+  const formattedDate = date.toLocaleString("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+  });
+  const amount = formatCurrency(transaction.amount);
+
   return (
     <AnimatedCard onClick={handleClick}>
-      <div className="flex justify-between w-full">
-        <p>{transaction.name}</p>
-        <p>{formatCurrency(transaction.amount)}</p>
-        {sourceType && <p>{sourceType}</p>}
-        <p>{new Date(transaction.date).toLocaleDateString()}</p>
+      <div className="overflow-hidden">
+        <p className="text-lg truncate">{transaction.name}</p>
+        <p className="text-xs text-gray-400">
+          {source.type ? `${source.type} / ${source.id}` : "Unallocated"}
+        </p>
       </div>
+      <div className="flex justify-end flex-grow items-center">
+        <div className="text-right">
+          <p className="text-lg">{amount}</p>
+          <p className="text-xs text-gray-400">{formattedDate}</p>
+        </div>
+      </div>
+      {source.type === null && (
+        <div className="pl-2">
+          <PlusCircle size={25} weight="light" />
+        </div>
+      )}
     </AnimatedCard>
   );
 };
