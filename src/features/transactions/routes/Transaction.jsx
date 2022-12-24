@@ -48,18 +48,15 @@ const Transaction = () => {
               : transaction.name
           }
         />
-        <div className="flex gap-2 border border-gray-500 bg-gray-200 text-gray-500 rounded-md px-3">
+        <div className="flex gap-2 bg-gray-200 text-gray-500 rounded-md px-3">
           {categories}
         </div>
-        <p>{date.toLocaleString()}</p>
 
         {transaction.pending && (
-          <p className="border border-gray-600 rounded-md p-1 font-thin">
-            Transaction is pending
-          </p>
+          <p className="rounded-md p-1 font-thin">Transaction is pending</p>
         )}
       </div>
-      <div className="px-10">
+      <div className="sm:px-10">
         <AnimatedList>
           <MerchantDetail merchant={transaction.merchant_name} />
           <SourceDetail source={transaction.source} />

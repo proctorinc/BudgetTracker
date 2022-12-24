@@ -2,7 +2,7 @@ import { AnimatedHeader } from "../Elements/AnimatedHeader";
 import { Footer } from "../Footer";
 import { Navbar } from "../Navbar";
 
-export const Layout = ({ title, subtitle, size, children, back }) => {
+export const Layout = ({ title, subtitle, size, children }) => {
   const calculateWidthScaling = () => {
     let scaling = "sm:max-w-xl";
 
@@ -20,10 +20,10 @@ export const Layout = ({ title, subtitle, size, children, back }) => {
 
   return (
     <>
-      <Navbar back={back} />
+      <Navbar />
       <div className="flex flex-col items-center bg-gray-100 text-gray-800 min-h-screen pb-36">
         <div className={`${widthScaling} w-full p-4`}>
-          <AnimatedHeader title={title} subtitle={subtitle} />
+          {title && <AnimatedHeader title={title} subtitle={subtitle} />}
           {children}
         </div>
       </div>

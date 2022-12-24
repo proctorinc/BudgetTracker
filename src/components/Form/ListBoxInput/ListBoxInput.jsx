@@ -10,7 +10,7 @@ export const ListBoxInput = ({
   return (
     <div>
       <Listbox value={selected} onChange={setSelected}>
-        <Listbox.Button className="flex items-center py-2 px-4 text-gray-600 font-light bg-gray-200 border-2 border-gray-200 rounded-md w-fit">
+        <Listbox.Button className="text-sm flex items-center py-2 px-4 text-gray-600 font-light border-2 bg-gray-200 rounded-md w-fit hover:bg-gray-300 hover:border-gray-300">
           <div className="flex gap-2 items-center justify-center">
             {renderItem ? renderItem(selected) : selected}
             <CaretDown size={15} weight="bold" />

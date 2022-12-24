@@ -9,7 +9,7 @@ const AccountList = () => {
   const categoryEntries = ACCOUNT_CATEGORIES.map((category) => (
     <AccountCategoryEntry
       key={category}
-      accountData={data?.categories[category]}
+      accountData={data?.categories ? data.categories[category] : null}
       category={category}
       isLoading={isLoading}
       error={error}

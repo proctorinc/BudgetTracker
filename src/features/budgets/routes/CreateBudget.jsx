@@ -2,23 +2,24 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/Elements/Button";
 import { Input } from "@/components/Form/Input";
-import { createFund } from "../api/createFund";
+import { createBudget } from "../api/createBudget";
 import { Layout } from "@/components/Layout";
 import { ListBoxInput } from "@/components/Form/ListBoxInput";
 import { icons } from "@/utils/icons";
 import { IconFromText } from "@/components/Misc/IconFromText/IconFromText";
 
-const CreateFund = () => {
+const CreateBudget = () => {
   const [isFormLoading, setIsFormLoading] = useState(false);
   const [error, setError] = useState();
   const [icon, setIcon] = useState(icons[0]);
   const [fundName, setFundName] = useState("");
+  const [goal, setGoal] = useState(0.0);
   const navigate = useNavigate();
 
-  const handleCreateFund = (event) => {
+  const handleCreateBudget = (event) => {
     event.preventDefault();
     setIsFormLoading(true);
-    createFund({
+    createBudget({
       name: fundName,
       icon: icon,
     })
@@ -26,19 +27,19 @@ const CreateFund = () => {
       .finally(() => {
         setIsFormLoading(false);
         if (!error) {
-          navigate("/funds");
+          navigate("/budgets");
         }
       });
   };
 
   return (
-    <Layout back size="xs" title="Create Fund" returnUrl="/funds">
+    <Layout back size="xs" title="Create Budget" returnUrl="/budgets">
       {error && (
         <div className="flex justify-center p-2 bg-gray-200 rounded-md border-1 border-gray-300 my-2">
           {error}
         </div>
       )}
-      <form className="flex flex-col" onSubmit={handleCreateFund}>
+      <form className="flex flex-col" onSubmit={handleCreateBudget}>
         <div className="flex w-full">
           <div className="flex flex-col w-3/4">
             <Input
@@ -60,6 +61,7 @@ const CreateFund = () => {
             />
           </div>
         </div>
+        <Input label="Goal" value={goal} onChange={setGoal} type="number" />
         <div className="flex justify-center p-5">
           <Button text="Create" disabled={isFormLoading} />
         </div>
@@ -68,4 +70,4 @@ const CreateFund = () => {
   );
 };
 
-export default CreateFund;
+export default CreateBudget;

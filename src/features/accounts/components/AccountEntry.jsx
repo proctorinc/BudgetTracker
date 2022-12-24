@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { formatCurrency } from "@/utils/currency";
 import { AnimatedCard } from "@/components/Elements/AnimatedCard";
 
-const AccountEntry = ({ account, loading }) => {
+const AccountEntry = ({ account }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {

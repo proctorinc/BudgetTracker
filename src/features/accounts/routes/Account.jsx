@@ -28,14 +28,15 @@ const Account = () => {
   const account = accountQuery.data;
 
   return (
-    <Layout back={true}>
+    <Layout>
       <div className="flex flex-col items-center gap-1 py-5">
         <AnimatedDetailHeader
           title={formatCurrency(account.balances.current)}
           subtitle={account.name}
+          back
         />
         {account.official_name && (
-          <div className="flex gap-2 border border-gray-500 bg-gray-200 text-gray-500 rounded-md px-3">
+          <div className="flex gap-2 border border-gray-200 bg-gray-200 text-gray-500 rounded-md px-3">
             {account.official_name}
           </div>
         )}

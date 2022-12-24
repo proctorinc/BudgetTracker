@@ -1,4 +1,11 @@
-export const Input = ({ label, type, value, onChange, placeholder }) => {
+export const Input = ({
+  label,
+  type,
+  value,
+  onChange,
+  placeholder,
+  ...otherProps
+}) => {
   return (
     <>
       {label && (
@@ -13,6 +20,7 @@ export const Input = ({ label, type, value, onChange, placeholder }) => {
         value={value}
         placeholder={placeholder}
         onChange={(event) => onChange(event.target.value)}
+        {...otherProps}
       />
     </>
   );

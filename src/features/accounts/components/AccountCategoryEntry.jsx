@@ -26,9 +26,7 @@ const AccountCategoryEntry = ({ category, accountData, isLoading, error }) => {
       {accountEntries ? (
         <AnimatedList>{accountEntries}</AnimatedList>
       ) : (
-        <AnimatedCard>
-          <Loader />
-        </AnimatedCard>
+        <Loader />
       )}
     </div>
   );

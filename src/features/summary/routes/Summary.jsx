@@ -30,8 +30,8 @@ export const Summary = () => {
     return <Loader />;
   }
 
-  if (!monthsQuery.isLoading && !monthsQuery.data.includes(formattedMonth)) {
-    return <Oops />;
+  if (monthsQuery.error) {
+    return <div>Error!!!</div>;
   }
 
   return (
@@ -45,44 +45,46 @@ export const Summary = () => {
       </div>
       {summaryQuery.data && (
         <>
-          <h2 className="text-3xl pb-2">Total Spending:</h2>
-          <div className="flex gap-2 pb-2">
-            <div className="flex justify-center gap-2 border bg-gray-200 border-gray-200 p-3 rounded-md w-1/2">
-              <div className="border-8 border-gray-800 border-r-white rounded-full animate-full p-2 h-16 w-16"></div>
-              <div className="flex flex-col justify-center">
-                <p className="text-xl font-extralight">Income</p>
-                <p className="text-lg font-bold">
-                  +{formatCurrency(summaryQuery.data.income)}
-                </p>
+          <div className="pt-5">
+            <h2 className="text-5xl pb-2">Total Spending</h2>
+            <div className="flex gap-2 pb-2">
+              <div className="flex justify-center gap-6 border bg-gray-200 border-gray-200 py-10 rounded-md w-1/2">
+                <div className="border-8 border-gray-800 border-r-white rounded-full animate-full p-2 h-16 w-16"></div>
+                <div className="flex flex-col justify-center text-center">
+                  <p className="text-xl font-extralight">Income</p>
+                  <p className="text-lg font-bold">
+                    +{formatCurrency(summaryQuery.data.income)}
+                  </p>
+                </div>
+              </div>
+              <div className="flex justify-center gap-6 border bg-gray-200 border-gray-200 py-10 rounded-md w-1/2">
+                <div className="border-8 border-gray-800 border-l-white border-t-white border-b-white rounded-full animate-full p-2 h-16 w-16"></div>
+                <div className="flex flex-col justify-center text-center">
+                  <p className="text-xl font-extralight">Expenses</p>
+                  <p className="text-lg font-bold">
+                    -{formatCurrency(summaryQuery.data.expenses)}
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="flex justify-center gap-2 border bg-gray-200 border-gray-200 p-3 rounded-md w-1/2">
-              <div className="border-8 border-gray-800 border-l-white border-t-white border-b-white rounded-full animate-full p-2 h-16 w-16"></div>
+            <div className="flex gap-2 justify-center text-center bg-gray-200 border-gray-200 p-3 rounded-md mb-10">
               <div className="flex flex-col justify-center">
-                <p className="text-xl font-extralight">Expenses</p>
+                <p className="text-xl font-extralight">Leftover</p>
                 <p className="text-lg font-bold">
-                  -{formatCurrency(summaryQuery.data.expenses)}
+                  {formatCurrency(
+                    summaryQuery.data.income - summaryQuery.data.expenses
+                  )}
                 </p>
               </div>
-            </div>
-          </div>
-          <div className="flex gap-2 border bg-gray-200 border-gray-200 p-3 rounded-md mb-10">
-            <div className="flex flex-col justify-center">
-              <p className="text-xl font-extralight">Leftover</p>
-              <p className="text-lg font-bold">
-                {formatCurrency(
-                  summaryQuery.data.income - summaryQuery.data.expenses
-                )}
-              </p>
             </div>
           </div>
           {/* <SummaryStat /> */}
           <div className="pb-10">
-            <h2 className="text-3xl pb-2">Budgets:</h2>
+            <h2 className="text-5xl pb-2">Budgets</h2>
             <div className="flex gap-2 pb-2">
-              <div className="flex gap-8 border bg-gray-200 border-gray-200 p-3 rounded-md flex-grow justify-center">
+              <div className="flex gap-8 border bg-gray-200 border-gray-200 p-10 rounded-md flex-grow justify-center">
                 <div className="border-8 border-gray-800 border-l-white border-t-white border-b-white rounded-full animate-full p-2 h-24 w-24"></div>
-                <div className="flex flex-col justify-center">
+                <div className="flex flex-col gap-3 justify-center">
                   <p className="text-xl font-bold">
                     <span className="font-extralight">Goal:</span>{" "}
                     {formatCurrency(summaryQuery.data.budget.goal)}
@@ -109,11 +111,11 @@ export const Summary = () => {
             </div>
           </div>
           <div className="">
-            <h2 className="text-3xl pb-2">Funds:</h2>
+            <h2 className="text-5xl pb-2">Funds</h2>
             <div className="flex gap-2 pb-2">
-              <div className="flex gap-2 border bg-gray-200 border-gray-200 p-3 rounded-md flex-grow justify-center">
+              <div className="flex gap-8 border bg-gray-200 border-gray-200 p-10 rounded-md flex-grow justify-center">
                 <div className="border-8 border-gray-800 border-l-white border-t-white border-b-white rounded-full animate-full p-2 h-24 w-24"></div>
-                <div className="flex flex-col justify-center">
+                <div className="flex flex-col gap-3 justify-center">
                   <p className="text-xl font-bold">
                     <span className="font-extralight">Added:</span> +
                     {formatCurrency(summaryQuery.data.funds.added)}

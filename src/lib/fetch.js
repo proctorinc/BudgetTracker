@@ -8,7 +8,8 @@ export const fetchQuery = async ({ endpoint, method, body }) => {
       Authorization: `Bearer ${USER.jwtToken}`,
     },
     body: body ? JSON.stringify(body) : null,
-  })
-    .then((response) => response.json())
-    .catch((err) => err);
+  }).then((response) => response.json());
+  // .catch((err) => {
+  //   Promise.reject(new Error(err.message));
+  // });
 };
