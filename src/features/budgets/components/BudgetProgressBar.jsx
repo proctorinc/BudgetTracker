@@ -1,20 +1,24 @@
 import { ProgressBar } from "@/components/Charts/ProgressBar";
 
 export const BudgetProgressBar = ({ budget }) => {
-  const percentComplete = (budget.currentAmount / budget.goal) * 100;
+  const currentAmount = budget.currentAmount ? budget.currentAmount : 0;
+  const goal = budget.goal ? budget.goal : 0;
+  const percentComplete = (currentAmount / goal) * 100;
 
-  const calculateColor = () => {
-    // let color = "bg-green-300";
-    // if (percentComplete > 100) {
-    //   color = "bg-red-300";
-    // } else if (percentComplete >= 90 && percentComplete < 100) {
-    //   color = "bg-yellow-300";
-    // }
-    // return color;
-    return "bg-gradient-to-r from-gray-300 to-gray-500";
+  const color = () => {
+    let color = "green";
+    if (percentComplete > 100) {
+      color = "red";
+    } else if (percentComplete >= 90 && percentComplete < 100) {
+      color = "yellow";
+    }
+    return color;
   };
 
   return (
-    <ProgressBar percentComplete={percentComplete} color={calculateColor()} />
+    <ProgressBar
+      percentComplete={percentComplete}
+      color={"bg-gradient-to-r from-emerald-300 to-emerald-600"}
+    />
   );
 };

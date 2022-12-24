@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { AnimatedDetailHeader } from "@/components/Elements/AnimatedDetailHeader";
 import { Loader } from "@/components/Elements/Loader";
@@ -10,12 +10,12 @@ import {
 import { formatCurrency } from "@/utils/currency";
 
 import { useBudget } from "../hooks/useBudget";
-import BudgetEntry from "../components/BudgetEntry";
-import { AnimatedList } from "@/components/Elements/AnimatedList";
-import { AnimatedCard } from "@/components/Elements/AnimatedCard";
 import { BudgetProgressBar } from "../components/BudgetProgressBar";
+import { Button } from "@/components/Elements/Button";
+import { deleteBudget } from "../api/deleteBudget";
 
 const Budget = () => {
+  const navigate = useNavigate();
   const { budgetId, month } = useParams();
   const budgetQuery = useBudget({ budgetId, month });
   const transactionsQuery = useBudgetTransactions({ budgetId, month });
@@ -34,6 +34,14 @@ const Budget = () => {
   const leftover = formatCurrency(goal - currentAmount);
   const percentUsed =
     budget.currentAmount && budget.goal ? (currentAmount / goal) * 100 : 0;
+
+  const handleDelete = () => {
+    deleteBudget({ id: budget._id })
+      .catch((err) => console.log(err))
+      .then(() => {
+        navigate("/budgets");
+      });
+  };
 
   return (
     <Layout>
@@ -56,18 +64,15 @@ const Budget = () => {
           </div>
         </div>
       </div>
+      <div className="flex justify-center gap-2">
+        <Button text="Delete" onClick={handleDelete} />
+      </div>
       <TransactionsList
         title="Transactions"
         transactions={transactionsQuery.data}
         isLoading={transactionsQuery.isLoading}
         error={transactionsQuery.error}
       />
-      {/* <TransactionsList
-        title="Previous Months"
-        transactions={[]}
-        isLoading={transactionsQuery.isLoading}
-        error={transactionsQuery.error}
-      /> */}
     </Layout>
   );
 };

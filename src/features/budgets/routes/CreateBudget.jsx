@@ -12,17 +12,14 @@ const CreateBudget = () => {
   const [isFormLoading, setIsFormLoading] = useState(false);
   const [error, setError] = useState();
   const [icon, setIcon] = useState(icons[0]);
-  const [fundName, setFundName] = useState("");
+  const [name, setName] = useState("");
   const [goal, setGoal] = useState(0.0);
   const navigate = useNavigate();
 
   const handleCreateBudget = (event) => {
     event.preventDefault();
     setIsFormLoading(true);
-    createBudget({
-      name: fundName,
-      icon: icon,
-    })
+    createBudget({ name, icon, goal })
       .catch(setError)
       .finally(() => {
         setIsFormLoading(false);
@@ -45,8 +42,8 @@ const CreateBudget = () => {
             <Input
               label="Name"
               placeholder="Name"
-              value={fundName}
-              onChange={setFundName}
+              value={name}
+              onChange={setName}
             />
           </div>
           <div className="flex flex-col flex-grow h-fill justify-end px-1">
