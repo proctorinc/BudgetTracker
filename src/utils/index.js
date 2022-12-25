@@ -1,6 +1,9 @@
 import { MONTHS } from "@/constants";
 
 export const capitalizeFirstLetter = (word) => {
+  if (word === undefined) {
+    return "";
+  }
   return word[0].toUpperCase() + word.substring(1);
 };
 

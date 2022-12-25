@@ -1,24 +1,23 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-import { AnimatedDetailHeader } from "@/components/Elements/AnimatedDetailHeader";
 import { Loader } from "@/components/Elements/Loader";
-import { Layout } from "@/components/Layout";
+import { DetailLayout } from "@/components/Layout";
+import { formatCurrency } from "@/utils/currency";
+import { Button } from "@/components/Elements/Button";
 import {
   TransactionsList,
   useBudgetTransactions,
 } from "@/features/transactions";
-import { formatCurrency } from "@/utils/currency";
 
 import { useBudget } from "../hooks/useBudget";
 import { BudgetProgressBar } from "../components/BudgetProgressBar";
-import { Button } from "@/components/Elements/Button";
 import { deleteBudget } from "../api/deleteBudget";
+import { capitalizeFirstLetter } from "@/utils";
 
 const Budget = () => {
   const navigate = useNavigate();
   const { budgetId, month } = useParams();
   const budgetQuery = useBudget({ budgetId, month });
-  const transactionsQuery = useBudgetTransactions({ budgetId, month });
 
   if (budgetQuery.isLoading) {
     return <Loader />;
@@ -44,13 +43,12 @@ const Budget = () => {
   };
 
   return (
-    <Layout>
+    <DetailLayout
+      title={budget.name}
+      titleIcon={budget.icon}
+      subtitle={capitalizeFirstLetter(month)}
+    >
       <div className="flex flex-col items-center gap-1 py-5">
-        <AnimatedDetailHeader
-          title={budget.name}
-          titleIcon={budget.icon}
-          subtitle={month}
-        />
         <div className="flex justify-center gap-2 border bg-gray-200 border-gray-200 p-3 rounded-md w-full">
           <div className="flex flex-col w-full px-3">
             <h3 className="text-3xl font-extralight text-center p-5">
@@ -69,11 +67,10 @@ const Budget = () => {
       </div>
       <TransactionsList
         title="Transactions"
-        transactions={transactionsQuery.data}
-        isLoading={transactionsQuery.isLoading}
-        error={transactionsQuery.error}
+        useHook={useBudgetTransactions}
+        hookParameters={[budgetId, month]}
       />
-    </Layout>
+    </DetailLayout>
   );
 };
 

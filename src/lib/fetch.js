@@ -9,7 +9,4 @@ export const fetchQuery = async ({ endpoint, method, body }) => {
     },
     body: body ? JSON.stringify(body) : null,
   }).then((response) => response.json());
-  // .catch((err) => {
-  //   Promise.reject(new Error(err.message));
-  // });
 };

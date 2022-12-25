@@ -33,7 +33,9 @@ export const Summary = () => {
       {summaryQuery.data && (
         <>
           <div className="pt-5">
-            <h2 className="text-5xl pb-2">Total Spending</h2>
+            <h2 className="text-5xl pb-2">Overall</h2>
+            <h2>Cash balance at end of month: $85,000 </h2>
+            <h2>Increased from last month +$3554</h2>
             <div className="flex gap-2 pb-2">
               <div className="flex justify-center gap-6 border bg-gray-200 border-gray-200 py-10 rounded-md w-1/2">
                 <div className="border-8 border-gray-800 border-r-white rounded-full animate-full p-2 h-16 w-16"></div>
@@ -68,6 +70,8 @@ export const Summary = () => {
           {/* <SummaryStat /> */}
           <div className="pb-10">
             <h2 className="text-5xl pb-2">Budgets</h2>
+            <h2>Budget Balance at end of month: +$542</h2>
+            <h2>Increased from last month +$54</h2>
             <div className="flex gap-2 pb-2">
               <div className="flex gap-8 border bg-gray-200 border-gray-200 p-10 rounded-md flex-grow justify-center">
                 <div className="border-8 border-gray-800 border-l-white border-t-white border-b-white rounded-full animate-full p-2 h-24 w-24"></div>
@@ -99,6 +103,8 @@ export const Summary = () => {
           </div>
           <div className="">
             <h2 className="text-5xl pb-2">Funds</h2>
+            <h2>Funds Balance at end of month: $38046</h2>
+            <h2>Increased from last month +$2306</h2>
             <div className="flex gap-2 pb-2">
               <div className="flex gap-8 border bg-gray-200 border-gray-200 p-10 rounded-md flex-grow justify-center">
                 <div className="border-8 border-gray-800 border-l-white border-t-white border-b-white rounded-full animate-full p-2 h-24 w-24"></div>

@@ -1,9 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-import { Loader } from "@/components/Elements/Loader";
-import { Layout } from "@/components/Layout";
+import { DetailLayout } from "@/components/Layout";
 import { formatCurrency } from "@/utils/currency";
-import { AnimatedDetailHeader } from "@/components/Elements/AnimatedDetailHeader";
 import { AnimatedList } from "@/components/Elements/AnimatedList";
 import { TransactionsList, useFundTransactions } from "@/features/transactions";
 import { ProgressBar } from "@/components/Charts/ProgressBar";
@@ -16,17 +14,12 @@ const Fund = () => {
   const navigate = useNavigate();
   const { fundId } = useParams();
   const fundQuery = useFund({ fundId });
-  const transactionsQuery = useFundTransactions({ fundId });
-
-  if (fundQuery.isLoading || !fundId) {
-    return <Loader />;
-  }
 
   if (fundQuery.error) {
     return <div>{error}</div>;
   }
 
-  const fund = fundQuery.data.fund;
+  const fund = fundQuery.data?.fund;
 
   const handleDelete = () => {
     deleteFund({ id: fund._id })
@@ -37,14 +30,12 @@ const Fund = () => {
   };
 
   return (
-    <Layout back>
-      <div className="flex flex-col items-center gap-1">
-        <AnimatedDetailHeader
-          icon={fund.icon}
-          title={formatCurrency(fund.initial_amount)}
-          subtitle={fund.name}
-        />
-      </div>
+    <DetailLayout
+      title={formatCurrency(fund?.initial_amount)}
+      subtitle={fund?.name}
+      subtitleIcon={fund?.icon}
+      isLoading={fundQuery.isLoading}
+    >
       <AnimatedList>
         <div className="flex justify-center gap-2 border bg-gray-200 border-gray-200 p-3 rounded-md">
           <div className="w-full text-center pb-5">
@@ -62,11 +53,10 @@ const Fund = () => {
       </AnimatedList>
       <TransactionsList
         title="Transactions"
-        transactions={transactionsQuery.data.transactions}
-        isLoading={transactionsQuery.isLoading}
-        error={transactionsQuery.error}
+        useHook={useFundTransactions}
+        hookParameters={[fundId]}
       />
-    </Layout>
+    </DetailLayout>
   );
 };
 

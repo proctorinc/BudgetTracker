@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimateSharedLayout } from "framer-motion";
 import { AnimatedCard } from "../AnimatedCard";
 
 export const AnimatedList = ({ children, ...otherProps }) => {
@@ -18,7 +18,7 @@ export const AnimatedList = ({ children, ...otherProps }) => {
       animate="show"
       {...otherProps}
     >
-      {children.length > 0 ? children : noChildren}
+      {children?.length > 0 ? children : noChildren}
     </motion.ul>
   );
 };
