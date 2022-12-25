@@ -43,7 +43,7 @@ export const ListBoxInput = ({
           >
             {choices?.map((choice) => (
               <Listbox.Option
-                key={choice}
+                key={`${choice.month} ${choice.year}`}
                 value={choice}
                 className={({ active }) =>
                   `relative cursor-default select-none py-2 pr-10 pl-2 border-gray-300 ${

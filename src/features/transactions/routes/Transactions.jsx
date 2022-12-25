@@ -8,8 +8,10 @@ const Transactions = () => {
   const unallocatedQuery = useUnallocatedTransactions();
   const transactionsQuery = useTransactions();
 
+  const isLoading = unallocatedQuery.isLoading || transactionsQuery.isLoading;
+
   return (
-    <Layout title="Transactions">
+    <Layout title="Transactions" isLoading={isLoading}>
       <TransactionsList
         title="Unallocated"
         transactions={unallocatedQuery.data?.transactions}

@@ -4,7 +4,7 @@ import { Summary } from "./Summary";
 const SummaryRoutes = () => {
   return (
     <Routes>
-      <Route path=":month" element={<Summary />} />
+      <Route path="/:month/:year" element={<Summary />} />
       <Route path="*" element={<Navigate to="." />} />
     </Routes>
   );

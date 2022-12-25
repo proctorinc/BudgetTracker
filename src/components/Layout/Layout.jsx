@@ -1,8 +1,9 @@
 import { AnimatedHeader } from "../Elements/AnimatedHeader";
+import { Loader } from "../Elements/Loader";
 import { Footer } from "../Footer";
 import { Navbar } from "../Navbar";
 
-export const Layout = ({ title, subtitle, size, children }) => {
+export const Layout = ({ title, subtitle, size, children, isLoading }) => {
   const calculateWidthScaling = () => {
     let scaling = "sm:max-w-xl";
 
@@ -22,9 +23,15 @@ export const Layout = ({ title, subtitle, size, children }) => {
     <>
       <Navbar />
       <div className="flex flex-col items-center bg-gray-100 text-gray-800 min-h-screen pb-36">
-        <div className={`${widthScaling} w-full p-4`}>
+        <div className={`${widthScaling} w-full p-4 flex-grow`}>
           {title && <AnimatedHeader title={title} subtitle={subtitle} />}
-          {children}
+          {isLoading ? (
+            <div className="py-40">
+              <Loader />
+            </div>
+          ) : (
+            children
+          )}
         </div>
       </div>
       <Footer />

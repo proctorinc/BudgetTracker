@@ -46,7 +46,7 @@ export const AnimatedHeader = ({ title, subtitle }) => {
           variants={subtitleVariants}
           initial="hidden"
           animate="show"
-          className="text-5xl font-extralight"
+          className="text-4xl font-extralight"
         >
           {subtitle}
         </motion.h3>

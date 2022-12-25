@@ -1,11 +1,4 @@
 import { useParams } from "react-router-dom";
-import {
-  Note,
-  Calendar,
-  ArrowsClockwise,
-  GitFork,
-  CaretRight,
-} from "phosphor-react";
 
 import { AnimatedDetailHeader } from "@/components/Elements/AnimatedDetailHeader";
 import { AnimatedList } from "@/components/Elements/AnimatedList";
@@ -16,7 +9,6 @@ import { formatCurrency } from "@/utils/currency";
 import MerchantDetail from "../components/detail/MerchantDetail";
 import SourceDetail from "../components/detail/SourceDetail";
 import { useTransaction } from "../hooks/useTransaction";
-import TransactionUpdateDetail from "../components/detail/TransactionDetail";
 import NotesDetail from "../components/detail/NotesDetail";
 import DateDetail from "../components/detail/DateDetail";
 import TransferDetail from "../components/detail/TransferDetail";
@@ -24,15 +16,15 @@ import SplitDetail from "../components/detail/SplitDetail";
 
 const Transaction = () => {
   const { transactionId } = useParams();
-  const { data, isLoading, error } = useTransaction({ transactionId });
-  const transaction = data?.transaction;
+  const transactionsQuery = useTransaction({ transactionId });
+  const transaction = transactionsQuery.data?.transaction;
 
-  if (isLoading) {
-    return <Loader />;
+  if (transactionsQuery.error) {
+    return <div>Error: {error}</div>;
   }
 
-  if (error) {
-    return <div>Error: {error}</div>;
+  if (transactionsQuery.isLoading) {
+    return <Loader />;
   }
 
   const categories = transaction.category.map((category, i) => {
@@ -40,7 +32,7 @@ const Transaction = () => {
   });
 
   return (
-    <Layout back={true}>
+    <Layout isLoading={transactionsQuery.isLoading} back>
       <div className="flex flex-col items-center gap-1 py-5">
         <AnimatedDetailHeader
           title={formatCurrency(transaction.amount)}

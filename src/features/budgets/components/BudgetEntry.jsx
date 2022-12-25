@@ -6,14 +6,14 @@ import { AnimatedCard } from "@/components/Elements/AnimatedCard";
 
 import { BudgetProgressBar } from "./BudgetProgressBar";
 
-const BudgetEntry = ({ budget, month }) => {
+const BudgetEntry = ({ budget, date }) => {
   const navigate = useNavigate();
   const currentAmount = formatCurrency(budget.currentAmount);
   const goal = formatCurrency(budget.goal);
   const leftover = formatCurrency(budget.goal - budget.currentAmount);
 
   const navigateToBudget = () => {
-    navigate(`/budgets/${budget._id}/month/${month}`);
+    navigate(`/budgets/${budget._id}/${date.month}/${date.year}`);
   };
 
   return (

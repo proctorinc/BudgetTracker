@@ -18,6 +18,20 @@ export const getCurrentMonthInURLFormat = () => {
   return formatMonthToURLFormat(month);
 };
 
+export const getCurrentMonth = () => {
+  const today = new Date();
+  const month = today.toLocaleString("en-US", { month: "long" });
+
+  return month.toLowerCase();
+};
+
+export const getCurrentYear = () => {
+  const today = new Date();
+  const year = today.toLocaleString("en-US", { year: "numeric" });
+
+  return year;
+};
+
 export const formatMonthToURLFormat = (monthDate) => {
   let result;
   try {

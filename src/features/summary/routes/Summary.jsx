@@ -1,48 +1,35 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-import { ListBoxInput } from "@/components/Form/ListBoxInput";
 import { Layout } from "@/components/Layout";
-import { AnimatedList } from "@/components/Elements/AnimatedList";
-import { AnimatedCard } from "@/components/Elements/AnimatedCard";
-import { Loader } from "@/components/Elements/Loader";
 import { formatCurrency } from "@/utils/currency";
-import { formatMonthToURLFormat, getMonthFromURLFormat } from "@/utils";
+import { capitalizeFirstLetter } from "@/utils";
+import { ActiveMonthsListBox } from "@/components/Form/ListBoxInput/ActiveMonthsListBox";
 
 import { useMonthlySummary } from "../hooks/useMonthlySummary";
 import { useActiveMonths } from "../hooks/useActiveMonths";
-import { Oops } from "@/features/misc";
-import { SummaryStat } from "../components/SummaryStat";
 
 export const Summary = () => {
-  const { month } = useParams();
+  const { month, year } = useParams();
+  const date = { month, year };
   const navigate = useNavigate();
-  const summaryQuery = useMonthlySummary({ month });
+  const summaryQuery = useMonthlySummary(date);
   const monthsQuery = useActiveMonths();
 
-  const handleSelectedMonth = (selectedDate) => {
-    const monthURLFormat = formatMonthToURLFormat(selectedDate);
-    navigate(`/summary/${monthURLFormat}`);
+  const handleSelectedMonth = (date) => {
+    navigate(`/summary/${date.month}/${date.year}`);
   };
-
-  const formattedMonth = getMonthFromURLFormat(month);
-
-  if (monthsQuery.isLoading) {
-    return <Loader />;
-  }
 
   if (monthsQuery.error) {
     return <div>Error!!!</div>;
   }
 
   return (
-    <Layout title={formattedMonth} subtitle="Summary">
-      <div className="py-3">
-        <ListBoxInput
-          selected={formattedMonth}
-          setSelected={(selected) => handleSelectedMonth(selected)}
-          choices={monthsQuery.data ? monthsQuery.data : []}
-        />
-      </div>
+    <Layout
+      title={`${capitalizeFirstLetter(date.month)} ${date.year}`}
+      subtitle="Summary"
+      isLoading={monthsQuery.isLoading}
+    >
+      <ActiveMonthsListBox initialMonth={date} onSelect={handleSelectedMonth} />
       {summaryQuery.data && (
         <>
           <div className="pt-5">

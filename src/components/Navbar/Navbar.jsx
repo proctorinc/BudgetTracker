@@ -1,17 +1,17 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CurrencyDollarIcon, UserCircleIcon } from "@heroicons/react/20/solid";
-import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 
 import { Button } from "@/components/Elements/Button";
 import useAuth from "@/hooks/useAuth";
-import { getCurrentMonthInURLFormat } from "@/utils";
+import { getCurrentMonth, getCurrentYear } from "@/utils";
 
 export const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const auth = useAuth();
 
-  const currentMonth = getCurrentMonthInURLFormat();
+  const currentMonth = getCurrentMonth();
+  const currentYear = getCurrentYear();
 
   return (
     <nav className="flex justify-center w-full bg-gray-100 border-b border-gray-300">
@@ -28,7 +28,9 @@ export const Navbar = () => {
                 style={
                   location.pathname.startsWith("/summary") ? null : "ghost"
                 }
-                onClick={() => navigate(`/summary/${currentMonth}`)}
+                onClick={() =>
+                  navigate(`/summary/${currentMonth}/${currentYear}`)
+                }
               />
               <Button
                 text={"Accounts"}
@@ -42,7 +44,9 @@ export const Navbar = () => {
                 style={
                   location.pathname.startsWith("/budgets") ? null : "ghost"
                 }
-                onClick={() => navigate("/budgets")}
+                onClick={() =>
+                  navigate(`/budgets/${currentMonth}/${currentYear}`)
+                }
               />
               <Button
                 text="Funds"
