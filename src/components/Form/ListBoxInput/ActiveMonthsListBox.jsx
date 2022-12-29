@@ -30,6 +30,7 @@ export const ActiveMonthsListBox = ({ initialMonth, onSelect }) => {
         setSelected={handleSelect}
         choices={monthsQuery.data}
         renderItem={renderMonthAndYear}
+        itemKey={(item) => `${item.month} ${item.year}`}
       />
     </div>
   );

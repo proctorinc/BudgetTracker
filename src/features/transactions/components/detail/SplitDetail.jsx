@@ -1,13 +1,14 @@
 import { GitFork, CaretRight } from "phosphor-react";
+import UpdateSplit from "../update/UpdateSplit";
 
 import TransactionUpdateDetail from "./TransactionDetail";
 
-const SplitDetail = () => {
+const SplitDetail = ({ setSelected }) => {
   return (
     <TransactionUpdateDetail
       label={"Split Transaction"}
       icon={<GitFork size={25} weight="fill" />}
-      onClick={() => console.log("Clicked on split transaction detail")}
+      onClick={() => setSelected(<UpdateSplit />)}
       actionItem={<CaretRight size={25} />}
     ></TransactionUpdateDetail>
   );

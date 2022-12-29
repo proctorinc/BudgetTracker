@@ -1,7 +1,8 @@
 import { motion, AnimateSharedLayout } from "framer-motion";
 import { AnimatedCard } from "../AnimatedCard";
+import { Loader } from "../Loader";
 
-export const AnimatedList = ({ children, ...otherProps }) => {
+export const AnimatedList = ({ children, isLoading, ...otherProps }) => {
   const variants = {
     show: {
       transition: { staggerChildren: 0.1, staggerDirection: 1 },
@@ -9,6 +10,10 @@ export const AnimatedList = ({ children, ...otherProps }) => {
   };
 
   const noChildren = <AnimatedCard>None</AnimatedCard>;
+
+  if (isLoading) {
+    return <Loader size="lg" />;
+  }
 
   return (
     <motion.ul

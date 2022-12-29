@@ -7,7 +7,12 @@ export const ListBoxInput = ({
   setSelected,
   choices,
   renderItem,
+  itemKey,
 }) => {
+  const renderSelected = () => {
+    return renderItem ? renderItem(selected) : selected;
+  };
+
   return (
     <div>
       <Listbox value={selected} onChange={setSelected}>
@@ -21,7 +26,7 @@ export const ListBoxInput = ({
         >
           <Listbox.Button className="text-sm flex items-center py-2 px-4 text-gray-600 font-light border-2 bg-gray-200 rounded-md w-fit hover:bg-gray-300 hover:border-gray-300">
             <div className="flex gap-2 items-center justify-center">
-              {renderItem ? renderItem(selected) : selected}
+              {selected ? renderSelected() : "--"}
               <CaretDown size={15} weight="bold" />
             </div>
           </Listbox.Button>
@@ -39,11 +44,11 @@ export const ListBoxInput = ({
                 duration: 0.2,
               },
             }}
-            className="absolute max-h-64 my-1 overflow-auto rounded-md bg-gray-200 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-50 w-fit font-light text-gray-600"
+            className="absolute max-h-64 my-1 overflow-auto rounded-md bg-gray-200 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-40 w-fit font-light text-gray-600"
           >
             {choices?.map((choice) => (
               <Listbox.Option
-                key={`${choice.month} ${choice.year}`}
+                key={itemKey ? itemKey(choice) : choice}
                 value={choice}
                 className={({ active }) =>
                   `relative cursor-default select-none py-2 pr-10 pl-2 border-gray-300 ${
@@ -59,7 +64,7 @@ export const ListBoxInput = ({
                         {renderItem ? renderItem(choice) : choice}
                       </div>
                     ) : (
-                      <div className="pl-8">
+                      <div className="pl-8 text-left">
                         {renderItem ? renderItem(choice) : choice}
                       </div>
                     )}

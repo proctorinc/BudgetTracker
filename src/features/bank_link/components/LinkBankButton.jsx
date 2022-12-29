@@ -17,15 +17,10 @@ const LinkBankButton = () => {
   });
 
   const isReadyToLink = ready && !isLoading;
-  const buttonTitle = isReadyToLink ? (
-    "Add new account"
-  ) : (
-    <div className="w-32">
-      <Loader />
-    </div>
-  );
 
-  return <Button text={buttonTitle} onClick={open} disabled={!isReadyToLink} />;
+  return (
+    <Button text={"Add Account"} onClick={open} isLoading={!isReadyToLink} />
+  );
 };
 
 export default LinkBankButton;

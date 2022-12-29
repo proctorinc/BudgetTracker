@@ -13,7 +13,7 @@ export const AnimatedDetailHeader = ({
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center p-3 text-center">
+    <div className="flex flex-col items-center p-5 text-center">
       <motion.div
         className="flex items-center gap-2 p-2 mr-10"
         initial={{
@@ -41,7 +41,7 @@ export const AnimatedDetailHeader = ({
         <h1 className="text-7xl font-extrabold">{title}</h1>
       </motion.div>
       <motion.div
-        className="flex items-center gap-2 p-2"
+        className="flex items-center gap-2"
         initial={{
           opacity: 0,
           y: -150,

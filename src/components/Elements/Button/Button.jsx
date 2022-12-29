@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
+import { Loader } from "../Loader";
 
-export const Button = ({ text, onClick, style, ...otherProps }) => {
+export const Button = ({ text, onClick, style, isLoading, ...otherProps }) => {
   const variants = {
     hidden: {
       opacity: 0,
@@ -27,8 +28,15 @@ export const Button = ({ text, onClick, style, ...otherProps }) => {
       variants={variants}
       whileTap={{ scale: 0.95 }}
       onClick={onClick}
+      disabled={isLoading}
     >
-      {text}
+      {isLoading ? (
+        <div className="w-24">
+          <Loader size="sm" />
+        </div>
+      ) : (
+        text
+      )}
     </motion.button>
   );
 };

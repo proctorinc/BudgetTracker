@@ -37,12 +37,14 @@ export const TransactionsList = ({ title, useHook, hookParameters = [] }) => {
   return (
     <div className="pb-10">
       <h2 className="text-3xl pb-2">{title}</h2>
-      <AnimatedList>{transactionEntries}</AnimatedList>
+      <AnimatedList isLoading={transactionsQuery.isLoading}>
+        {transactionEntries}
+      </AnimatedList>
       {hasNextPage && (
         <div className="flex w-full justify-center p-3">
           <Button
             style="ghost"
-            text="Next transactions"
+            text="Load More"
             onClick={handleNextPage}
             disabled={transactionsQuery.isLoading}
           />

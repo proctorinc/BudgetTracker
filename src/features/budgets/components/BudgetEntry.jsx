@@ -18,7 +18,7 @@ const BudgetEntry = ({ budget, date }) => {
 
   return (
     <AnimatedCard onClick={navigateToBudget}>
-      <IconFromText text={budget.icon} className="h-6" />
+      <IconFromText text={budget.icon} className="h-8" />
       <div className="flex flex-col w-full px-3">
         <h3 className="text-lg font-semibold">{budget.name}</h3>
         <BudgetProgressBar budget={budget} />

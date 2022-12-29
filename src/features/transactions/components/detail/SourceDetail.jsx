@@ -1,22 +1,24 @@
-import { Receipt, PlusCircle } from "phosphor-react";
+import { Receipt } from "phosphor-react";
+import UpdateSource from "../update/UpdateSource";
 
 import TransactionUpdateDetail from "./TransactionDetail";
 
-const UpdateSource = ({ source }) => {
+const SourceDetail = ({ source, setSelected, month, year }) => {
   return (
     <TransactionUpdateDetail
       label={"Source"}
       icon={<Receipt size={25} weight="fill" />}
-      onClick={() => console.log("Go to update source")}
-      actionItem={source.type ? null : <PlusCircle size={25} weight="light" />}
+      onClick={() =>
+        setSelected(<UpdateSource source={source} month={month} year={year} />)
+      }
     >
-      {source.name ? (
+      {source?.name ? (
         <>
           <label>
-            Type: <i>{source.type ? source.type : "None"}</i>
+            Type: <i>{source?.type ? source?.type : "None"}</i>
           </label>
           <label>
-            Name: <i>{source.name ? source.name : "None"}</i>
+            Name: <i>{source?.name ? source?.name : "None"}</i>
           </label>
         </>
       ) : (
@@ -26,4 +28,4 @@ const UpdateSource = ({ source }) => {
   );
 };
 
-export default UpdateSource;
+export default SourceDetail;
