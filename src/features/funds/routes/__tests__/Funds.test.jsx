@@ -1,6 +1,5 @@
 import { describe, it, vi } from "vitest";
-import { screen, render } from "@/test-utils.jsx";
-import userEvent from "@testing-library/user-event";
+import { screen, render, userEvent } from "@/test-utils.jsx";
 import Funds from "../Funds";
 
 // vi.mock("../../components/FundsChart", () => () => {

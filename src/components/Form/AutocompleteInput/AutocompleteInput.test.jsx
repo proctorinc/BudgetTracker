@@ -1,7 +1,6 @@
-import { render, screen } from "@/test-utils.jsx";
+import { render, screen, userEvent } from "@/test-utils.jsx";
 import { describe, it, vi } from "vitest";
 import { AutocompleteInput } from ".";
-import userEvent from "@testing-library/user-event";
 
 const mockFunction = vi.fn();
 const mockData = [

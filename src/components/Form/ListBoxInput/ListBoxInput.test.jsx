@@ -1,6 +1,5 @@
-import { render, screen } from "@/test-utils.jsx";
+import { render, screen, userEvent } from "@/test-utils.jsx";
 import { describe, it, vi } from "vitest";
-import userEvent from "@testing-library/user-event";
 import { ListBoxInput } from "./ListBoxInput";
 
 const mockFunction = vi.fn();
