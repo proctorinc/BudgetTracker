@@ -1,10 +1,12 @@
 import { describe, it } from "vitest";
 import { render, screen } from "@/test-utils.jsx";
+import { mockAccountCategories } from "@/__mocks__/mock_data/accounts";
+
 import AccountList from "../AccountList";
 
 describe("Account list", () => {
   it("renders properly", () => {
-    render(<AccountList />);
+    render(<AccountList accounts={mockAccountCategories} error={false} />);
 
     const cashAccountsLabel = screen.getByRole("heading", {
       name: /cash:/i,
@@ -30,7 +32,7 @@ describe("Account list", () => {
   });
 
   it("loads list of accounts", async () => {
-    render(<AccountList />);
+    render(<AccountList accounts={mockAccountCategories} error={false} />);
 
     const plaidCreditCardAccount = await screen.findByText(
       /plaid credit card/i
@@ -46,7 +48,7 @@ describe("Account list", () => {
   });
 
   it("loads category balances correctly", async () => {
-    render(<AccountList />);
+    render(<AccountList accounts={mockAccountCategories} error={false} />);
 
     const cashAccountsLabel = await screen.findByRole("heading", {
       name: "Cash: $150.01",
@@ -68,16 +70,16 @@ describe("Account list", () => {
   });
 
   it("loads account balances correctly", async () => {
-    render(<AccountList />);
+    render(<AccountList accounts={mockAccountCategories} error={false} />);
 
-    const plaidCreditCardAmount = await screen.findByText("$410.00");
-    const plaidIRAAmount = await screen.findByText("$320.76");
-    const plaidMortgageAmount = await screen.findByText("$56,302.06");
-    const plaidSavingsAmount = await screen.findByText("$210.00");
+    const creditAccountValue = await screen.findByText("$410.00");
+    const investmentAccountValue = await screen.findByText("$320.76");
+    const loanAccountValue = await screen.findByText("$56,302.06");
+    const savingsAccountValue = await screen.findByText("$210.00");
 
-    expect(plaidCreditCardAmount).toBeInTheDocument();
-    expect(plaidIRAAmount).toBeInTheDocument();
-    expect(plaidMortgageAmount).toBeInTheDocument();
-    expect(plaidSavingsAmount).toBeInTheDocument();
+    expect(creditAccountValue).toBeInTheDocument();
+    expect(investmentAccountValue).toBeInTheDocument();
+    expect(loanAccountValue).toBeInTheDocument();
+    expect(savingsAccountValue).toBeInTheDocument();
   });
 });

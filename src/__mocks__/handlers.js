@@ -1,5 +1,6 @@
 import { rest } from "msw";
 import {
+  mockAccountCategories,
   mockAccountsTotalBalance,
   mockCashAccounts,
   mockCreditAccounts,
@@ -14,29 +15,7 @@ export const handlers = [
   rest.get(
     "http://localhost:4090/bank/accounts/categorized",
     (req, res, ctx) => {
-      return res(
-        ctx.json({
-          total_balance: mockAccountsTotalBalance,
-          categories: {
-            cash: {
-              subtotal: 150.01,
-              accounts: [...mockCashAccounts],
-            },
-            credit: {
-              subtotal: 23490.34,
-              accounts: [...mockCreditAccounts],
-            },
-            investment: {
-              subtotal: 2408.0,
-              accounts: [...mockInvestmentAccounts],
-            },
-            loan: {
-              subtotal: 234,
-              accounts: [...mockLoanAccounts],
-            },
-          },
-        })
-      );
+      return res(ctx.json(mockAccountCategories));
     }
   ),
 

@@ -67,3 +67,25 @@ export const mockLoanAccounts = [
     subtype: "mortgage",
   },
 ];
+
+export const mockAccountCategories = {
+  total_balance: mockAccountsTotalBalance,
+  categories: {
+    cash: {
+      subtotal: 150.01,
+      accounts: [...mockCashAccounts],
+    },
+    credit: {
+      subtotal: 23490.34,
+      accounts: [...mockCreditAccounts],
+    },
+    investment: {
+      subtotal: 2408.0,
+      accounts: [...mockInvestmentAccounts],
+    },
+    loan: {
+      subtotal: 234,
+      accounts: [...mockLoanAccounts],
+    },
+  },
+};
