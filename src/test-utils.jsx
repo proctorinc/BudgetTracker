@@ -1,6 +1,7 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import { render } from "@testing-library/react";
 import { QueryClientProvider } from "react-query";
+import userEvent from "@testing-library/user-event";
 
 import { queryClient } from "./lib/react-query";
 
@@ -17,3 +18,4 @@ const customRender = (ui, options) =>
 
 export * from "@testing-library/react";
 export { customRender as render };
+export { userEvent };

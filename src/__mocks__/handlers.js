@@ -1,12 +1,5 @@
 import { rest } from "msw";
-import {
-  mockAccountCategories,
-  mockAccountsTotalBalance,
-  mockCashAccounts,
-  mockCreditAccounts,
-  mockInvestmentAccounts,
-  mockLoanAccounts,
-} from "./mock_data/accounts";
+import { mockAccountCategories } from "./mock_data/accounts";
 import { mockBudgets } from "./mock_data/budgets";
 import { mockFunds } from "./mock_data/funds";
 import { mockTransactions } from "./mock_data/transactions";
