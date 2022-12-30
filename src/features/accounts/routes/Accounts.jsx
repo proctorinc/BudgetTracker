@@ -3,6 +3,7 @@ import { Question } from "phosphor-react";
 import { Layout } from "@/components/Layout";
 import LinkBankButton from "@/features/bank_link/components/LinkBankButton";
 import { formatCurrency } from "@/utils/currency";
+import { Tooltip } from "@/components/Elements/Tooltip";
 
 import AccountList from "../components/AccountList";
 import { useAccounts } from "../hooks/useAccounts";
@@ -11,15 +12,20 @@ const Accounts = () => {
   const accountsQuery = useAccounts();
   const netWorth = formatCurrency(accountsQuery.data?.total_balance);
 
+  const totalTooltip = (
+    <>
+      <span className="text-md">Total = Total Assets - Total Liabilities</span>
+      <span className="text-md">Assets = Cash + Investments</span>
+      <span className="text-md">Liabilities = Credit + Loans</span>
+    </>
+  );
+
   const subtitle = (
     <div className="flex items-center gap-2">
       Total: {netWorth}
-      <div>
+      <Tooltip content={totalTooltip}>
         <Question size={20} className="text-gray-500" />
-        <span className="text-md text-gray-400">
-          Total = total assets - total liabilites
-        </span>
-      </div>
+      </Tooltip>
     </div>
   );
 
