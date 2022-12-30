@@ -11,8 +11,6 @@ export const TransactionsList = ({ title, useHook, hookParameters = [] }) => {
   const transactionsQuery = useHook(page, ...hookParameters);
   const hasNextPage = transactionsQuery.data?.has_next;
 
-  console.log(transactionsQuery.data);
-
   useEffect(() => {
     if (!transactionsQuery.isLoading) {
       setTransactions([

@@ -18,8 +18,8 @@ export const Loader = ({ size }) => {
     let width = "10";
     if (size === "sm") {
       width = "6";
-    } else if (size === "lg") {
-      width = "8";
+    } else if (size === "xl") {
+      width = "16";
     }
     return width;
   };

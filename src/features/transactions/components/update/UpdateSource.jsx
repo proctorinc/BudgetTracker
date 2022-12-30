@@ -7,7 +7,7 @@ import { useFunds } from "@/features/funds";
 import { capitalizeFirstLetter } from "@/utils";
 import { Button } from "@/components/Elements/Button";
 
-const UpdateSource = ({ initialSource, month, year }) => {
+const UpdateSource = ({ initialSource, month, year, onUpdate }) => {
   const types = ["budget", "fund"];
   const fundsQuery = useFunds();
   const budgetsQuery = useBudgets({ month, year });
@@ -21,13 +21,27 @@ const UpdateSource = ({ initialSource, month, year }) => {
   if (fundsQuery.isLoading || budgetsQuery.isLoading) {
     return <Loader />;
   }
+
+  const updateTransactionSource = () => {
+    if (source && type) {
+      onUpdate({ source: { id: source._id, type, name: source.name } });
+    } else {
+      console.log("Must add a source");
+    }
+  };
+
+  const toggleType = (type) => {
+    setType(type);
+    setSource(type === types[0] ? budgets[0] : funds[0]);
+  };
+
   return (
     <div className="flex flex-col gap-5 items-center">
       <h1 className="text-6xl">Source</h1>
       <div className="flex gap-3">
         <ListBoxInput
           selected={type}
-          setSelected={setType}
+          setSelected={toggleType}
           choices={types}
           renderItem={(item) => capitalizeFirstLetter(item)}
         />
@@ -39,7 +53,7 @@ const UpdateSource = ({ initialSource, month, year }) => {
           itemKey={(item) => item._id}
         />
       </div>
-      <Button text="Save" onClick={() => console.log("Update source")} />
+      <Button text="Save" onClick={updateTransactionSource} />
     </div>
   );
 };

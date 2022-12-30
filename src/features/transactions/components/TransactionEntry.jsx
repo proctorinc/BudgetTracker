@@ -3,6 +3,7 @@ import { PlusCircle } from "phosphor-react";
 
 import { AnimatedCard } from "@/components/Elements/AnimatedCard";
 import { formatCurrency } from "@/utils/currency";
+import { capitalizeFirstLetter } from "@/utils";
 
 const TransactionEntry = ({ transaction }) => {
   const navigate = useNavigate();
@@ -26,7 +27,9 @@ const TransactionEntry = ({ transaction }) => {
       <div className="overflow-hidden">
         <p className="text-lg truncate">{transaction.name}</p>
         <p className="text-xs text-gray-400">
-          {source.type ? `${source.type} / ${source.id}` : "Unallocated"}
+          {source.type
+            ? `${capitalizeFirstLetter(source.type)} / ${source.name}`
+            : "Unallocated"}
         </p>
       </div>
       <div className="flex justify-end flex-grow items-center">

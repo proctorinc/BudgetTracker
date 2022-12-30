@@ -12,7 +12,7 @@ export const AnimatedList = ({ children, isLoading, ...otherProps }) => {
   const noChildren = <AnimatedCard>None</AnimatedCard>;
 
   if (isLoading) {
-    return <Loader size="lg" />;
+    return <Loader />;
   }
 
   return (

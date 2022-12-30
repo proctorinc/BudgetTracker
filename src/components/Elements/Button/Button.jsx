@@ -1,34 +1,58 @@
 import { motion } from "framer-motion";
 import { Loader } from "../Loader";
 
-export const Button = ({ text, onClick, style, isLoading, ...otherProps }) => {
+export const Button = ({
+  text,
+  onClick,
+  style,
+  isLoading,
+  disabled,
+  className,
+  ...otherProps
+}) => {
   const variants = {
     hidden: {
-      opacity: 0,
-      scale: 1.05,
+      scale: 0,
     },
     show: {
-      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+      },
     },
   };
 
+  let backgroundColor = "black";
+  let textColor = "white";
+
+  if (disabled == true) {
+    backgroundColor = "gray-200";
+    textColor = "gray-500";
+  }
+
+  if (style == "ghost") {
+    backgroundColor = "transparent";
+    textColor = "gray-500";
+  }
+
+  const hover = disabled
+    ? {}
+    : {
+        opacity: 1,
+        scale: 1.2,
+      };
+
   return (
     <motion.button
-      className="px-3 py-2 rounded-md"
-      whileHover={{
-        opacity: 1,
-        backgroundColor: "#111",
-        color: "#FFF",
-        scale: 1.2,
-      }}
-      initial={{
-        backgroundColor: style === "ghost" ? "" : "#111",
-        color: style === "ghost" ? "#111" : "#FFF",
-      }}
+      className={`${className} px-3 py-2 rounded-md bg-${backgroundColor} text-${textColor}`}
+      whileHover={hover}
+      initial="hidden"
+      animate="show"
       variants={variants}
       whileTap={{ scale: 0.95 }}
-      onClick={onClick}
-      disabled={isLoading}
+      onClick={disabled ? null : onClick}
+      disabled={isLoading || disabled}
+      {...otherProps}
     >
       {isLoading ? (
         <div className="w-24">

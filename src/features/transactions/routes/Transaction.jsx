@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
-import { XCircle } from "phosphor-react";
+import { AnimatePresence } from "framer-motion";
 
 import { AnimatedList } from "@/components/Elements/AnimatedList";
 import { DetailLayout } from "@/components/Layout";
 import { formatCurrency } from "@/utils/currency";
-import { useAccount } from "@/features/accounts/hooks/useAccount";
-import { Button } from "@/components/Elements/Button";
 
 import MerchantDetail from "../components/detail/MerchantDetail";
 import SourceDetail from "../components/detail/SourceDetail";
@@ -16,13 +13,18 @@ import NotesDetail from "../components/detail/NotesDetail";
 import DateDetail from "../components/detail/DateDetail";
 import TransferDetail from "../components/detail/TransferDetail";
 import SplitDetail from "../components/detail/SplitDetail";
+import { Modal } from "@/components/Elements/Modal";
+import { updateTransaction } from "../api/updateTransaction";
+import { queryClient } from "@/lib/react-query";
+import { useUpdateTransaction } from "../hooks/useUpdateTransaction";
 
 const Transaction = () => {
   const { transactionId } = useParams();
   const [selectedDetail, setSelectedDetail] = useState("");
   const transactionsQuery = useTransaction({ transactionId });
   const transaction = transactionsQuery.data?.transaction;
-  const accountQuery = useAccount({ accountId: transaction?.account_id });
+  // const accountQuery = useAccount({ accountId: transaction?.account_id });
+  const updateTransactionMutation = useUpdateTransaction({ transactionId });
   const date = new Date(transaction?.date);
   const month = date.getMonth();
   const year = date.getFullYear();
@@ -35,8 +37,12 @@ const Transaction = () => {
     return <p key={i}>{category}</p>;
   });
 
-  const toggleSelected = (clickedDetail) => {
-    setSelectedDetail(selectedDetail === clickedDetail ? null : clickedDetail);
+  const updateTransactionDetail = async (updateItems) => {
+    await updateTransactionMutation
+      .mutateAsync({ ...updateItems })
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err))
+      .finally(() => setSelectedDetail(null));
   };
 
   return (
@@ -66,34 +72,28 @@ const Transaction = () => {
             setSelected={setSelectedDetail}
             month={month}
             year={year}
+            onUpdate={updateTransactionDetail}
           />
           <DateDetail date={transaction?.date} />
           <NotesDetail
             note={transaction?.note}
             setSelected={setSelectedDetail}
+            onUpdate={updateTransactionDetail}
           />
-          <TransferDetail />
-          <SplitDetail setSelected={setSelectedDetail} />
+          <TransferDetail
+            isTransfer={transaction?.is_transfer}
+            onUpdate={updateTransactionDetail}
+          />
+          <SplitDetail
+            setSelected={setSelectedDetail}
+            onUpdate={updateTransactionDetail}
+          />
         </AnimatedList>
         <AnimatePresence>
           {selectedDetail && (
-            <motion.div
-              className="absolute top-0 left-0 flex items-center justify-center w-full h-screen pt-20 backdrop-blur-sm"
-              onClick={() => setSelectedDetail(null)}
-            >
-              <motion.div
-                className="p-5 z-50 w-1/2 rounded-md shadow-xl bg-gray-50 text-center font-extralight"
-                layoutId={selectedDetail}
-                onClick={(event) => event.stopPropagation()}
-              >
-                <XCircle
-                  size={25}
-                  className="rounded-full float-right hover:text-gray-500"
-                  onClick={() => setSelectedDetail(null)}
-                />
-                <div className="p-2">{selectedDetail}</div>
-              </motion.div>
-            </motion.div>
+            <Modal onClose={() => setSelectedDetail(null)}>
+              {selectedDetail}
+            </Modal>
           )}
         </AnimatePresence>
       </div>

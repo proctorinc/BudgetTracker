@@ -1,14 +1,17 @@
-import { Toggle } from "@/components/Elements/Toggle";
-import { ArrowsClockwise } from "phosphor-react";
 import { useState } from "react";
+import { ArrowsClockwise } from "phosphor-react";
+
+import { Toggle } from "@/components/Elements/Toggle";
 
 import TransactionUpdateDetail from "./TransactionDetail";
 
-const TransferDetail = () => {
-  const [enabled, setEnabled] = useState(false);
+const TransferDetail = ({ isTransfer, onUpdate }) => {
+  const [enabled, setEnabled] = useState(isTransfer);
 
   const toggleEnabled = () => {
-    setEnabled(!enabled);
+    const isEnabled = !enabled;
+    setEnabled(isEnabled);
+    onUpdate({ is_transfer: isEnabled });
   };
 
   return (

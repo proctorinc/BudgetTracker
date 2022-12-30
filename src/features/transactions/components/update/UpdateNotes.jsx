@@ -1,8 +1,8 @@
 import { Button } from "@/components/Elements/Button";
 import { useState } from "react";
 
-const UpdateNotes = ({ notes }) => {
-  const [note, setNote] = useState(notes ? notes : "");
+const UpdateNotes = ({ initialNote, onUpdate }) => {
+  const [note, setNote] = useState(initialNote ? initialNote : "");
   return (
     <div className="flex flex-col gap-5 items-center">
       <h1 className="text-6xl">Notes</h1>
@@ -13,7 +13,7 @@ const UpdateNotes = ({ notes }) => {
         placeholder="Write a note..."
         rows={5}
       />
-      <Button text="Save" onClick={() => console.log("Update note")} />
+      <Button text="Save" onClick={() => onUpdate({ note })} />
     </div>
   );
 };
