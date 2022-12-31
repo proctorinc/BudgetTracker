@@ -28,11 +28,10 @@ const Budget = () => {
   }
 
   const budget = budgetQuery.data;
-  const currentAmount = formatCurrency(budget.currentAmount);
+  const spent = formatCurrency(budget.spent);
   const goal = formatCurrency(budget.goal);
-  const leftover = formatCurrency(goal - currentAmount);
-  const percentUsed =
-    budget.currentAmount && budget.goal ? (currentAmount / goal) * 100 : 0;
+  const leftover = formatCurrency(budget.goal - budget.spent);
+  const percentUsed = ((budget.spent / budget.goal) * 100).toFixed(0);
 
   const handleDelete = () => {
     deleteBudget({ id: budget._id })
@@ -54,9 +53,9 @@ const Budget = () => {
             <h3 className="text-3xl font-extralight text-center p-5">
               {percentUsed}% Used
             </h3>
-            <BudgetProgressBar budget={budget} />
+            <BudgetProgressBar goal={budget.goal} spent={budget.spent} />
             <p className="text-sm text-gray-600 p-1">
-              {currentAmount} of {goal}
+              {spent} of {goal}
               <span className="float-right">{leftover} left</span>
             </p>
           </div>

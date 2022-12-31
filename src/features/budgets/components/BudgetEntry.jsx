@@ -8,9 +8,9 @@ import { BudgetProgressBar } from "./BudgetProgressBar";
 
 const BudgetEntry = ({ budget, date }) => {
   const navigate = useNavigate();
-  const currentAmount = formatCurrency(budget.currentAmount);
+  const spent = formatCurrency(budget.spent);
   const goal = formatCurrency(budget.goal);
-  const leftover = formatCurrency(budget.goal - budget.currentAmount);
+  const leftover = formatCurrency(budget.goal - budget.spent);
 
   const navigateToBudget = () => {
     navigate(`/budgets/${budget._id}/${date.month}/${date.year}`);
@@ -21,9 +21,9 @@ const BudgetEntry = ({ budget, date }) => {
       <IconFromText text={budget.icon} className="h-8" />
       <div className="flex flex-col w-full px-3">
         <h3 className="text-lg font-semibold">{budget.name}</h3>
-        <BudgetProgressBar budget={budget} />
+        <BudgetProgressBar goal={budget.goal} spent={budget.spent} />
         <p className="w-full text-sm">
-          {currentAmount} of {goal}
+          {spent} of {goal}
           <span className="float-right">{leftover} left</span>
         </p>
       </div>

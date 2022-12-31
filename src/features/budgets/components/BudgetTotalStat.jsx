@@ -6,7 +6,7 @@ const BudgetTotalStat = ({ spent, goal }) => {
 
   return (
     <div className="flex flex-col w-full pb-5">
-      <BudgetProgressBar budget={{ currentAmount: spent, goal: goal }} />
+      <BudgetProgressBar spent={spent} goal={goal} />
       <p className="w-full text-md">
         {formatCurrency(spent)} of {formatCurrency(goal)}
         <span className="float-right">{Math.ceil(percentSpent)}% spent</span>
