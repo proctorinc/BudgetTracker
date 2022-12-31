@@ -1,10 +1,11 @@
-import { Button } from "@/components/Elements/Button";
-import { Loader } from "@/components/Elements/Loader";
 import { usePlaidLink } from "react-plaid-link";
+
+import { Button } from "@/components/Elements/Button";
+
 import { sendPublicTokenToServer } from "../api/sendPublicTokenToServer";
 import useLinkToken from "../hooks/useLinkToken";
 
-const LinkBankButton = () => {
+export const LinkBankButton = () => {
   const { data, error, isLoading } = useLinkToken();
 
   const onSuccessfulLink = (public_token, metadata) => {
@@ -19,8 +20,8 @@ const LinkBankButton = () => {
   const isReadyToLink = ready && !isLoading;
 
   return (
-    <Button text={"Add Account"} onClick={open} isLoading={!isReadyToLink} />
+    <div className="flex justify-center p-5">
+      <Button text={"Add Account"} onClick={open} isLoading={!isReadyToLink} />
+    </div>
   );
 };
-
-export default LinkBankButton;

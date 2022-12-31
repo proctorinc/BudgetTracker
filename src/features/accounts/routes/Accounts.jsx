@@ -1,7 +1,7 @@
 import { Question } from "phosphor-react";
 
+import { LinkBankButton } from "@/features/plaid";
 import { Layout } from "@/components/Layout";
-import LinkBankButton from "@/features/bank_link/components/LinkBankButton";
 import { formatCurrency } from "@/utils/currency";
 import { Tooltip } from "@/components/Elements/Tooltip";
 
@@ -35,10 +35,12 @@ const Accounts = () => {
       subtitle={subtitle}
       isLoading={accountsQuery.isLoading}
     >
-      <AccountList accounts={accountsQuery.data} error={accountsQuery.error} />
-      <div className="flex justify-center p-5">
-        <LinkBankButton />
-      </div>
+      <AccountList
+        accounts={accountsQuery.data}
+        isLoading={accountsQuery.isLoading}
+        error={accountsQuery.error}
+      />
+      <LinkBankButton />
     </Layout>
   );
 };
