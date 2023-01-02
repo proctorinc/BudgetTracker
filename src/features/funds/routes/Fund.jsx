@@ -31,7 +31,7 @@ const Fund = () => {
 
   return (
     <DetailLayout
-      title={formatCurrency(fund?.initial_amount)}
+      title={formatCurrency(fund?.amount)}
       subtitle={fund?.name}
       subtitleIcon={fund?.icon}
       isLoading={fundQuery.isLoading}

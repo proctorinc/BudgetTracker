@@ -1,5 +1,4 @@
 import { AnimatedCard } from "@/components/Elements/AnimatedCard";
-import { AnimatedList } from "@/components/Elements/AnimatedList";
 
 export const SummaryStat = ({
   firstStat,
@@ -12,6 +11,12 @@ export const SummaryStat = ({
   return (
     <div className="flex gap-2">
       <div className="w-3/4">
+        {/* <div className="p-3">
+          <div className="flex items-center justify-center h-32 w-32 bg-gray-300 rounded-full">
+            <div className="h-24 w-24 bg-gray-50 rotate-45">
+            </div>
+          </div>
+        </div> */}
         <AnimatedCard>
           <div className="p-3">
             <div className="border-8 border-gray-800 border-l-gray-300 border-t-gray-300 border-b-gray-300 rounded-full animate-full p-2 h-24 w-24"></div>

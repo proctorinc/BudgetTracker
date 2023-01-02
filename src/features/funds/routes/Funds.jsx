@@ -11,14 +11,27 @@ import FundsChart from "../components/FundsChart";
 const Funds = () => {
   const navigate = useNavigate();
   const fundsQuery = useFunds();
+  console.log(fundsQuery.data);
   const funds = fundsQuery.data?.funds;
   const fundsTotal = formatCurrency(fundsQuery.data?.total);
   const unallocatedTotal = formatCurrency(fundsQuery.data?.unallocated);
-  const unallocatedData = {
-    name: "unallocated",
-    initial_amount: fundsQuery.data?.unallocated,
-  };
-  const chartData = funds ? [...funds, unallocatedData] : [];
+  const allocationData = [
+    {
+      name: "unallocated",
+      amount: fundsQuery.data?.unallocated,
+    },
+    {
+      name: "allocated",
+      amount: fundsQuery.data?.total - fundsQuery.data?.unallocated,
+    },
+  ];
+  console.log(allocationData);
+  console.log(funds);
+  console.log(`Unallocated: ${fundsQuery.data?.unallocated}`);
+  console.log(`Total: ${fundsQuery.data?.total}`);
+  console.log(
+    `Allocated: ${fundsQuery.data?.total - fundsQuery.data?.unallocated}`
+  );
 
   return (
     <Layout
@@ -26,9 +39,14 @@ const Funds = () => {
       subtitle={`Total: ${fundsTotal}`}
       isLoading={fundsQuery.isLoading}
     >
-      <FundsChart funds={chartData} />
-      <div className="flex gap-2 py-2 text-xl items-center w-full">
-        <h2 className="text-3xl">Unallocated: {unallocatedTotal}</h2>
+      <div className="relative">
+        <FundsChart className="mr-32 mb-5" funds={funds} />
+        <FundsChart
+          className="absolute right-5 bottom-0 w-40"
+          funds={allocationData}
+          size="sm"
+          title="100%"
+        />
       </div>
       <FundsList funds={funds} error={fundsQuery.error} />
       <div className="flex justify-center p-5">

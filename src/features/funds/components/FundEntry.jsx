@@ -17,7 +17,7 @@ const FundEntry = ({ fund }) => {
       <IconFromText text={fund.icon} className="h-6 pr-2" />
       <p className="text-xl">{fund.name}</p>
       <div className="flex justify-end flex-grow">
-        <p className="text-xl">{formatCurrency(fund.initial_amount)}</p>
+        <p className="text-xl">{formatCurrency(fund.amount)}</p>
       </div>
     </AnimatedCard>
   );
