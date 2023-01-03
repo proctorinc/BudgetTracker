@@ -14,7 +14,9 @@ const Accounts = () => {
 
   const totalTooltip = (
     <>
-      <span className="text-md">Total = Total Assets - Total Liabilities</span>
+      <span className="text-md">
+        Net Worth = Total Assets - Total Liabilities
+      </span>
       <span className="text-md">Assets = Cash + Investments</span>
       <span className="text-md">Liabilities = Credit + Loans</span>
     </>
@@ -22,7 +24,7 @@ const Accounts = () => {
 
   const subtitle = (
     <div className="flex items-center gap-2">
-      Total: {netWorth}
+      Net Worth: {netWorth}
       <Tooltip content={totalTooltip}>
         <Question size={20} className="text-gray-500" />
       </Tooltip>

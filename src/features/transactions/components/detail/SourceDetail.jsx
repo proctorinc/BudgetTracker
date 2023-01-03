@@ -7,7 +7,7 @@ import UpdateSource from "../update/UpdateSource";
 const SourceDetail = ({ source, setSelected, month, year, onUpdate }) => {
   const updateSource = (
     <UpdateSource
-      source={source}
+      initialSource={source}
       month={month}
       year={year}
       onUpdate={onUpdate}

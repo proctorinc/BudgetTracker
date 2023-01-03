@@ -11,15 +11,6 @@ export const Button = ({
   ...otherProps
 }) => {
   const variants = {
-    // hidden: {
-    //   scale: 0,
-    // },
-    // show: {
-    //   scale: 1,
-    //   transition: {
-    //     duration: 0.5,
-    //   },
-    // },
     hidden: { scale: 0.5 },
     show: {
       scale: 1,
@@ -53,7 +44,11 @@ export const Button = ({
 
   return (
     <motion.button
-      className={`${className} px-3 py-2 rounded-md bg-${backgroundColor} hover:bg-black hover:text-white text-${textColor}`}
+      className={`${className} px-3 py-2 rounded-md bg-${backgroundColor} ${
+        disabled
+          ? "hover:bg-gray-200 hover:text-gray-800"
+          : "hover:bg-black hover:text-white"
+      } text-${textColor}`}
       whileHover={hover}
       initial="hidden"
       animate="show"

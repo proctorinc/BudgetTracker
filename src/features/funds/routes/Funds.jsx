@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { Question } from "phosphor-react";
 
 import { Button } from "@/components/Elements/Button";
 import { Layout } from "@/components/Layout";
+import { Tooltip } from "@/components/Elements/Tooltip";
 import { formatCurrency } from "@/utils/currency";
 
 import FundsList from "../components/FundsList";
@@ -11,10 +13,10 @@ import FundsChart from "../components/FundsChart";
 const Funds = () => {
   const navigate = useNavigate();
   const fundsQuery = useFunds();
-  console.log(fundsQuery.data);
   const funds = fundsQuery.data?.funds;
-  const fundsTotal = formatCurrency(fundsQuery.data?.total);
-  const unallocatedTotal = formatCurrency(fundsQuery.data?.unallocated);
+  const fundsTotal = formatCurrency(fundsQuery.data?.allocated);
+  const percentAllocated =
+    fundsQuery.data?.allocated / fundsQuery.data?.unallocated;
   const allocationData = [
     {
       name: "unallocated",
@@ -22,15 +24,18 @@ const Funds = () => {
     },
     {
       name: "allocated",
-      amount: fundsQuery.data?.total - fundsQuery.data?.unallocated,
+      amount: fundsQuery.data?.allocated,
     },
   ];
-  console.log(allocationData);
-  console.log(funds);
-  console.log(`Unallocated: ${fundsQuery.data?.unallocated}`);
-  console.log(`Total: ${fundsQuery.data?.total}`);
-  console.log(
-    `Allocated: ${fundsQuery.data?.total - fundsQuery.data?.unallocated}`
+  const allocationTooltip = (
+    <>
+      <span className="text-md">
+        Allocated = transactions/transfers sourced to all funds
+      </span>
+      <span className="text-md">
+        Unallocated = total of cash and credit accounts
+      </span>
+    </>
   );
 
   return (
@@ -41,12 +46,17 @@ const Funds = () => {
     >
       <div className="relative">
         <FundsChart className="mr-32 mb-5" funds={funds} />
-        <FundsChart
-          className="absolute right-5 bottom-0 w-40"
-          funds={allocationData}
-          size="sm"
-          title="100%"
-        />
+        <div className="flex items-end absolute right-10 bottom-0 w-40">
+          <FundsChart
+            className="w-full"
+            funds={allocationData}
+            size="sm"
+            title={`${percentAllocated.toFixed(0)}%`}
+          />
+          <Tooltip content={allocationTooltip}>
+            <Question size={20} className="text-gray-500" />
+          </Tooltip>
+        </div>
       </div>
       <FundsList funds={funds} error={fundsQuery.error} />
       <div className="flex justify-center p-5">

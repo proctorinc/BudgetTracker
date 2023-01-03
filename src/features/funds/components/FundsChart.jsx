@@ -1,10 +1,5 @@
 import { motion } from "framer-motion";
 import { ResponsivePie } from "@nivo/pie";
-import {
-  ResponsiveCirclePacking,
-  ResponsiveCirclePackingCanvas,
-} from "@nivo/circle-packing";
-
 const FundsChart = ({ funds, title, size, className }) => {
   const fundData = funds
     .filter((fund) => fund.amount > 0)
@@ -49,7 +44,7 @@ const FundsChart = ({ funds, title, size, className }) => {
       >
         {title && (
           <h3
-            className={`${textSize} absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-extralight`}
+            className={`${textSize} text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-extralight`}
           >
             {title}
           </h3>
@@ -75,29 +70,6 @@ const FundsChart = ({ funds, title, size, className }) => {
           arcLabelsSkipAngle={15}
           onClick={(node, event) => console.log(node)}
         />
-        {/* <ResponsiveCirclePacking
-        data={data}
-        colors={{ scheme: "greys" }}
-        colorBy="id"
-        valueFormat=" >-$,.2f"
-        childColor={{
-          from: "color",
-          modifiers: [["brighter", 0.4]],
-        }}
-        padding={2}
-        leavesOnly={true}
-        enableLabels={true}
-        labelsSkipRadius={10}
-        labelTextColor={{
-          from: "color",
-          modifiers: [["darker", 5]],
-        }}
-        borderWidth={1}
-        borderColor={{
-          from: "color",
-          modifiers: [["darker", 0.5]],
-        }}
-      /> */}
       </motion.div>
     </div>
   );

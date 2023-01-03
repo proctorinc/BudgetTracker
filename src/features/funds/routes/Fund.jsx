@@ -36,21 +36,10 @@ const Fund = () => {
       subtitleIcon={fund?.icon}
       isLoading={fundQuery.isLoading}
     >
-      <AnimatedList>
-        <div className="flex justify-center gap-2 border bg-gray-200 border-gray-200 p-3 rounded-md">
-          <div className="w-full text-center pb-5">
-            <h3 className="pb-2">Goal: $10,000</h3>
-            <ProgressBar percentageComplete={20} color={"bg-gray-600"} />
-          </div>
-        </div>
-        <div className="flex justify-center gap-2 border bg-gray-200 border-gray-200 p-3 rounded-md">
-          <div className="w-full text-center py-10">Line chart goes here</div>
-        </div>
-        <div className="flex justify-center gap-2">
-          <Button text="Delete" onClick={handleDelete} />
-          <Button text="Transfer" />
-        </div>
-      </AnimatedList>
+      <div className="flex justify-center gap-2">
+        <Button text="Delete" onClick={handleDelete} />
+        <Button text="Allocate" />
+      </div>
       <TransactionsList
         title="Transactions"
         useHook={useFundTransactions}

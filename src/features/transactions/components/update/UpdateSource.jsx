@@ -30,6 +30,10 @@ const UpdateSource = ({ initialSource, month, year, onUpdate }) => {
     }
   };
 
+  const removeTransactionSource = () => {
+    onUpdate({ source: { id: null, type: null, name: null } });
+  };
+
   const toggleType = (type) => {
     setType(type);
     setSource(type === types[0] ? budgets[0] : funds[0]);
@@ -49,11 +53,19 @@ const UpdateSource = ({ initialSource, month, year, onUpdate }) => {
           selected={source}
           setSelected={setSource}
           choices={type == types[0] ? budgets : funds}
-          renderItem={(item) => capitalizeFirstLetter(item?.name)}
+          renderItem={(item) =>
+            item?.name ? capitalizeFirstLetter(item?.name) : "--"
+          }
           itemKey={(item) => item._id}
         />
       </div>
       <Button text="Save" onClick={updateTransactionSource} />
+      <Button
+        text="Remove Source"
+        style="ghost"
+        onClick={removeTransactionSource}
+        disabled={source.name === null}
+      />
     </div>
   );
 };
