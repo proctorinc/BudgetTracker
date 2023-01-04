@@ -8,16 +8,16 @@ import {
   TransactionsList,
   useBudgetTransactions,
 } from "@/features/transactions";
+import { capitalizeFirstLetter } from "@/utils";
 
 import { useBudget } from "../hooks/useBudget";
 import { BudgetProgressBar } from "../components/BudgetProgressBar";
 import { deleteBudget } from "../api/deleteBudget";
-import { capitalizeFirstLetter } from "@/utils";
 
 const Budget = () => {
   const navigate = useNavigate();
-  const { budgetId, month } = useParams();
-  const budgetQuery = useBudget({ budgetId, month });
+  const { budgetId, month, year } = useParams();
+  const budgetQuery = useBudget({ budgetId, month, year });
 
   if (budgetQuery.isLoading) {
     return <Loader />;
@@ -67,7 +67,7 @@ const Budget = () => {
       <TransactionsList
         title="Transactions"
         useHook={useBudgetTransactions}
-        hookParameters={[budgetId, month]}
+        hookParameters={[budgetId, month, year]}
       />
     </DetailLayout>
   );

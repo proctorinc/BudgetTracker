@@ -12,7 +12,11 @@ export const AnimatedList = ({ children, isLoading, ...otherProps }) => {
   const noChildren = <AnimatedCard>None</AnimatedCard>;
 
   if (isLoading) {
-    return <Loader />;
+    return (
+      <div className="flex items-center justify-center p-28">
+        <Loader />
+      </div>
+    );
   }
 
   return (

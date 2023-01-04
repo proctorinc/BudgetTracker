@@ -1,6 +1,5 @@
 import { capitalizeFirstLetter } from "@/utils";
 import { formatCurrency } from "@/utils/currency";
-import { Loader } from "@/components/Elements/Loader";
 import { AnimatedList } from "@/components/Elements/AnimatedList";
 
 import AccountEntry from "./AccountEntry";

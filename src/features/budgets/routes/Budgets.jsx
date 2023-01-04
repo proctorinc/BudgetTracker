@@ -12,7 +12,7 @@ import BudgetTotalStat from "../components/BudgetTotalStat";
 const Budgets = () => {
   const { month, year } = useParams();
   const navigate = useNavigate();
-  const date = { month, year };
+  const date = { month, year: parseInt(year) };
   const budgetsQuery = useBudgets(date);
 
   const totalSpent = budgetsQuery.data?.total.spent;
