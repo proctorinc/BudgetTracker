@@ -1,19 +1,20 @@
 import { describe, it } from "vitest";
 
 import { render, screen } from "@/test-utils.jsx";
+import { mockAccountId } from "@/__mocks__/mock_features/accounts";
+
 import Account from "../Account";
 
-vi.mock("react-router-dom", () => {
-  return {
-    useParams: vi.fn().mockReturnValue({ accountId: "testing-123" }),
-  };
-});
+vi.mock("react-router-dom", async () => ({
+  ...(await vi.importActual("react-router-dom")),
+  useParams: () => ({ accountId: mockAccountId }),
+}));
 
 describe("Account route", () => {
   it("renders properly", async () => {
     render(<Account />);
 
-    // const backButton = screen.findByText();
+    const backButton = screen.findByRole("button");
     const balance = await screen.findByRole("heading", {
       name: /$1,000,000.00/i,
     });
@@ -22,13 +23,13 @@ describe("Account route", () => {
     });
     const fullName = await screen.findByText(/full account name/i);
     const typeAndAccountNumber = screen.findByText(
-      /type > subtype > (...1234)/i
+      /cash > savings > (...1234)/i
     );
     const transactionLabel = await screen.findByRole("heading", {
       name: /transactions/i,
     });
 
-    // expect(backButton).toBeInTheDocument();
+    expect(backButton).toBeInTheDocument();
     expect(balance).toBeInTheDocument();
     expect(name).toBeInTheDocument();
     expect(fullName).toBeInTheDocument();

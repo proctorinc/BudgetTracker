@@ -1,5 +1,23 @@
 export const mockAccountsTotalBalance = 1234567.89;
 
+export const mockAccountId = "test-account-id-123";
+
+export const mockAccount = {
+  balances: {
+    available: 1000000,
+    current: 1000000,
+    iso_currency_code: "USD",
+    limit: null,
+    unofficial_currency_code: null,
+  },
+  _id: "6386f736c50233ef04a985da",
+  mask: "1234",
+  name: "Test Bank Account",
+  official_name: "Full Account Name",
+  subtype: "savings",
+  type: "depository",
+};
+
 export const mockCashAccounts = [
   {
     balances: {

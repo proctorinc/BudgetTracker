@@ -13,7 +13,7 @@ import { createBudget } from "../api/createBudget";
 const CreateBudget = () => {
   const [isFormLoading, setIsFormLoading] = useState(false);
   const [error, setError] = useState();
-  const [icon, setIcon] = useState(ICONS.values()[0]);
+  const [icon, setIcon] = useState(Object.values(ICONS)[0]);
   const [name, setName] = useState("");
   const [goal, setGoal] = useState(0.0);
   const navigate = useNavigate();
@@ -53,9 +53,9 @@ const CreateBudget = () => {
               label="Icon"
               selected={icon}
               setSelected={setIcon}
-              choices={ICONS}
+              choices={Object.values(ICONS)}
               renderItem={(item) => (
-                <IconFromText text={item.values()} className="h-6" />
+                <IconFromText text={item} className="h-6" />
               )}
             />
           </div>

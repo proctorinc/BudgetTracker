@@ -13,7 +13,7 @@ import { createFund } from "../api/createFund";
 const CreateFund = () => {
   const [isFormLoading, setIsFormLoading] = useState(false);
   const [error, setError] = useState();
-  const [icon, setIcon] = useState(ICONS.values()[0]);
+  const [icon, setIcon] = useState(Object.values(ICONS)[0]);
   const [fundName, setFundName] = useState("");
   const navigate = useNavigate();
 
@@ -55,7 +55,7 @@ const CreateFund = () => {
               label="Icon"
               selected={icon}
               setSelected={setIcon}
-              choices={ICONS.values()}
+              choices={Object.values(ICONS)}
               renderItem={(item) => (
                 <IconFromText text={item} className="h-6" />
               )}

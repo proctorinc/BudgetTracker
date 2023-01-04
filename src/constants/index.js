@@ -1,6 +1,6 @@
 export const ACCOUNT_CATEGORIES = ["cash", "credit", "investment", "loan"];
 
-export const MONTHS = Objects.freeze({
+export const MONTHS = Object.freeze({
   JAN: "January",
   FEB: "February",
   MAR: "March",
@@ -15,7 +15,7 @@ export const MONTHS = Objects.freeze({
   DEC: "December",
 });
 
-export const ICONS = Objects.freeze({
+export const ICONS = Object.freeze({
   DOLLAR: "dollar",
   SHOPPING_CART: "shopping-cart",
   SHOPPING_BAG: "shopping-bag",

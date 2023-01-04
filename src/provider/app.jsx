@@ -8,6 +8,7 @@ import { queryClient } from "@/lib/react-query";
 import { Oops } from "@/features/misc";
 import { Loader } from "@/components/Elements/Loader";
 import ScrollToTop from "@/features/misc/components/ScrollToTop";
+import { AuthProvider } from "@/context/AuthContext";
 
 export const AppProvider = ({ children }) => {
   const ErrorFallback = () => {
@@ -25,10 +26,12 @@ export const AppProvider = ({ children }) => {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools />
-          <Router>
-            <ScrollToTop />
-            {children}
-          </Router>
+          <AuthProvider>
+            <Router>
+              <ScrollToTop />
+              {children}
+            </Router>
+          </AuthProvider>
         </QueryClientProvider>
       </ErrorBoundary>
     </Suspense>

@@ -3,7 +3,7 @@ import { screen, render } from "@/test-utils.jsx";
 import Fund from "../Fund";
 
 vi.mock("react-router-dom", async () => ({
-  ...(await vi.importActual("react-router-dom")), // use actual for all non-hook parts
+  ...(await vi.importActual("react-router-dom")),
   useParams: () => ({
     fundId: "test-id-1",
   }),
