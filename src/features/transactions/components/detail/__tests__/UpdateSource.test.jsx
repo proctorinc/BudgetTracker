@@ -1,8 +1,8 @@
 import { render, screen, userEvent } from "@/test-utils.jsx";
 import { describe, it } from "vitest";
 import UpdateSource from "../SourceDetail";
-import { mockFunds } from "@/__mocks__/mock_data/funds";
-import { mockBudgets } from "@/__mocks__/mock_data/budgets";
+import { mockFunds } from "@/__mocks__/mock_features/funds";
+import { mockBudgets } from "@/__mocks__/mock_features/budgets";
 
 const mockInitialSource = {
   name: mockFunds[0].name,

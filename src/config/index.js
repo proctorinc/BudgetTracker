@@ -1,4 +1,5 @@
 export const DB_URL = "http://localhost:4090";
+export const LOCAL_HOSTNAME = "http://localhost:4090/bank";
 export const USER = {
   id: "63812fc0b5fe500754c113a9",
   _id: "63812fc0b5fe500754c113a9",

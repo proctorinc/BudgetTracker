@@ -1,6 +1,6 @@
 import { describe, it, vi } from "vitest";
 import { screen, render } from "@/test-utils.jsx";
-import { mockBudgets } from "@/__mocks__/mock_data/budgets";
+import { mockBudgets } from "@/__mocks__/mock_features/budgets";
 import BudgetList from "../BudgetList";
 
 describe("Budget List", () => {

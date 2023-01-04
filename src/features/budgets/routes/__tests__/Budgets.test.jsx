@@ -1,7 +1,7 @@
 import { describe, it, vi } from "vitest";
 import { screen, render } from "@/test-utils.jsx";
 import Budgets from "../Budgets";
-import { mockBudgets } from "@/__mocks__/mock_data/budgets";
+import { mockBudgets } from "@/__mocks__/mock_features/budgets";
 
 describe("Budgets Route", () => {
   it("renders properly", async () => {

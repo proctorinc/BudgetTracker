@@ -1,7 +1,7 @@
 import { describe, it } from "vitest";
 import { screen, render } from "@/test-utils.jsx";
 import FundsList from "../FundsList";
-import { mockFunds } from "@/__mocks__/mock_data/funds";
+import { mockFunds } from "@/__mocks__/mock_features/funds";
 
 describe("fund list", () => {
   it("renders Funds Label", () => {
