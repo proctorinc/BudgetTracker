@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { ICONS } from "@/constants";
 import { Button } from "@/components/Elements/Button";
 import { Input } from "@/components/Form/Input";
-import { createFund } from "../api/createFund";
 import { Layout } from "@/components/Layout";
 import { ListBoxInput } from "@/components/Form/ListBoxInput";
-import { icons } from "@/utils/icons";
 import { IconFromText } from "@/components/Misc/IconFromText/IconFromText";
+
+import { createFund } from "../api/createFund";
 
 const CreateFund = () => {
   const [isFormLoading, setIsFormLoading] = useState(false);
   const [error, setError] = useState();
-  const [icon, setIcon] = useState(icons[0]);
+  const [icon, setIcon] = useState(ICONS.values()[0]);
   const [fundName, setFundName] = useState("");
   const navigate = useNavigate();
 
@@ -53,7 +55,7 @@ const CreateFund = () => {
               label="Icon"
               selected={icon}
               setSelected={setIcon}
-              choices={icons}
+              choices={ICONS.values()}
               renderItem={(item) => (
                 <IconFromText text={item} className="h-6" />
               )}

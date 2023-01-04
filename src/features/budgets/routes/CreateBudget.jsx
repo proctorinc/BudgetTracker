@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { ICONS } from "@/constants";
 import { Button } from "@/components/Elements/Button";
 import { Input } from "@/components/Form/Input";
-import { createBudget } from "../api/createBudget";
 import { Layout } from "@/components/Layout";
 import { ListBoxInput } from "@/components/Form/ListBoxInput";
-import { icons } from "@/utils/icons";
 import { IconFromText } from "@/components/Misc/IconFromText/IconFromText";
+
+import { createBudget } from "../api/createBudget";
 
 const CreateBudget = () => {
   const [isFormLoading, setIsFormLoading] = useState(false);
   const [error, setError] = useState();
-  const [icon, setIcon] = useState(icons[0]);
+  const [icon, setIcon] = useState(ICONS.values()[0]);
   const [name, setName] = useState("");
   const [goal, setGoal] = useState(0.0);
   const navigate = useNavigate();
@@ -51,9 +53,9 @@ const CreateBudget = () => {
               label="Icon"
               selected={icon}
               setSelected={setIcon}
-              choices={icons}
+              choices={ICONS}
               renderItem={(item) => (
-                <IconFromText text={item} className="h-6" />
+                <IconFromText text={item.values()} className="h-6" />
               )}
             />
           </div>
