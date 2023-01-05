@@ -1,33 +1,73 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { LoadingScreen } from "@/components/Misc";
+import { useLoginAndFetchProfile } from "@/features/auth/hooks/useLoginAndFetchProfile";
+import { useUserProfile } from "@/features/auth/hooks/useUserProfile";
+import { useLogout } from "@/features/auth";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState();
+  const loginAndFetchProfileMutation = useLoginAndFetchProfile();
+  const userProfileMutation = useUserProfile();
+  const logoutMutation = useLogout();
 
-  const user = null;
-  // const user = {
-  //   id: "63812fc0b5fe500754c113a9",
-  //   _id: "63812fc0b5fe500754c113a9",
-  //   email: "proctormatt0@gmail.com",
-  //   jwtToken:
-  //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzODEyZmMwYjVmZTUwMDc1NGMxMTNhOSIsImVtYWlsIjoicHJvY3Rvcm1hdHQwQGdtYWlsLmNvbSJ9LCJpYXQiOjE2Njk1ODc1MDR9.5XpPK0HIW7s8O3ETWJ23pjhCfneFOniRHCh4bINOnsg",
-  // };
+  useEffect(() => {
+    if (!user) {
+      userProfileMutation
+        .mutateAsync()
+        .then((response) => {
+          if (response.user) {
+            setUser(response.user);
+          } else {
+            navigate("/login");
+          }
+        })
+        .catch((err) => console.log(err))
+        .finally(() => setIsLoading(false));
+    }
+  }, [user]);
 
-  const userLogin = ({ username, password }) => {};
+  const login = async ({ email, password }) => {
+    setIsLoading(true);
+    await loginAndFetchProfileMutation
+      .mutateAsync({ email, password })
+      .then((response) => {
+        console.log(response);
+        if (response.user) {
+          setUser(response.user);
+        }
+      })
+      .catch((error) => console.log(`Error logging in: ${error}`))
+      .finally(() => setIsLoading(false));
+  };
 
-  const userLogout = () => {};
+  const logout = () => {
+    setIsLoading(true);
+    logoutMutation
+      .mutateAsync()
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setUser(null);
+        navigate("/login");
+        setIsLoading(false);
+      });
+  };
 
   const contextData = {
     isLoading,
-    userLogin,
-    userLogout,
+    login,
+    logout,
     user,
   };
 
   return (
     <AuthContext.Provider value={contextData}>
-      {isLoading ? null : children}
+      {isLoading ? <LoadingScreen /> : children}
     </AuthContext.Provider>
   );
 };

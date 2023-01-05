@@ -26,12 +26,12 @@ export const AppProvider = ({ children }) => {
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools />
-          <AuthProvider>
-            <Router>
+          <Router>
+            <AuthProvider>
               <ScrollToTop />
               {children}
-            </Router>
-          </AuthProvider>
+            </AuthProvider>
+          </Router>
         </QueryClientProvider>
       </ErrorBoundary>
     </Suspense>

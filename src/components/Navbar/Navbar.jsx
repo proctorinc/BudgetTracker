@@ -1,14 +1,14 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { CurrencyDollarIcon, UserCircleIcon } from "@heroicons/react/20/solid";
 
 import { Button } from "@/components/Elements/Button";
-import useAuth from "@/hooks/useAuth";
+import useAuth from "@/features/auth/hooks/useAuth";
 import { getCurrentMonth, getCurrentYear } from "@/utils";
 
 export const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const auth = useAuth();
+  const { user, logout } = useAuth();
 
   const currentMonth = getCurrentMonth();
   const currentYear = getCurrentYear();
@@ -21,7 +21,7 @@ export const Navbar = () => {
           <h3 className="text-2xl font-extrabold text-gray-800">Dink</h3>
         </button>
         <div className="flex justify-end flex-grow items-center gap-1">
-          {auth.user && (
+          {user && (
             <>
               <Button
                 text="Summary"
@@ -64,11 +64,11 @@ export const Navbar = () => {
           )}
         </div>
         <div className="flex justify-end flex-grow items-center gap-1">
-          {auth.user ? (
-            <Link to="/user/profile">
-              <UserCircleIcon className="h-8 text-gray-800" />
-            </Link>
+          {user ? (
+            // <Link to="/user/profile">
+            <UserCircleIcon onClick={logout} className="h-8 text-gray-800" />
           ) : (
+            // </Link>
             <>
               <Button
                 text={"Login"}
