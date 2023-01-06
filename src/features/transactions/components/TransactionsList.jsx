@@ -13,8 +13,8 @@ export const TransactionsList = ({ title, useHook, hookParameters = [] }) => {
 
   useEffect(() => {
     if (!transactionsQuery.isLoading) {
-      setTransactions([
-        ...transactions,
+      setTransactions((prevTransactions) => [
+        ...prevTransactions,
         ...transactionsQuery.data.transactions,
       ]);
     }

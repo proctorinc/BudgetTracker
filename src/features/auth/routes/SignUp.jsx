@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/Elements/Button";
@@ -7,20 +8,58 @@ import { Form } from "@/components/Form/Form";
 import useAuth from "@/features/auth/hooks/useAuth";
 
 export const SignUp = () => {
-  const form = useForm();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
   const { signUp } = useAuth();
+  const password = useRef({});
+
+  password.current = watch("password");
 
   return (
     <Layout title="Sign Up" size="sm">
-      <Form onSubmit={signUp} form={form}>
-        <Input label="Email" id="email" type="email" form={form} />
-        <Input label="Password" id="password" type="password" form={form} />
+      <Form onSubmit={handleSubmit(signUp)}>
+        <Input
+          label="Email"
+          type="text"
+          placeholder="Email"
+          register={register("email", {
+            required: "Email is required",
+            pattern: {
+              value: /\S+@\S+\.\S+/,
+              message: "Enter a valid email address",
+            },
+          })}
+          error={errors.email?.message}
+        />
+        <Input
+          label="Password"
+          type="password"
+          register={register("password", {
+            required: "Password is required",
+            minLength: {
+              value: 8,
+              message: "Password must be at least 8 characters",
+            },
+          })}
+          error={errors.password?.message}
+        />
         <Input
           label="Confirm Password"
-          id="confirmPassword"
           type="password"
-          form={form}
-          match="password"
+          register={register("confirmPassword", {
+            required: "Confirm Password is required",
+            minLength: {
+              value: 8,
+              message: "Password must be at least 8 characters",
+            },
+            validate: (value) =>
+              value === password.current || "Passwords must match",
+          })}
+          error={errors.confirmPassword?.message}
         />
         <Button text="Sign Up" />
       </Form>

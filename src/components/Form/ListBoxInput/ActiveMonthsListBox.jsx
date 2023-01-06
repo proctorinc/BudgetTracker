@@ -18,9 +18,9 @@ export const ActiveMonthsListBox = ({ initialMonth, onSelect }) => {
     return <Loader />;
   }
 
-  const handleSelect = (month) => {
-    setSelectedMonth(month);
-    onSelect(month);
+  const handleSelect = (newMonth) => {
+    setSelectedMonth(newMonth);
+    onSelect(newMonth);
   };
 
   return (

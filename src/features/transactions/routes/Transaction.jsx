@@ -4,6 +4,7 @@ import { AnimatePresence } from "framer-motion";
 
 import { AnimatedList } from "@/components/Elements/AnimatedList";
 import { DetailLayout } from "@/components/Layout";
+import { Modal } from "@/components/Elements/Modal";
 import { formatCurrency } from "@/utils/currency";
 
 import MerchantDetail from "../components/detail/MerchantDetail";
@@ -13,9 +14,6 @@ import NotesDetail from "../components/detail/NotesDetail";
 import DateDetail from "../components/detail/DateDetail";
 import TransferDetail from "../components/detail/TransferDetail";
 import SplitDetail from "../components/detail/SplitDetail";
-import { Modal } from "@/components/Elements/Modal";
-import { updateTransaction } from "../api/updateTransaction";
-import { queryClient } from "@/lib/react-query";
 import { useUpdateTransaction } from "../hooks/useUpdateTransaction";
 
 const Transaction = () => {
