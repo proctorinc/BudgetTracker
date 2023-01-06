@@ -5,15 +5,13 @@ const MenuItem = ({ title, onClick }) => {
     <HeadlessMenu.Item
       className={({ active }) =>
         `relative cursor-default select-none py-2 pr-10 pl-10 border-gray-300 ${
-          active ? "bg-gray-300 text-gray-900" : "text-gray-900"
+          active && "bg-gray-300"
         }`
       }
     >
-      {({ active }) => (
-        <a className={`${active && "bg-blue-500"}`} onClick={onClick}>
-          {title}
-        </a>
-      )}
+      <a className="text-gray-600" onClick={onClick}>
+        {title}
+      </a>
     </HeadlessMenu.Item>
   );
 };
