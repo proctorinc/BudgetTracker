@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { CurrencyDollarIcon } from "@heroicons/react/20/solid";
+import { motion } from "framer-motion";
 
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/Elements/Button";
@@ -10,10 +11,30 @@ export const Home = () => {
     <Layout>
       <div className="flex flex-col gap-20 font-light py-36">
         <div className="pb-40">
-          <div className="flex w-full justify-center pr-10 py-10">
-            <CurrencyDollarIcon className="h-32 text-gray-800" />
-            <h1 className="text-9xl font-extrabold text-gray-800">Dink</h1>
-          </div>
+          <motion.div
+            className="flex w-full justify-center pr-10 py-10"
+            initial={{ scale: 0 }}
+            animate={{
+              scale: 1,
+              transition: {
+                duration: 2.0,
+                type: "spring",
+                stiffness: 80,
+              },
+            }}
+          >
+            <motion.div
+              className="flex"
+              whileHover={{
+                opacity: 1,
+                scale: 1.2,
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <CurrencyDollarIcon className="h-32 text-gray-800" />
+              <h1 className="text-9xl font-extrabold text-gray-800">Dink</h1>
+            </motion.div>
+          </motion.div>
           <p className="text-center text-md px-4">
             <i>
               Welcome to Dink, the financial budgeting app that{" "}
