@@ -186,7 +186,7 @@ export const Home = () => {
           </p>
         </div>
         <div className="flex justify-center">
-          <Button text="Sign Up" onClick={() => navigate("/sign-up")} />
+          <Button text="Sign Up" onClick={() => navigate("/signup")} />
         </div>
       </div>
     </Layout>

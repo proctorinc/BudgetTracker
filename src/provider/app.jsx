@@ -11,10 +11,6 @@ import ScrollToTop from "@/features/misc/components/ScrollToTop";
 import { AuthProvider } from "@/context/AuthContext";
 
 export const AppProvider = ({ children }) => {
-  const ErrorFallback = () => {
-    return <Oops />;
-  };
-
   return (
     <Suspense
       fallback={
@@ -23,17 +19,17 @@ export const AppProvider = ({ children }) => {
         </div>
       }
     >
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools />
-          <Router>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <ErrorBoundary FallbackComponent={() => <Oops />}>
+            <ReactQueryDevtools />
             <AuthProvider>
               <ScrollToTop />
               {children}
             </AuthProvider>
-          </Router>
-        </QueryClientProvider>
-      </ErrorBoundary>
+          </ErrorBoundary>
+        </Router>
+      </QueryClientProvider>
     </Suspense>
   );
 };

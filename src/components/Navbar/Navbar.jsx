@@ -86,7 +86,7 @@ export const Navbar = () => {
               <Button
                 text={"Sign Up"}
                 style="ghost"
-                onClick={() => navigate("/sign-up")}
+                onClick={() => navigate("/signup")}
               />
             </>
           )}

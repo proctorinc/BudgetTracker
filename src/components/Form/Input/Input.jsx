@@ -7,7 +7,7 @@ export const Input = ({
   ...otherProps
 }) => {
   return (
-    <>
+    <div className="flex flex-col">
       {label && (
         <label htmlFor={`${label}-input`} className="label">
           {label}
@@ -22,6 +22,6 @@ export const Input = ({
         onChange={(event) => onChange(event.target.value)}
         {...otherProps}
       />
-    </>
+    </div>
   );
 };

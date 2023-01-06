@@ -7,5 +7,5 @@ export const publicRoutes = [
     element: <Home />,
   },
   { path: "/login", element: <Login /> },
-  { path: "/sign-up", element: <SignUp /> },
+  { path: "/signup", element: <SignUp /> },
 ];
