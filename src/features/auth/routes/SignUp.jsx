@@ -1,46 +1,26 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/Elements/Button";
 import { Input } from "@/components/Form/Input";
 import { Layout } from "@/components/Layout";
-
-import useAuth from "../hooks/useAuth";
 import { Form } from "@/components/Form/Form";
+import useAuth from "@/features/auth/hooks/useAuth";
 
 export const SignUp = () => {
+  const form = useForm();
   const { signUp } = useAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  const handleSignUp = (event) => {
-    event.preventDefault();
-    signUp({ email, password, confirmPassword });
-  };
 
   return (
     <Layout title="Sign Up" size="sm">
-      <Form onSubmit={handleSignUp}>
-        <Input
-          label="Email"
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={setEmail}
-        />
-        <Input
-          label="Password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={setPassword}
-        />
+      <Form onSubmit={signUp} form={form}>
+        <Input label="Email" id="email" type="email" form={form} />
+        <Input label="Password" id="password" type="password" form={form} />
         <Input
           label="Confirm Password"
+          id="confirmPassword"
           type="password"
-          placeholder="Confirm Password"
-          value={confirmPassword}
-          onChange={setConfirmPassword}
+          form={form}
+          match="password"
         />
         <Button text="Sign Up" />
       </Form>

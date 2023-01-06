@@ -1,6 +1,9 @@
-export const Form = ({ onSubmit, children }) => {
+export const Form = ({ onSubmit, form, children }) => {
   return (
-    <form className="flex flex-col gap-3" onSubmit={onSubmit}>
+    <form
+      className="flex flex-col gap-3"
+      onSubmit={form.handleSubmit(onSubmit)}
+    >
       {children}
     </form>
   );

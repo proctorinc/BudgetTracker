@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
+
   const loginAndFetchProfileMutation = useLoginAndFetchProfile();
   const userProfileMutation = useUserProfile();
   const signUpMutation = useSignUp();
@@ -50,14 +51,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signUp = async ({ email, password, confirmPassword }) => {
-    console.log(email);
-    console.log(password);
-    console.log(confirmPassword);
     setIsLoading(true);
     await signUpMutation
       .mutateAsync({ email, password, confirmPassword })
       .then((response) => {
-        console.log(response);
+        if (response.message === "Signup successful") {
+          navigate("/login");
+        }
       })
       .catch((error) => console.log(`Error logging in: ${error}`))
       .finally(() => setIsLoading(false));
@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(true);
     logoutMutation
       .mutateAsync()
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(`Error logging out: ${err}`))
       .finally(() => {
         setUser(null);
         if (location.pathname !== "/signup" && location.pathname !== "/") {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/Elements/Button";
 import { Input } from "@/components/Form/Input";
@@ -7,32 +7,14 @@ import useAuth from "@/features/auth/hooks/useAuth";
 import { Form } from "@/components/Form/Form";
 
 export const Login = () => {
+  const form = useForm();
   const { login } = useAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleLogin = (event) => {
-    event.preventDefault();
-    login({ email, password });
-  };
 
   return (
     <Layout title="Login" size="sm">
-      <Form onSubmit={handleLogin}>
-        <Input
-          label="Email"
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={setEmail}
-        />
-        <Input
-          label="Password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={setPassword}
-        />
+      <Form onSubmit={login} form={form}>
+        <Input label="Email" id="email" type="email" form={form} />
+        <Input label="Password" id="password" type="password" form={form} />
         <Button text="Login" />
       </Form>
     </Layout>
