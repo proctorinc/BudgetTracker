@@ -7,7 +7,6 @@ import { Loader } from "@/components/Elements/Loader";
 import { ListBoxInput } from ".";
 
 export const ActiveMonthsListBox = ({ initialMonth, onSelect }) => {
-  console.log(initialMonth);
   const [selectedMonth, setSelectedMonth] = useState(initialMonth);
   const monthsQuery = useActiveMonths();
 
@@ -19,22 +18,9 @@ export const ActiveMonthsListBox = ({ initialMonth, onSelect }) => {
     return <Loader />;
   }
 
-  console.log([initialMonth, ...monthsQuery.data]);
-
   const handleSelect = (month) => {
     setSelectedMonth(month);
     onSelect(month);
-  };
-
-  const isInitialInActiveMonths = () => {
-    const truthiness = monthsQuery.data.some(
-      (date) =>
-        date.month === initialMonth.month && date.year === initialMonth.year
-    );
-    console.log(truthiness);
-    return truthiness;
-    // console.log(monthsQuery.data.indexOf(initialMonth));
-    // return monthsQuery.data.indexOf(initialMonth);
   };
 
   return (
@@ -42,11 +28,7 @@ export const ActiveMonthsListBox = ({ initialMonth, onSelect }) => {
       <ListBoxInput
         selected={selectedMonth}
         setSelected={handleSelect}
-        choices={
-          isInitialInActiveMonths()
-            ? monthsQuery.data
-            : [initialMonth, ...monthsQuery.data]
-        }
+        choices={monthsQuery.data}
         renderItem={renderMonthAndYear}
         itemKey={(item) => `${item.month} ${item.year}`}
       />

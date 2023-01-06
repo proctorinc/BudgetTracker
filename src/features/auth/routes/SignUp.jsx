@@ -15,7 +15,7 @@ export const SignUp = () => {
   };
 
   return (
-    <Layout title="Sign Up" size="xs">
+    <Layout title="Sign Up" size="sm">
       <form className="flex flex-col" onSubmit={handleSignUp}>
         <Input label="Email" type="text" placeholder="Email" />
         <Input label="Password" type="password" placeholder="Password" />

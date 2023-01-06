@@ -24,10 +24,10 @@ export const AuthProvider = ({ children }) => {
           if (response.user) {
             setUser(response.user);
           } else {
-            navigate("/login");
+            logout();
           }
         })
-        .catch((err) => console.log(err))
+        .catch((err) => console.log(`AUTH ERROR: ${err}`))
         .finally(() => setIsLoading(false));
     }
   }, [user]);
