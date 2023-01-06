@@ -11,10 +11,11 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   const loginAndFetchProfileMutation = useLoginAndFetchProfile();
   const userProfileMutation = useUserProfile();
   const logoutMutation = useLogout();
+  const isAuthenticated = user !== null;
 
   useEffect(() => {
     if (!user) {
@@ -63,6 +64,7 @@ export const AuthProvider = ({ children }) => {
     login,
     logout,
     user,
+    isAuthenticated,
   };
 
   return (
