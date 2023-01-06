@@ -26,7 +26,7 @@ export const Menu = () => {
       </HeadlessMenu.Button>
       <HeadlessMenu.Items>
         <div className="flex flex-col overflow-auto absolute right-5 mt-6 w-56 origin-top-right divide-y divide-gray-300 rounded-md bg-gray-200 text-gray-600 shadow-lg">
-          <MenuItem title="Profile" onClick={() => navigate("/profile")} />
+          <MenuItem title="Profile" onClick={() => navigate("/user/profile")} />
           <MenuItem title="Logout" onClick={logout} />
         </div>
       </HeadlessMenu.Items>

@@ -9,6 +9,7 @@ import BudgetRoutes from "@/features/budgets/routes";
 import { Loader } from "@/components/Elements/Loader";
 import { Home } from "@/features/misc";
 import SummaryRoutes from "@/features/summary/routes";
+import UserRoutes from "@/features/users/routes";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ export const protectedRoutes = [
     path: "/",
     element: <App />,
     children: [
+      { path: "/user/*", element: <UserRoutes /> },
       { path: "/summary/*", element: <SummaryRoutes /> },
       { path: "/funds/*", element: <FundRoutes /> },
       { path: "/accounts/*", element: <AccountRoutes /> },

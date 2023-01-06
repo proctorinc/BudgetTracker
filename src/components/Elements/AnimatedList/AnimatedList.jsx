@@ -27,7 +27,7 @@ export const AnimatedList = ({ children, isLoading, ...otherProps }) => {
       animate="show"
       {...otherProps}
     >
-      {children?.length > 0 ? children : noChildren}
+      {children?.length === 0 ? noChildren : children}
     </motion.ul>
   );
 };
