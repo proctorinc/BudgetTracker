@@ -44,9 +44,9 @@ const Funds = () => {
       subtitle={`Total: ${fundsTotal}`}
       isLoading={fundsQuery.isLoading}
     >
-      <div className="relative">
+      <div className="relative w-full">
         <FundsChart className="mr-32 mb-5" funds={funds} />
-        <div className="flex items-end absolute right-10 bottom-0 w-40">
+        <div className="flex items-end absolute sm:right-10 right-0 bottom-0 w-40">
           <FundsChart
             className="w-full"
             funds={allocationData}

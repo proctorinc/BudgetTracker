@@ -1,9 +1,8 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/Elements/Button";
 import { Input } from "@/components/Form/Input";
-import { Layout } from "@/components/Layout";
+import { FormLayout } from "@/components/Layout";
 import useAuth from "@/features/auth/hooks/useAuth";
 import { Form } from "@/components/Form/Form";
 
@@ -16,7 +15,7 @@ export const Login = () => {
   const { login, error } = useAuth();
 
   return (
-    <Layout title="Login" size="sm">
+    <FormLayout title="Login" size="sm">
       <Form onSubmit={handleSubmit(login)} error={error}>
         <Input
           label="Email"
@@ -45,6 +44,6 @@ export const Login = () => {
         />
         <Button text="Login" className="mt-3" />
       </Form>
-    </Layout>
+    </FormLayout>
   );
 };

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/Elements/Button";
 import { Input } from "@/components/Form/Input";
-import { Layout } from "@/components/Layout";
+import { FormLayout } from "@/components/Layout";
 import { Form } from "@/components/Form/Form";
 import useAuth from "@/features/auth/hooks/useAuth";
 
@@ -20,7 +20,7 @@ export const SignUp = () => {
   password.current = watch("password");
 
   return (
-    <Layout title="Sign Up" size="sm">
+    <FormLayout title="Sign Up">
       <Form onSubmit={handleSubmit(signUp)} error={error}>
         <Input
           label="Email"
@@ -63,6 +63,6 @@ export const SignUp = () => {
         />
         <Button text="Sign Up" className="mt-3" />
       </Form>
-    </Layout>
+    </FormLayout>
   );
 };

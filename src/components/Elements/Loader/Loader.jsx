@@ -36,7 +36,7 @@ export const Loader = ({ size }) => {
         className="flex justify-center items-center w-full"
       >
         <div
-          className={`animate-spin border-4 border-gray-800 border-t-white rounded-full animate-full p-2 h-${width} w-${width}`}
+          className={`animate-spin border-4 border-gray-800 border-t-gray-100 rounded-full animate-full p-2 h-${width} w-${width}`}
         ></div>
       </motion.div>
     </AnimatePresence>

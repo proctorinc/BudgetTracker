@@ -1,16 +1,26 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { CurrencyDollarIcon } from "@heroicons/react/20/solid";
+import { CurrencyDollarIcon, UserCircleIcon } from "@heroicons/react/20/solid";
+import {
+  List,
+  Bank,
+  Receipt,
+  SignOut,
+  PresentationChart,
+  Calculator,
+  Coins,
+} from "phosphor-react";
 import { motion } from "framer-motion";
 
 import { Button } from "@/components/Elements/Button";
 import useAuth from "@/features/auth/hooks/useAuth";
 import { getCurrentMonth, getCurrentYear } from "@/utils";
 import { Menu } from "../Elements/Menu";
+import MenuItem from "../Elements/Menu/MenuItem";
 
 export const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
 
   const currentMonth = getCurrentMonth();
   const currentYear = getCurrentYear();
@@ -30,7 +40,7 @@ export const Navbar = () => {
           <CurrencyDollarIcon className="h-8 text-gray-800" />
           <h3 className="text-2xl font-extrabold text-gray-800">Dink</h3>
         </motion.button>
-        <div className="flex justify-end flex-grow items-center gap-1">
+        <div className="hidden sm:flex justify-end flex-grow items-center gap-1">
           {isAuthenticated && (
             <>
               <Button
@@ -43,7 +53,7 @@ export const Navbar = () => {
                 }
               />
               <Button
-                text={"Accounts"}
+                text="Accounts"
                 style={
                   location.pathname.startsWith("/accounts") ? null : "ghost"
                 }
@@ -73,9 +83,73 @@ export const Navbar = () => {
             </>
           )}
         </div>
-        <div className="flex justify-end flex-grow items-center">
+        <div className="hidden sm:flex justify-end flex-grow items-center">
           {isAuthenticated ? (
-            <Menu />
+            <Menu icon={<UserCircleIcon className="h-10 text-gray-800" />}>
+              <MenuItem
+                title="Profile"
+                onClick={() => navigate("/user/profile")}
+              />
+              <MenuItem title="Logout" onClick={logout} />
+            </Menu>
+          ) : (
+            <>
+              <Button
+                text={"Login"}
+                style="ghost"
+                onClick={() => navigate("/login")}
+              />
+              <Button
+                text={"Sign Up"}
+                style="ghost"
+                onClick={() => navigate("/signup")}
+              />
+            </>
+          )}
+        </div>
+        <div className="sm:hidden flex justify-end flex-grow items-center">
+          {isAuthenticated ? (
+            <Menu icon={<List size={30} className="text-gray-800" />}>
+              <MenuItem
+                title="Summary"
+                icon={<PresentationChart size={25} className="text-gray-800" />}
+                onClick={() =>
+                  navigate(`/summary/${currentMonth}/${currentYear}`)
+                }
+              />
+              <MenuItem
+                title="Accounts"
+                icon={<Bank size={25} className="text-gray-800" />}
+                onClick={() => navigate("/accounts")}
+              />
+              <MenuItem
+                title="Budget"
+                icon={<Calculator size={25} className="text-gray-800" />}
+                onClick={() =>
+                  navigate(`/budgets/${currentMonth}/${currentYear}`)
+                }
+              />
+              <MenuItem
+                title="Funds"
+                icon={<Coins size={25} className="text-gray-800" />}
+                onClick={() => navigate("/funds")}
+              />
+              <MenuItem
+                title="Transactions"
+                icon={<Receipt size={25} className="text-gray-800" />}
+                onClick={() => navigate("/transactions")}
+              />
+              <MenuItem
+                title="Profile"
+                icon={<UserCircleIcon className="h-8 text-gray-800" />}
+                onClick={() => navigate("/user/profile")}
+              />
+              <MenuItem
+                title="Logout"
+                icon={<SignOut size={25} className="text-gray-800" />}
+                onClick={logout}
+              />
+            </Menu>
           ) : (
             <>
               <Button

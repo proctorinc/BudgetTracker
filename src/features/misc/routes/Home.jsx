@@ -4,9 +4,11 @@ import { motion } from "framer-motion";
 
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/Elements/Button";
+import useAuth from "@/features/auth/hooks/useAuth";
 
 export const Home = () => {
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
   return (
     <Layout>
       <div className="flex flex-col gap-20 font-light py-36">
@@ -24,15 +26,17 @@ export const Home = () => {
             }}
           >
             <motion.div
-              className="flex"
+              className="flex items-center sm:max-w-full max-w-xs"
               whileHover={{
                 opacity: 1,
                 scale: 1.2,
               }}
               whileTap={{ scale: 0.95 }}
             >
-              <CurrencyDollarIcon className="h-32 text-gray-800" />
-              <h1 className="text-9xl font-extrabold text-gray-800">Dink</h1>
+              <CurrencyDollarIcon className="sm:h-32 h-24 text-gray-800" />
+              <h1 className="text-8xl sm:text-9xl font-extrabold text-gray-800">
+                Dink
+              </h1>
             </motion.div>
           </motion.div>
           <p className="text-center text-md px-4">
@@ -186,7 +190,11 @@ export const Home = () => {
           </p>
         </div>
         <div className="flex justify-center">
-          <Button text="Sign Up" onClick={() => navigate("/signup")} />
+          {isAuthenticated ? (
+            <Button text="Get started" onClick={() => navigate("/accounts")} />
+          ) : (
+            <Button text="Sign Up" onClick={() => navigate("/signup")} />
+          )}
         </div>
       </div>
     </Layout>
