@@ -14,14 +14,14 @@ export const SignUp = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const { signUp } = useAuth();
+  const { signUp, error } = useAuth();
   const password = useRef({});
 
   password.current = watch("password");
 
   return (
     <Layout title="Sign Up" size="sm">
-      <Form onSubmit={handleSubmit(signUp)}>
+      <Form onSubmit={handleSubmit(signUp)} error={error}>
         <Input
           label="Email"
           type="text"
@@ -61,7 +61,7 @@ export const SignUp = () => {
           })}
           error={errors.confirmPassword?.message}
         />
-        <Button text="Sign Up" />
+        <Button text="Sign Up" className="mt-3" />
       </Form>
     </Layout>
   );

@@ -13,11 +13,11 @@ export const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { login } = useAuth();
+  const { login, error } = useAuth();
 
   return (
     <Layout title="Login" size="sm">
-      <Form onSubmit={handleSubmit(login)}>
+      <Form onSubmit={handleSubmit(login)} error={error}>
         <Input
           label="Email"
           type="text"
@@ -43,7 +43,7 @@ export const Login = () => {
           })}
           error={errors.password?.message}
         />
-        <Button text="Login" />
+        <Button text="Login" className="mt-3" />
       </Form>
     </Layout>
   );

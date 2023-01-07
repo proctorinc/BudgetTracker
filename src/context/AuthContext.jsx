@@ -13,12 +13,17 @@ export const AuthProvider = ({ children }) => {
   const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [error, setError] = useState("");
 
   const loginAndFetchProfileMutation = useLoginAndFetchProfile();
   const userProfileMutation = useUserProfile();
   const signUpMutation = useSignUp();
   const logoutMutation = useLogout();
   const isAuthenticated = user !== null;
+
+  useEffect(() => {
+    setError("");
+  }, [location]);
 
   useEffect(() => {
     if (!user) {
@@ -44,6 +49,8 @@ export const AuthProvider = ({ children }) => {
       .then((response) => {
         if (response.user) {
           setUser(response.user);
+        } else {
+          setError("Incorrect Username or Password");
         }
       })
       .catch((error) => console.log(`Error logging in: ${error}`))
@@ -55,7 +62,9 @@ export const AuthProvider = ({ children }) => {
     await signUpMutation
       .mutateAsync({ email, password, confirmPassword })
       .then((response) => {
-        if (response.message === "Signup successful") {
+        if (response.error) {
+          setError(response.error.message);
+        } else {
           navigate("/login");
         }
       })
@@ -84,6 +93,7 @@ export const AuthProvider = ({ children }) => {
     signUp,
     user,
     isAuthenticated,
+    error,
   };
 
   return (
