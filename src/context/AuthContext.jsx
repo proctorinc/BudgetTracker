@@ -5,6 +5,7 @@ import { LoadingScreen } from "@/components/Misc";
 import { useLoginAndFetchProfile } from "@/features/auth/hooks/useLoginAndFetchProfile";
 import { useUserProfile } from "@/features/auth/hooks/useUserProfile";
 import { useLogout, useSignUp } from "@/features/auth";
+import { useCSRFToken } from "@/features/auth/hooks/useCSRFToken";
 
 const AuthContext = createContext();
 
@@ -14,7 +15,9 @@ export const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
+  const [csrfToken, setCsrfToken] = useState();
 
+  const useCSRFTokenMutation = useCSRFToken();
   const loginAndFetchProfileMutation = useLoginAndFetchProfile();
   const userProfileMutation = useUserProfile();
   const signUpMutation = useSignUp();
@@ -24,6 +27,21 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     setError("");
   }, [location]);
+
+  useEffect(() => {
+    if (!csrfToken) {
+      useCSRFTokenMutation
+        .mutateAsync()
+        .then((response) => {
+          console.log(response.csrfToken);
+          setCsrfToken(response.csrfToken);
+          console.log("Got csrf token!");
+        })
+        .catch(() => {
+          console.log("Error fetching csrf token");
+        });
+    }
+  }, []);
 
   useEffect(() => {
     if (!user) {
@@ -62,8 +80,8 @@ export const AuthProvider = ({ children }) => {
     await signUpMutation
       .mutateAsync({ email, password, confirmPassword })
       .then((response) => {
-        if (response.error) {
-          setError(response.error.message);
+        if (response?.error) {
+          setError(response.error);
         } else {
           navigate("/login");
         }

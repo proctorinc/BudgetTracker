@@ -1,12 +1,13 @@
-import { DB_URL } from "../config";
+import { axios } from "@/lib/axios";
 
 export const fetchQuery = async ({ endpoint, method, body }) => {
-  return fetch(DB_URL + endpoint, {
-    method: method ? method : "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: body ? JSON.stringify(body) : null,
-    credentials: "include",
-  }).then((response) => response.json());
+  if (method === "POST") {
+    return axios.post(endpoint, body);
+  } else if (method === "PUT") {
+    return axios.put(endpoint, body);
+  } else if (method === "DELETE") {
+    return axios.delete(endpoint, body);
+  } else {
+    return axios.get(endpoint);
+  }
 };
