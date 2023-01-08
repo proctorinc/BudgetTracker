@@ -14,7 +14,7 @@ export const Layout = ({ title, subtitle, children, isLoading, size }) => {
     <>
       <Navbar />
       <div className="flex flex-col items-center bg-gray-100 text-gray-800 min-h-screen pb-36">
-        <div className={`${maxWidth} w-full p-2 flex-grow`}>
+        <div className={`${maxWidth} w-full p-3 flex-grow overflow-hidden`}>
           {title && <AnimatedHeader title={title} subtitle={subtitle} />}
           {isLoading ? (
             <div className="py-40">

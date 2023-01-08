@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export const Menu = ({ icon, children }) => {
   return (
-    <HeadlessMenu>
+    <HeadlessMenu as="div" className="relative inline-block text-left">
       <HeadlessMenu.Button>
         <motion.div
           whileHover={{
@@ -15,10 +15,8 @@ export const Menu = ({ icon, children }) => {
           {icon}
         </motion.div>
       </HeadlessMenu.Button>
-      <HeadlessMenu.Items>
-        <div className="z-50 flex flex-col overflow-auto absolute right-5 mt-6 origin-top-right divide-y divide-gray-300 rounded-md bg-gray-200 text-gray-600 shadow-lg">
-          {children}
-        </div>
+      <HeadlessMenu.Items className="absolute z-50 right-0 mt-1 w-56 origin-top-right divide-y divide-gray-300 rounded-md bg-gray-50 ring-1 ring-black ring-opacity-5 focus:outline-none text-gray-600 shadow-lg">
+        {children}
       </HeadlessMenu.Items>
     </HeadlessMenu>
   );

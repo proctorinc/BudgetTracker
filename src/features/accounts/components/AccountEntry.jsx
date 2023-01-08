@@ -12,7 +12,7 @@ const AccountEntry = ({ account }) => {
 
   return (
     <AnimatedCard onClick={handleClick}>
-      <div>
+      <div className="p-1 sm:p-0">
         <p className="text-xl">{account.name}</p>
         <p className="text-sm text-gray-400">
           {account.subtype} - {account.mask}

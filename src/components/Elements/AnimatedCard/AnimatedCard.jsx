@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 
-export const AnimatedCard = ({ children, ...otherProps }) => {
+export const AnimatedCard = ({ children, className, ...otherProps }) => {
   const variants = {
     hidden: {
       opacity: 0,
@@ -29,7 +29,7 @@ export const AnimatedCard = ({ children, ...otherProps }) => {
   return (
     <AnimatePresence>
       <motion.li
-        className="flex items-center bg-gray-50 border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-200 hover:shadow-md hover:border-gray-300 text-gray-700 w-full"
+        className={`${className} flex items-center bg-gray-50 border border-gray-300 px-4 py-2 rounded-md hover:bg-gray-200 hover:shadow-md hover:border-gray-300 text-gray-700 w-full`}
         variants={variants}
         whileHover={{ scale: 1.05, transition: { duration: 0.25 } }}
         whileTap={{ scale: 0.95 }}

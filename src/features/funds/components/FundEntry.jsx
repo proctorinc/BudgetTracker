@@ -13,7 +13,7 @@ const FundEntry = ({ fund }) => {
   };
 
   return (
-    <AnimatedCard onClick={handleClick}>
+    <AnimatedCard onClick={handleClick} className="py-4 sm:py-2">
       <IconFromText text={fund.icon} className="h-6 pr-2" />
       <p className="text-xl">{fund.name}</p>
       <div className="flex justify-end flex-grow">

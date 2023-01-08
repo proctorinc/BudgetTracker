@@ -8,12 +8,14 @@ import {
   PresentationChart,
   Calculator,
   Coins,
+  UserCircle,
 } from "phosphor-react";
 import { motion } from "framer-motion";
 
 import { Button } from "@/components/Elements/Button";
 import useAuth from "@/features/auth/hooks/useAuth";
 import { getCurrentMonth, getCurrentYear } from "@/utils";
+
 import { Menu } from "../Elements/Menu";
 import MenuItem from "../Elements/Menu/MenuItem";
 
@@ -109,7 +111,12 @@ export const Navbar = () => {
         </div>
         <div className="sm:hidden flex justify-end flex-grow items-center">
           {isAuthenticated ? (
-            <Menu icon={<List size={30} className="text-gray-800" />}>
+            <Menu icon={<List size={25} className="text-gray-800" />}>
+              <MenuItem
+                title="Profile"
+                icon={<UserCircle size={25} className="text-gray-800" />}
+                onClick={() => navigate("/user/profile")}
+              />
               <MenuItem
                 title="Summary"
                 icon={<PresentationChart size={25} className="text-gray-800" />}
@@ -138,11 +145,6 @@ export const Navbar = () => {
                 title="Transactions"
                 icon={<Receipt size={25} className="text-gray-800" />}
                 onClick={() => navigate("/transactions")}
-              />
-              <MenuItem
-                title="Profile"
-                icon={<UserCircleIcon className="h-8 text-gray-800" />}
-                onClick={() => navigate("/user/profile")}
               />
               <MenuItem
                 title="Logout"

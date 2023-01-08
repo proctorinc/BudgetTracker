@@ -30,7 +30,7 @@ export const AnimatedHeader = ({ title, subtitle }) => {
   };
 
   return (
-    <div className="flex flex-col py-5 gap-2">
+    <div className="flex flex-col pt-0 sm:pt-5 pb-5 gap-2">
       <div className="flex">
         <motion.h1
           className="text-6xl font-bold"
@@ -46,7 +46,7 @@ export const AnimatedHeader = ({ title, subtitle }) => {
           variants={subtitleVariants}
           initial="hidden"
           animate="show"
-          className="text-4xl font-extralight"
+          className="text-3xl sm:text-4xl font-extralight"
         >
           {subtitle}
         </motion.h3>

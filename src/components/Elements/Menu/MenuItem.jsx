@@ -3,13 +3,15 @@ import { Menu as HeadlessMenu } from "@headlessui/react";
 const MenuItem = ({ title, icon, onClick, active }) => {
   return (
     <HeadlessMenu.Item
-      className={`z-50 relative cursor-default select-none py-4 sm:py-2 pr-10 pl-10 hover:bg-gray-300 border-gray-300 ${
+      className={`z-50 relative cursor-default select-none py-6 sm:py-3 px-5 sm:px-10 hover:bg-gray-300 border-gray-300 ${
         active && "bg-gray-300"
       }`}
     >
-      <div className="flex w-fit gap-1 text-gray-600" onClick={onClick}>
-        {icon}
-        {title}
+      <div className="grid w-fit text-gray-600" onClick={onClick}>
+        <div className="flex gap-3 align-left">
+          {icon}
+          {title}
+        </div>
       </div>
     </HeadlessMenu.Item>
   );
