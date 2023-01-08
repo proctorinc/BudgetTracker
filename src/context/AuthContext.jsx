@@ -33,9 +33,7 @@ export const AuthProvider = ({ children }) => {
       useCSRFTokenMutation
         .mutateAsync()
         .then((response) => {
-          console.log(response.csrfToken);
           setCsrfToken(response.csrfToken);
-          console.log("Got csrf token!");
         })
         .catch(() => {
           console.log("Error fetching csrf token");
@@ -55,7 +53,7 @@ export const AuthProvider = ({ children }) => {
             logout();
           }
         })
-        .catch((err) => console.log(`AUTH ERROR: ${err}`))
+        .catch((error) => console.log(`AUTH ERROR: ${error}`))
         .finally(() => setIsLoading(false));
     }
   }, [user]);
@@ -65,13 +63,9 @@ export const AuthProvider = ({ children }) => {
     await loginAndFetchProfileMutation
       .mutateAsync({ email, password })
       .then((response) => {
-        if (response.user) {
-          setUser(response.user);
-        } else {
-          setError("Incorrect Username or Password");
-        }
+        setUser(response.user);
       })
-      .catch((error) => console.log(`Error logging in: ${error}`))
+      .catch(() => setError("Incorrect Email or Password"))
       .finally(() => setIsLoading(false));
   };
 
@@ -86,7 +80,7 @@ export const AuthProvider = ({ children }) => {
           navigate("/login");
         }
       })
-      .catch((error) => console.log(`Error logging in: ${error}`))
+      .catch(() => setError("Invalid Email or Password"))
       .finally(() => setIsLoading(false));
   };
 
@@ -94,7 +88,7 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(true);
     logoutMutation
       .mutateAsync()
-      .catch((err) => console.log(`Error logging out: ${err}`))
+      .catch(() => console.log("Error logging out"))
       .finally(() => {
         setUser(null);
         if (location.pathname !== "/signup" && location.pathname !== "/") {

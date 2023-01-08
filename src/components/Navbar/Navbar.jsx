@@ -116,6 +116,7 @@ export const Navbar = () => {
                 title="Profile"
                 icon={<UserCircle size={25} className="text-gray-800" />}
                 onClick={() => navigate("/user/profile")}
+                active={location.pathname.startsWith("/user/profile")}
               />
               <MenuItem
                 title="Summary"
@@ -123,11 +124,13 @@ export const Navbar = () => {
                 onClick={() =>
                   navigate(`/summary/${currentMonth}/${currentYear}`)
                 }
+                active={location.pathname.startsWith("/summary")}
               />
               <MenuItem
                 title="Accounts"
                 icon={<Bank size={25} className="text-gray-800" />}
                 onClick={() => navigate("/accounts")}
+                active={location.pathname.startsWith("/accounts")}
               />
               <MenuItem
                 title="Budget"
@@ -135,16 +138,19 @@ export const Navbar = () => {
                 onClick={() =>
                   navigate(`/budgets/${currentMonth}/${currentYear}`)
                 }
+                active={location.pathname.startsWith("/budgets")}
               />
               <MenuItem
                 title="Funds"
                 icon={<Coins size={25} className="text-gray-800" />}
                 onClick={() => navigate("/funds")}
+                active={location.pathname.startsWith("/funds")}
               />
               <MenuItem
                 title="Transactions"
                 icon={<Receipt size={25} className="text-gray-800" />}
                 onClick={() => navigate("/transactions")}
+                active={location.pathname.startsWith("/transactions")}
               />
               <MenuItem
                 title="Logout"

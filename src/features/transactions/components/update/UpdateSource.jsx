@@ -25,8 +25,6 @@ const UpdateSource = ({ initialSource, month, year, onUpdate }) => {
   const updateTransactionSource = () => {
     if (source && type) {
       onUpdate({ source: { id: source._id, type, name: source.name } });
-    } else {
-      console.log("Must add a source");
     }
   };
 

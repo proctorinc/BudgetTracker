@@ -14,7 +14,7 @@ export const ListBoxInput = ({
   };
 
   return (
-    <div>
+    <div className="my-1">
       <Listbox value={selected} onChange={setSelected}>
         <motion.div
           className="w-fit"
@@ -51,8 +51,8 @@ export const ListBoxInput = ({
                 key={itemKey ? itemKey(choice) : choice}
                 value={choice}
                 className={({ active }) =>
-                  `relative cursor-default select-none py-2 pr-10 pl-2 border-gray-300 ${
-                    active ? "bg-gray-300 text-gray-900" : "text-gray-900"
+                  `relative cursor-default select-none py-2 pr-10 pl-2 border-gray-300 text-gray-700 ${
+                    active && "bg-gray-300"
                   }`
                 }
               >

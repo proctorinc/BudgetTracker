@@ -14,7 +14,7 @@ const AccountCategoryEntry = ({ category, accountData, isLoading }) => {
 
   return (
     <div className="flex flex-col gap-2 pb-5">
-      <h3 className="text-3xl">
+      <h3 className="pl-1 text-3xl">
         {categoryHeading}: {subtotal}
       </h3>
       <AnimatedList isLoading={isLoading}>{accountEntries}</AnimatedList>

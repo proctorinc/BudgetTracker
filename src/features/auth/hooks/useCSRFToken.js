@@ -13,7 +13,6 @@ export const useCSRFToken = () => {
     },
     onError: (context) => {},
     onSuccess: (data) => {
-      console.log("Successfully got the CSRF token!");
       setCSRFTokenHeader(data.token);
     },
     mutationFn: getCSRFToken,

@@ -44,18 +44,18 @@ const Funds = () => {
       subtitle={`Total: ${fundsTotal}`}
       isLoading={fundsQuery.isLoading}
     >
-      <div className="relative w-full">
-        <FundsChart className="mr-32 mb-5" funds={funds} />
-        <div className="flex items-end absolute sm:right-10 right-0 bottom-0 w-40">
+      <div className="relative w-full -mt-10 -mb-5">
+        <FundsChart className="mr-32 mb-5 sm:-ml-10" funds={funds} />
+        <div className="flex items-end absolute sm:right-5 right-0 bottom-0 w-2/5">
           <FundsChart
             className="w-full"
             funds={allocationData}
             size="sm"
             title={`${percentAllocated.toFixed(0)}%`}
           />
-          <Tooltip content={allocationTooltip}>
+          {/* <Tooltip content={allocationTooltip}>
             <Question size={20} className="text-gray-500" />
-          </Tooltip>
+          </Tooltip> */}
         </div>
       </div>
       <FundsList funds={funds} error={fundsQuery.error} />

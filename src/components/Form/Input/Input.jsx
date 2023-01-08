@@ -20,8 +20,8 @@ export const Input = ({
       )}
       <input
         className={`${
-          error ? "border-gray-600" : "border-gray-300"
-        } border-2 bg-gray-50 placeholder-gray-400 py-2 px-3 rounded-md`}
+          error ? "ring-4" : ""
+        } ring-black ring-opacity-30 border-gray-300 border-2 bg-gray-50 placeholder-gray-400 py-2 px-3 rounded-md my-1`}
         id={`${label}-form-input`}
         type={type ? type : "text"}
         placeholder={label}

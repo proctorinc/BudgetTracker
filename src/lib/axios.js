@@ -13,9 +13,6 @@ export const axios = Axios.create({
 });
 
 export const setCSRFTokenHeader = (csrfToken) => {
-  console.log("This is axios!");
-  console.log(csrfToken);
-  //   axios.defaults.headers.post["X-CSRF-Token"] = csrfToken;
   axios.defaults.headers.common["X-CSRF-Token"] = csrfToken;
 };
 
