@@ -2,9 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { DetailLayout } from "@/components/Layout";
 import { formatCurrency } from "@/utils/currency";
-import { AnimatedList } from "@/components/Elements/AnimatedList";
 import { TransactionsList, useFundTransactions } from "@/features/transactions";
-import { ProgressBar } from "@/components/Charts/ProgressBar";
 import { Button } from "@/components/Elements/Button";
 
 import { deleteFund } from "../api/deleteFund";

@@ -47,7 +47,7 @@ const Budget = () => {
       titleIcon={budget.icon}
       subtitle={capitalizeFirstLetter(month)}
     >
-      <div className="flex flex-col items-center gap-1 py-5">
+      <div className="flex flex-col items-center gap-1 pb-5">
         <div className="flex justify-center gap-2 border bg-gray-200 border-gray-200 p-3 rounded-md w-full">
           <div className="flex flex-col w-full px-3">
             <h3 className="text-3xl font-extralight text-center p-5">

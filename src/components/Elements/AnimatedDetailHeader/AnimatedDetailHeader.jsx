@@ -35,10 +35,13 @@ export const AnimatedDetailHeader = ({
         </button>
         {titleIcon && (
           <div className="border-4 border-gray-800 rounded-full p-2">
-            <IconFromText text={titleIcon} className="h-12 text-gray-800" />
+            <IconFromText
+              text={titleIcon}
+              className="h-8 sm:h-12 text-gray-800"
+            />
           </div>
         )}
-        <h1 className="text-7xl font-extrabold">{title}</h1>
+        <h1 className="text-5xl sm:text-7xl font-extrabold">{title}</h1>
       </motion.div>
       <motion.div
         className="flex items-center gap-2"
@@ -59,11 +62,14 @@ export const AnimatedDetailHeader = ({
         }}
       >
         {subtitleIcon && (
-          <div className="border-2 border-gray-800 rounded-full p-2">
-            <IconFromText text={subtitleIcon} className="h-8 text-gray-800" />
+          <div className="border-2 border-gray-800 rounded-full p-1 sm:p-2">
+            <IconFromText
+              text={subtitleIcon}
+              className="h-6 sm:h-8 text-gray-800"
+            />
           </div>
         )}
-        <h3 className="text-5xl font-extralight">{subtitle}</h3>
+        <h2 className="text-2xl sm:text-5xl font-extralight">{subtitle}</h2>
       </motion.div>
     </div>
   );

@@ -12,6 +12,6 @@ export const useCreateBudget = () => {
     },
     onError: (context) => {},
     onSuccess: (data) => {},
-    mutationFn: ({ name, icon, goal }) => createBudget({ name, icon, budget }),
+    mutationFn: ({ name, icon, goal }) => createBudget({ name, icon, goal }),
   });
 };
