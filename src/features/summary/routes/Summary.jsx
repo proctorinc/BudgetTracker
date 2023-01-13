@@ -21,7 +21,7 @@ export const Summary = () => {
     navigate(`/summary/${date.month}/${date.year}`);
   };
 
-  if (monthsQuery.error) {
+  if (monthsQuery.isError) {
     return <div>Error!!!</div>;
   }
 
@@ -29,111 +29,105 @@ export const Summary = () => {
     <Layout
       title={`${capitalizeFirstLetter(date.month)} ${date.year}`}
       subtitle="Summary"
-      isLoading={monthsQuery.isLoading}
+      isLoading={monthsQuery.isLoading && summaryQuery.isLoading}
     >
       <ActiveMonthsListBox initialMonth={date} onSelect={handleSelectedMonth} />
-      {summaryQuery.data && (
-        <>
-          <div className="py-5">
-            <h2 className="text-5xl pb-2">Spending</h2>
-            <h3 className="text-3xl font-extralight">
-              Leftover: +
-              {formatCurrency(
-                summaryQuery.data.income - summaryQuery.data.expenses
-              )}
-            </h3>
-            <div className="flex gap-2 border border-gray-200 bg-gray-200 text-gray-500 rounded-md px-3 w-fit my-2">
-              <p>Increased +$103 from November</p>
-            </div>
-            <div className="flex gap-2 pb-2">
-              <AnimatedCard>
-                <div className="p-5">
-                  <div className="border-8 border-gray-800 border-r-gray-300 rounded-full animate-full p-2 h-16 w-16"></div>
-                </div>
-                <div className="flex flex-col justify-center text-center">
-                  <p className="text-xl font-extralight">Income</p>
-                  <p className="text-lg font-bold">
-                    +{formatCurrency(summaryQuery.data.income)}
-                  </p>
-                </div>
-              </AnimatedCard>
-              <AnimatedCard>
-                <div className="p-5">
-                  <div className="border-8 border-gray-800 border-l-gray-300 border-t-gray-300 border-b-gray-300 rounded-full animate-full p-2 h-16 w-16"></div>
-                </div>
-                <div className="flex flex-col justify-center text-center">
-                  <p className="text-xl font-extralight">Expenses</p>
-                  <p className="text-lg font-bold">
-                    -{formatCurrency(summaryQuery.data.expenses)}
-                  </p>
-                </div>
-              </AnimatedCard>
-            </div>
+      <>
+        <div className="py-5">
+          <h2 className="text-5xl pb-2">Spending</h2>
+          <h3 className="text-3xl font-extralight">
+            Leftover: +
+            {formatCurrency(
+              summaryQuery.data.income - summaryQuery.data.expenses
+            )}
+          </h3>
+          <div className="flex gap-2 border border-gray-200 bg-gray-200 text-gray-500 rounded-md px-3 w-fit my-2">
+            <p>Increased +$103 from November</p>
           </div>
-          <div className="pb-5">
-            <h2 className="text-5xl pb-2">Budgets:</h2>
-            <h3 className="text-3xl font-extralight">
-              Total Balance: +$542.32
-            </h3>
-            <div className="flex gap-2 border border-gray-200 bg-gray-200 text-gray-500 rounded-md px-3 w-fit my-2">
-              <p>Increased +$54 from November</p>
-            </div>
-            <SummaryStat
-              firstHeader="Goal"
-              firstStat={formatCurrency(summaryQuery.data.budget.goal)}
-              secondHeader="Spent"
-              secondStat={formatCurrency(summaryQuery.data.budget.spent)}
-              thirdHeader="Budget Spent"
-              thirdStat={`
+          <div className="flex gap-2 pb-2">
+            <AnimatedCard>
+              <div className="p-5">
+                <div className="border-8 border-gray-800 border-r-gray-300 rounded-full animate-full p-2 h-16 w-16"></div>
+              </div>
+              <div className="flex flex-col justify-center text-center">
+                <p className="text-xl font-extralight">Income</p>
+                <p className="text-lg font-bold">
+                  +{formatCurrency(summaryQuery.data.income)}
+                </p>
+              </div>
+            </AnimatedCard>
+            <AnimatedCard>
+              <div className="p-5">
+                <div className="border-8 border-gray-800 border-l-gray-300 border-t-gray-300 border-b-gray-300 rounded-full animate-full p-2 h-16 w-16"></div>
+              </div>
+              <div className="flex flex-col justify-center text-center">
+                <p className="text-xl font-extralight">Expenses</p>
+                <p className="text-lg font-bold">
+                  -{formatCurrency(summaryQuery.data.expenses)}
+                </p>
+              </div>
+            </AnimatedCard>
+          </div>
+        </div>
+        <div className="pb-5">
+          <h2 className="text-5xl pb-2">Budgets:</h2>
+          <h3 className="text-3xl font-extralight">Total Balance: +$542.32</h3>
+          <div className="flex gap-2 border border-gray-200 bg-gray-200 text-gray-500 rounded-md px-3 w-fit my-2">
+            <p>Increased +$54 from November</p>
+          </div>
+          <SummaryStat
+            firstHeader="Goal"
+            firstStat={formatCurrency(summaryQuery.data.budget.goal)}
+            secondHeader="Spent"
+            secondStat={formatCurrency(summaryQuery.data.budget.spent)}
+            thirdHeader="Budget Spent"
+            thirdStat={`
     ${(
       (summaryQuery.data.budget.spent / summaryQuery.data.budget.goal) *
       100
     ).toFixed(0)}%`}
-            />
+          />
+        </div>
+        <div className="pb-5">
+          <h2 className="text-5xl pb-2">Funds:</h2>
+          <h3 className="text-3xl font-extralight">
+            Total Balance: $38,046.00
+          </h3>
+          <div className="flex gap-2 border border-gray-200 bg-gray-200 text-gray-500 rounded-md px-3 w-fit my-2">
+            <p>Increased +$2306 from November</p>
           </div>
-          <div className="pb-5">
-            <h2 className="text-5xl pb-2">Funds:</h2>
-            <h3 className="text-3xl font-extralight">
-              Total Balance: $38,046.00
-            </h3>
-            <div className="flex gap-2 border border-gray-200 bg-gray-200 text-gray-500 rounded-md px-3 w-fit my-2">
-              <p>Increased +$2306 from November</p>
-            </div>
-            <SummaryStat
-              firstHeader="Added"
-              firstStat={formatCurrency(summaryQuery.data.funds.added)}
-              secondHeader="Spent"
-              secondStat={formatCurrency(summaryQuery.data.funds.removed)}
-              thirdHeader="Increased"
-              thirdStat={`+${(
-                ((summaryQuery.data.funds.added -
-                  summaryQuery.data.funds.removed) /
-                  summaryQuery.data.funds.total) *
-                100
-              ).toFixed(0)}%`}
-            />
+          <SummaryStat
+            firstHeader="Added"
+            firstStat={formatCurrency(summaryQuery.data.funds.added)}
+            secondHeader="Spent"
+            secondStat={formatCurrency(summaryQuery.data.funds.removed)}
+            thirdHeader="Increased"
+            thirdStat={`+${(
+              ((summaryQuery.data.funds.added -
+                summaryQuery.data.funds.removed) /
+                summaryQuery.data.funds.total) *
+              100
+            ).toFixed(0)}%`}
+          />
+        </div>
+        <div>
+          <h2 className="text-5xl pb-2">Accounts</h2>
+          <h3 className="text-3xl font-extralight">Cash Balance: $xx,xxx.xx</h3>
+          <div className="flex gap-2 border border-gray-200 bg-gray-200 text-gray-500 rounded-md px-3 w-fit my-2">
+            <p>Increased +$x,xxx.xx from November</p>
           </div>
-          <div>
-            <h2 className="text-5xl pb-2">Accounts</h2>
-            <h3 className="text-3xl font-extralight">
-              Cash Balance: $xx,xxx.xx
-            </h3>
-            <div className="flex gap-2 border border-gray-200 bg-gray-200 text-gray-500 rounded-md px-3 w-fit my-2">
-              <p>Increased +$x,xxx.xx from November</p>
-            </div>
-            <h3 className="text-3xl font-extralight">
-              Investment Balance: $xxx,xxx.xx
-            </h3>
-            <div className="flex gap-2 border border-gray-200 bg-gray-200 text-gray-500 rounded-md px-3 w-fit my-2">
-              <p>Increased $xxx.xx from November</p>
-            </div>
-            <h3 className="text-3xl font-extralight">Loans Balance: $0.00</h3>
-            <div className="flex gap-2 border border-gray-200 bg-gray-200 text-gray-500 rounded-md px-3 w-fit my-2">
-              <p>No change since last month</p>
-            </div>
+          <h3 className="text-3xl font-extralight">
+            Investment Balance: $xxx,xxx.xx
+          </h3>
+          <div className="flex gap-2 border border-gray-200 bg-gray-200 text-gray-500 rounded-md px-3 w-fit my-2">
+            <p>Increased $xxx.xx from November</p>
           </div>
-        </>
-      )}
+          <h3 className="text-3xl font-extralight">Loans Balance: $0.00</h3>
+          <div className="flex gap-2 border border-gray-200 bg-gray-200 text-gray-500 rounded-md px-3 w-fit my-2">
+            <p>No change since last month</p>
+          </div>
+        </div>
+      </>
     </Layout>
   );
 };

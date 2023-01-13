@@ -13,12 +13,7 @@ const TransferDetail = ({ isTransfer, onUpdate }) => {
     <TransactionUpdateDetail
       label={"Mark as Transfer"}
       icon={<ArrowsClockwise size={25} weight="fill" />}
-      actionItem={
-        <Toggle
-          enabled={isTransfer ? true : false}
-          setEnabled={toggleEnabled}
-        />
-      }
+      actionItem={<Toggle enabled={isTransfer} setEnabled={toggleEnabled} />}
     />
   );
 };

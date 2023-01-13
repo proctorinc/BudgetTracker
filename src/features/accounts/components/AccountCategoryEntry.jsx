@@ -8,7 +8,6 @@ const AccountCategoryEntry = ({ category, accountData, isLoading }) => {
   const accountEntries = accountData?.accounts.map((account) => (
     <AccountEntry key={account._id} account={account} />
   ));
-
   const subtotal = formatCurrency(accountData?.subtotal);
   const categoryHeading = capitalizeFirstLetter(category);
 

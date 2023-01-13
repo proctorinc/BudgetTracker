@@ -67,6 +67,7 @@ const Transaction = () => {
           <MerchantDetail merchant={transaction?.merchant_name} />
           <SourceDetail
             source={transaction?.source}
+            isTransfer={transaction?.is_transfer}
             setSelected={setSelectedDetail}
             month={month}
             year={year}

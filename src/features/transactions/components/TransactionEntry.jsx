@@ -20,7 +20,7 @@ const TransactionEntry = ({ transaction }) => {
     month: "short",
     day: "numeric",
   });
-  const amount = formatCurrency(transaction.amount);
+  const formattedAmount = formatCurrency(transaction.amount);
 
   return (
     <AnimatedCard onClick={handleClick}>
@@ -34,7 +34,9 @@ const TransactionEntry = ({ transaction }) => {
       </div>
       <div className="flex justify-end flex-grow items-center">
         <div className="text-right">
-          <p className="text-lg">{amount}</p>
+          <p className="text-lg">
+            {transaction.amount > 0 ? `+${formattedAmount}` : formattedAmount}
+          </p>
           <p className="text-xs text-gray-400">{formattedDate}</p>
         </div>
       </div>

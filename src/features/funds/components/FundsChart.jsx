@@ -1,22 +1,24 @@
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { ResponsivePie } from "@nivo/pie";
-const FundsChart = ({ funds, title, size, className }) => {
-  const fundData = funds
-    .filter((fund) => fund.amount > 0)
-    .map((fund, index) => {
-      if (fund.amount > 0) {
-        return {
-          id: fund.name,
-          value: fund.amount,
-        };
-      }
-    });
 
-  const data = {
-    id: "root",
-    color: "#FFF",
-    children: fundData,
-  };
+const FundsChart = ({ funds, title, size, className }) => {
+  const fundData = useMemo(
+    () =>
+      funds
+        .filter((fund) => fund.amount > 0)
+        .map((fund, index) => {
+          if (fund.amount > 0) {
+            return {
+              id: fund.name,
+              value: fund.amount,
+            };
+          }
+        }),
+    [funds]
+  );
+
+  console.log(fundData);
 
   let height = "h-72";
   let textSize = "text-5xl";

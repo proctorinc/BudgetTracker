@@ -10,7 +10,7 @@ export const AnimatedCard = ({ children, className, ...otherProps }) => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.25,
         type: "spring",
         stiffness: 50,
       },
@@ -19,7 +19,7 @@ export const AnimatedCard = ({ children, className, ...otherProps }) => {
       opacity: 0,
       y: 50,
       transition: {
-        duration: 0.5,
+        duration: 0.25,
         type: "spring",
         stiffness: 80,
       },

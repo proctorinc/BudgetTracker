@@ -8,11 +8,17 @@ import TransactionEntry from "./TransactionEntry";
 export const TransactionsList = ({ title, useHook, hookParameters = [] }) => {
   const [page, setPage] = useState(1);
   const [transactions, setTransactions] = useState([]);
+  const [isAddingPage, setIsAddingPage] = useState(false);
   const transactionsQuery = useHook(page, ...hookParameters);
   const hasNextPage = transactionsQuery.data?.has_next;
 
   useEffect(() => {
-    if (!transactionsQuery.isLoading) {
+    if (transactionsQuery.isSuccess) {
+      if (isAddingPage) {
+        setIsAddingPage(false);
+      } else {
+        setTransactions([]);
+      }
       setTransactions((prevTransactions) => [
         ...prevTransactions,
         ...transactionsQuery.data.transactions,
@@ -21,6 +27,7 @@ export const TransactionsList = ({ title, useHook, hookParameters = [] }) => {
   }, [transactionsQuery.data]);
 
   const handleNextPage = () => {
+    setIsAddingPage(true);
     setPage(transactionsQuery.data.next_page);
   };
 

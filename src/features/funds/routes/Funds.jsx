@@ -15,8 +15,11 @@ const Funds = () => {
   const fundsQuery = useFunds();
   const funds = fundsQuery.data?.funds;
   const fundsTotal = formatCurrency(fundsQuery.data?.allocated);
-  const percentAllocated =
-    fundsQuery.data?.allocated / fundsQuery.data?.unallocated;
+  const percentAllocated = (
+    (fundsQuery.data?.allocated / fundsQuery.data?.unallocated) *
+    100
+  ).toFixed(0);
+  console.log(percentAllocated);
   const allocationData = [
     {
       name: "unallocated",
@@ -44,18 +47,15 @@ const Funds = () => {
       subtitle={`Total: ${fundsTotal}`}
       isLoading={fundsQuery.isLoading}
     >
-      <div className="relative w-full -mt-10 -mb-5">
+      <div className="relative w-full sm:mt-0 -mt-10 -mb-5">
         <FundsChart className="mr-32 mb-5 sm:-ml-10" funds={funds} />
         <div className="flex items-end absolute sm:right-5 right-0 bottom-0 w-2/5">
           <FundsChart
             className="w-full"
             funds={allocationData}
             size="sm"
-            title={`${percentAllocated.toFixed(0)}%`}
+            title={`${percentAllocated}%`}
           />
-          {/* <Tooltip content={allocationTooltip}>
-            <Question size={20} className="text-gray-500" />
-          </Tooltip> */}
         </div>
       </div>
       <FundsList funds={funds} error={fundsQuery.error} />

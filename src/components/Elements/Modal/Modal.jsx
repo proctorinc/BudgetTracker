@@ -9,7 +9,7 @@ export const Modal = ({ onClose, children }) => {
         onClick={onClose}
       >
         <motion.div
-          className="p-5 z-50 w-1/2 rounded-md shadow-xl bg-gray-50 text-center font-extralight"
+          className="p-5 z-50 w-full mx-5 sm:w-1/2 rounded-md shadow-2xl bg-white text-center font-extralight"
           onClick={(event) => event.stopPropagation()}
         >
           <XCircle

@@ -29,7 +29,7 @@ const Account = () => {
       {account && (
         <div className="flex flex-col items-center gap-1 py-5 -mt-5">
           {account.official_name && (
-            <div className="flex gap-2 border border-gray-200 bg-gray-200 text-gray-500 rounded-md px-3 text-center">
+            <div className="flex gap-2 border border-gray-200 bg-gray-200 text-gray-500 rounded-md px-2 text-center">
               {account.official_name}
             </div>
           )}

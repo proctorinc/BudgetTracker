@@ -4,7 +4,14 @@ import { CaretRight, Receipt } from "phosphor-react";
 import TransactionUpdateDetail from "./TransactionDetail";
 import UpdateSource from "../update/UpdateSource";
 
-const SourceDetail = ({ source, setSelected, month, year, onUpdate }) => {
+const SourceDetail = ({
+  source,
+  isTransfer,
+  setSelected,
+  month,
+  year,
+  onUpdate,
+}) => {
   const updateSource = (
     <UpdateSource
       initialSource={source}
@@ -15,22 +22,27 @@ const SourceDetail = ({ source, setSelected, month, year, onUpdate }) => {
   );
 
   const selectUpdate = () => {
-    setSelected(updateSource);
+    if (!isTransfer) {
+      setSelected(updateSource);
+    }
   };
+
+  console.log(source?.is_transfer);
 
   return (
     <TransactionUpdateDetail
       label={"Source"}
       icon={<Receipt size={25} weight="fill" />}
       onClick={selectUpdate}
-      actionItem={<CaretRight size={25} />}
+      actionItem={isTransfer ? null : <CaretRight size={25} />}
     >
-      {source?.id && source?.type ? (
+      {source?.type ? (
         <p>
-          {capitalizeFirstLetter(source.type)} / {source.name}
+          {capitalizeFirstLetter(source.type)}{" "}
+          {source?.id && <span>/ {source.name}</span>}
         </p>
       ) : (
-        <div>None</div>
+        <p>{isTransfer ? "Transfer" : "None"}</p>
       )}
     </TransactionUpdateDetail>
   );
