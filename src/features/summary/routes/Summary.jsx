@@ -25,6 +25,10 @@ export const Summary = () => {
     return <div>Error!!!</div>;
   }
 
+  if (summaryQuery.isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Layout
       title={`${capitalizeFirstLetter(date.month)} ${date.year}`}

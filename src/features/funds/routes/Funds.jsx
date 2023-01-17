@@ -49,11 +49,12 @@ const Funds = () => {
     >
       <div className="relative w-full sm:mt-0 -mt-10 -mb-5">
         <FundsChart className="mr-32 mb-5 sm:-ml-10" funds={funds} />
-        <div className="flex items-end absolute sm:right-5 right-0 bottom-0 w-2/5">
+        <div className="flex absolute sm:right-5 right-0 bottom-0 w-2/5">
           <FundsChart
             className="w-full"
             funds={allocationData}
             size="sm"
+            labels={false}
             title={`${percentAllocated}%`}
           />
         </div>

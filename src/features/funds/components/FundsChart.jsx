@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { ResponsivePie } from "@nivo/pie";
 
-const FundsChart = ({ funds, title, size, className }) => {
+const FundsChart = ({ funds, title, size, labels = true, className }) => {
   const fundData = useMemo(
     () =>
       funds
@@ -17,8 +17,6 @@ const FundsChart = ({ funds, title, size, className }) => {
         }),
     [funds]
   );
-
-  console.log(fundData);
 
   let height = "h-72";
   let textSize = "text-5xl";
@@ -68,7 +66,7 @@ const FundsChart = ({ funds, title, size, className }) => {
           arcLinkLabelsThickness={2}
           arcLinkLabelsColor={{ from: "color", modifiers: [["darker", 0.2]] }}
           sortByValue={true}
-          arcLabel="id"
+          arcLabel={labels ? "id" : null}
           arcLabelsSkipAngle={15}
           onClick={(node, event) => console.log(node)}
         />
