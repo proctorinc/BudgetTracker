@@ -1,10 +1,10 @@
 import { describe, it } from "vitest";
 import { render } from "@/test-utils.jsx";
-import TransactionsList from "../TransactionsList";
 import { mockTransactions } from "@/__mocks__/mock_features/transactions";
+import TransactionsList from "../TransactionsList";
 
-describe("Create Fund Route", () => {
-  it("renders create fund form", () => {
+describe("Transactions List", () => {
+  it("renders Transactions in list", () => {
     render(<TransactionsList transactions={mockTransactions} />);
   });
 });

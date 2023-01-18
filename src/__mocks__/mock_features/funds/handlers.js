@@ -46,4 +46,12 @@ export const fundHandlers = [
       })
     );
   }),
+
+  rest.post(`${LOCAL_HOSTNAME}/fund/create`, (req, res, ctx) => {
+    return res(
+      ctx.json({
+        message: "successfully created fund!",
+      })
+    );
+  }),
 ];

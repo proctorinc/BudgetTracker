@@ -10,7 +10,6 @@ import { FormLayout } from "@/components/Layout";
 import { ListBoxInput } from "@/components/Form/ListBoxInput";
 import { IconFromText } from "@/components/Misc/IconFromText/IconFromText";
 
-import { createFund } from "../api/createFund";
 import { useCreateFund } from "../hooks/useCreateFund";
 
 const CreateFund = () => {

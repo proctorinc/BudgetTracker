@@ -27,11 +27,7 @@ const Funds = () => {
       />
       <FundsList funds={funds} error={fundsQuery.error} />
       <div className="flex justify-center p-5">
-        <Button
-          className=""
-          text="New Fund"
-          onClick={() => navigate("/funds/create")}
-        />
+        <Button text="New Fund" onClick={() => navigate("/funds/create")} />
       </div>
     </Layout>
   );

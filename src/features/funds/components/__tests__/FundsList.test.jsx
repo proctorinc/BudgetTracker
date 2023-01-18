@@ -1,18 +1,17 @@
 import { describe, it } from "vitest";
 import { screen, render } from "@/test-utils.jsx";
-import FundsList from "../FundsList";
 import { mockFunds } from "@/__mocks__/mock_features/funds";
 
-describe("fund list", () => {
-  it("renders Funds Label", () => {
-    render(<FundsList funds={mockFunds} />);
-    const fundListLabel = screen.getByRole("heading", {
-      name: /funds:/i,
-    });
-    expect(fundListLabel).toBeInTheDocument();
+import FundsList from "../FundsList";
+
+describe("Fund list", () => {
+  it("Renders properly with no funds", () => {
+    render(<FundsList funds={[]} />);
+    const noFundsLabel = screen.getByRole("listitem");
+    expect(noFundsLabel).toHaveTextContent(/none/i);
   });
 
-  it("loads list of funds", async () => {
+  it("Renders list of funds properly", async () => {
     render(<FundsList funds={mockFunds} />);
 
     const carFund = await screen.findByText("Car Fund");
