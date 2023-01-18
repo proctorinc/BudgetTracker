@@ -1,5 +1,3 @@
-import { MONTHS } from "@/constants";
-
 export const capitalizeFirstLetter = (word) => {
   if (word === null) {
     return null;
@@ -13,12 +11,6 @@ export const getCurrentMonthAndYear = () => {
   var year = today.toLocaleString("en-US", { year: "numeric" });
 
   return `${month} ${year}`;
-};
-
-export const getCurrentMonthInURLFormat = () => {
-  const month = getCurrentMonthAndYear();
-
-  return formatMonthToURLFormat(month);
 };
 
 export const getCurrentMonth = () => {
@@ -35,37 +27,17 @@ export const getCurrentYear = () => {
   return year;
 };
 
-export const formatMonthToURLFormat = (monthDate) => {
-  let result;
-  try {
-    // month = "December 2022"
-    const monthArray = monthDate.split(" ");
-    const month = monthArray[0].substring(0, 3).toLowerCase();
-    const year = monthArray[1];
-    result = `${month}-${year}`;
-  } catch (error) {
-    console.log(error);
-    result = null;
-  }
+export const calculatePercent = (numerator, denominator, scale) => {
+  if (!numerator || !denominator) return Number(0).toFixed(scale);
 
-  return result;
+  return ((numerator / denominator) * 100).toFixed(scale);
 };
 
-export const getMonthFromURLFormat = (urlMonth) => {
-  let result;
-  try {
-    // urlMonth = "dec-2022"
-    const monthArray = urlMonth.split("-");
-    const shortMonth = monthArray[0];
-    const month = MONTHS[shortMonth];
-
-    const year = monthArray[1];
-
-    result = `${month} ${year}`;
-  } catch (error) {
-    console.log(error);
-    result = null;
+export const formatPercent = (numerator, denominator, scale = 0) => {
+  var percent = 0;
+  if (numerator && denominator && denominator !== 0) {
+    percent = (numerator / denominator) * 100;
   }
 
-  return result;
+  return `${percent.toFixed(scale)}%`;
 };

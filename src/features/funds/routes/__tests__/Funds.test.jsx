@@ -2,9 +2,9 @@ import { describe, it, vi } from "vitest";
 import { screen, render, userEvent } from "@/test-utils.jsx";
 import Funds from "../Funds";
 
-// vi.mock("../../components/FundsChart", () => () => {
-//   return <div data-testid="funds-chart"></div>;
-// });
+vi.mock("../../components/FundsChart", () => ({
+  default: () => <div data-testid="funds-chart">Pie Chart</div>,
+}));
 
 const mockedNavigator = vi.fn();
 vi.mock("react-router-dom", async () => ({
@@ -15,10 +15,10 @@ vi.mock("react-router-dom", async () => ({
 describe("Funds Route", () => {
   it("renders funds list", async () => {
     render(<Funds />);
-    const fundListLabel = await screen.findByRole("heading", {
-      name: /funds:/i,
+    const fundsTitle = await screen.findByRole("heading", {
+      name: /funds/i,
     });
-    expect(fundListLabel).toBeInTheDocument();
+    expect(fundsTitle).toBeInTheDocument();
   });
 
   it("renders funds chart", async () => {

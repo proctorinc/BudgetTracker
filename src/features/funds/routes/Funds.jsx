@@ -1,10 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { Question } from "phosphor-react";
 
 import { Button } from "@/components/Elements/Button";
 import { Layout } from "@/components/Layout";
-import { Tooltip } from "@/components/Elements/Tooltip";
 import { formatCurrency } from "@/utils/currency";
+import { calculatePercent } from "@/utils";
 
 import FundsList from "../components/FundsList";
 import { useFunds } from "../hooks/useFunds";
@@ -15,11 +14,11 @@ const Funds = () => {
   const fundsQuery = useFunds();
   const funds = fundsQuery.data?.funds;
   const fundsTotal = formatCurrency(fundsQuery.data?.allocated);
-  const percentAllocated = (
-    (fundsQuery.data?.allocated / fundsQuery.data?.unallocated) *
-    100
-  ).toFixed(0);
-  console.log(percentAllocated);
+  const percentAllocated = calculatePercent(
+    fundsQuery.data?.allocated,
+    fundsQuery.data?.unallocated,
+    0
+  );
   const allocationData = [
     {
       name: "unallocated",
@@ -30,16 +29,6 @@ const Funds = () => {
       amount: fundsQuery.data?.allocated,
     },
   ];
-  const allocationTooltip = (
-    <>
-      <span className="text-md">
-        Allocated = transactions/transfers sourced to all funds
-      </span>
-      <span className="text-md">
-        Unallocated = total of cash and credit accounts
-      </span>
-    </>
-  );
 
   return (
     <Layout
@@ -47,7 +36,7 @@ const Funds = () => {
       subtitle={`Total: ${fundsTotal}`}
       isLoading={fundsQuery.isLoading}
     >
-      <div className="relative w-full sm:mt-0 -mt-10 -mb-5">
+      <div className="relative w-full sm:mt-0 -mt-10 -mb-5 sm:mb-0">
         <FundsChart className="mr-32 mb-5 sm:-ml-10" funds={funds} />
         <div className="flex absolute sm:right-5 right-0 bottom-0 w-2/5">
           <FundsChart

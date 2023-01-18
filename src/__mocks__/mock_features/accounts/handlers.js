@@ -14,7 +14,7 @@ export const accountHandlers = [
   }),
 
   rest.get(
-    `${LOCAL_HOSTNAME}/account/${mockAccountId}/transactions?page=1`,
+    `${LOCAL_HOSTNAME}/account/${mockAccountId}/transactions`,
     (req, res, ctx) => {
       return res(
         ctx.json({
