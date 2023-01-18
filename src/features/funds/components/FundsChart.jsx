@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { motion } from "framer-motion";
-import { ResponsivePie } from "@nivo/pie";
+import { PieChart } from "@/components/Charts/PieChart";
+import { formatPercent } from "@/utils";
 
-const FundsChart = ({ funds, title, size, labels = true, className }) => {
+const FundsChart = ({ funds, allocated, unallocated, className }) => {
   const fundData = useMemo(
     () =>
       funds
@@ -17,60 +17,32 @@ const FundsChart = ({ funds, title, size, labels = true, className }) => {
         }),
     [funds]
   );
-
-  let height = "h-72";
-  let textSize = "text-5xl";
-  let chartRadius = 0.45;
-
-  if (size === "sm") {
-    height = "h-40";
-    textSize = "text-2xl";
-    chartRadius = 0.6;
-  }
+  const percentAllocated = formatPercent(allocated, unallocated);
+  const allocationData = [
+    {
+      id: "unallocated",
+      value: unallocated,
+    },
+    {
+      id: "allocated",
+      value: allocated,
+    },
+  ];
 
   return (
-    <div className={`${className}`}>
-      <motion.div
-        className={`${height} w-full relative`}
-        initial={{ scale: 0 }}
-        animate={{
-          scale: 1,
-          transition: {
-            duration: 1,
-            type: "spring",
-            stiffness: 80,
-          },
-        }}
-      >
-        {title && (
-          <h3
-            className={`${textSize} text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-extralight`}
-          >
-            {title}
-          </h3>
-        )}
-        <ResponsivePie
-          data={fundData}
-          margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
-          valueFormat=" >-$,.2f"
-          innerRadius={chartRadius}
-          padAngle={0.7}
-          cornerRadius={3}
-          activeOuterRadiusOffset={10}
-          colors={{ scheme: "greys" }}
-          borderWidth={1}
-          borderColor={{ from: "color", modifiers: [["darker", 0.2]] }}
-          enableArcLinkLabels={false}
-          arcLinkLabelsSkipAngle={10}
-          arcLinkLabelsTextColor="#333333"
-          arcLinkLabelsThickness={2}
-          arcLinkLabelsColor={{ from: "color", modifiers: [["darker", 0.2]] }}
-          sortByValue={true}
-          arcLabel={labels ? "id" : null}
-          arcLabelsSkipAngle={15}
-          onClick={(node, event) => console.log(node)}
+    <div
+      className={`${className} relative w-full sm:mt-0 -mt-10 -mb-5 sm:mb-0`}
+    >
+      <PieChart className="mr-32 mb-5 sm:-ml-10" data={fundData} />
+      <div className="flex absolute sm:right-5 right-0 bottom-0 w-2/5">
+        <PieChart
+          className="w-full"
+          data={allocationData}
+          size="sm"
+          labels={false}
+          title={percentAllocated}
         />
-      </motion.div>
+      </div>
     </div>
   );
 };
