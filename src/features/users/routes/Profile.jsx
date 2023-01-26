@@ -9,6 +9,8 @@ import useAuth from "@/features/auth/hooks/useAuth";
 const Profile = () => {
   const { user } = useAuth();
 
+  console.log(user)
+
   return (
     <Layout title="Profile" size="sm">
       <motion.div
@@ -37,7 +39,7 @@ const Profile = () => {
         <AnimatedCard>
           <div className="flex gap-1">
             <h3 className="text-2xl font-extralight">Email:</h3>
-            <p className="text-2xl font-extralight">{user.email}</p>
+            <p className="text-2xl font-extralight">{user?.email}</p>
           </div>
         </AnimatedCard>
       </AnimatedList>

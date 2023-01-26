@@ -15,9 +15,7 @@ export const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
-  const [csrfToken, setCsrfToken] = useState();
 
-  const useCSRFTokenMutation = useCSRFToken();
   const loginAndFetchProfileMutation = useLoginAndFetchProfile();
   const userProfileMutation = useUserProfile();
   const signUpMutation = useSignUp();
@@ -29,19 +27,7 @@ export const AuthProvider = ({ children }) => {
   }, [location]);
 
   useEffect(() => {
-    if (!csrfToken) {
-      useCSRFTokenMutation
-        .mutateAsync()
-        .then((response) => {
-          setCsrfToken(response.csrfToken);
-        })
-        .catch(() => {
-          console.log("Error fetching csrf token");
-        });
-    }
-  }, []);
-
-  useEffect(() => {
+    console.log("Hello???")
     if (!user) {
       setIsLoading(true);
       userProfileMutation
