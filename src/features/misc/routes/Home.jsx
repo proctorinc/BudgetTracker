@@ -11,8 +11,8 @@ export const Home = () => {
   const { isAuthenticated } = useAuth();
   return (
     <Layout>
-      <div className="flex flex-col gap-20 font-light py-36">
-        <div className="pb-40">
+      <div className="flex flex-col gap-20 font-light pb-36">
+        <div className="h-screen flex flex-col justify-center">
           <motion.div
             className="flex w-full justify-center pr-10 py-10"
             initial={{ scale: 0 }}
@@ -39,7 +39,7 @@ export const Home = () => {
               </h1>
             </motion.div>
           </motion.div>
-          <p className="text-center text-md px-4">
+          <p className="text-center text-md px-4 sm:text-xl">
             <i>
               Welcome to Dink, the financial budgeting app that{" "}
               <span className="font-extralight">

@@ -22,17 +22,17 @@ export const Button = ({
     },
   };
 
-  let backgroundColor = "black";
-  let textColor = "white";
+  let backgroundColor = "bg-black";
+  let textColor = "text-white";
 
   if (disabled == true) {
-    backgroundColor = "gray-200";
-    textColor = "gray-500";
+    backgroundColor = "bg-gray-200";
+    textColor = "text-gray-500";
   }
 
   if (style == "ghost") {
-    backgroundColor = "transparent";
-    textColor = "gray-500";
+    backgroundColor = "bg-transparent";
+    textColor = "text-gray-500";
   }
 
   const hover = disabled
@@ -44,7 +44,7 @@ export const Button = ({
 
   return (
     <motion.button
-      className={`${className} px-3 py-2 rounded-md bg-${backgroundColor} text-${textColor} ${
+      className={`${className} px-3 py-2 rounded-md ${backgroundColor} ${textColor} ${
         disabled
           ? "hover:bg-gray-200 hover:text-gray-800"
           : "hover:bg-black hover:text-gray-50"

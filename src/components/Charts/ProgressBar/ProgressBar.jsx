@@ -14,6 +14,8 @@ export const ProgressBar = ({ percentComplete }) => {
   } else if (progressPercent >= 85 && progressPercent <= 100) {
     color = "orange";
   }
+  const colorStart = `from-${color}-300`
+  const colorEnd = `to-${color}-600`
 
   return (
     <div className="w-full h-2 bg-gray-300 rounded-lg">
@@ -28,7 +30,7 @@ export const ProgressBar = ({ percentComplete }) => {
         }}
         className={`${
           color
-            ? `bg-gradient-to-r from-${color}-300 to-${color}-600`
+            ? `bg-gradient-to-r ${colorStart} ${colorEnd}`
             : "bg-blue-300"
         } h-2 rounded-lg  w-full`}
       />
