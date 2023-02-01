@@ -35,10 +35,6 @@ export const Login = () => {
           type="password"
           register={register("password", {
             required: "Password is required",
-            minLength: {
-              value: 8,
-              message: "Password must be at least 8 characters",
-            },
           })}
           error={errors.password?.message}
         />

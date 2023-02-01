@@ -1,6 +1,6 @@
 import LinkBankButton from "../LinkBankButton";
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, userEvent } from "@/test-utils.jsx";
+import { render, screen, userEvent } from "@/testUtils.jsx";
 
 const mockOpenFunction = vi.fn();
 vi.mock("react-plaid-link", async () => ({

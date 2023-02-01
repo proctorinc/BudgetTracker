@@ -1,4 +1,4 @@
-import { render, screen, userEvent } from "@/test-utils.jsx";
+import { render, screen, userEvent } from "@/testUtils.jsx";
 import { describe, it, vi } from "vitest";
 import { ListBoxInput } from "./ListBoxInput";
 

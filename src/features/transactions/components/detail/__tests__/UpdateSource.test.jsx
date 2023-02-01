@@ -1,4 +1,4 @@
-import { render, screen, userEvent } from "@/test-utils.jsx";
+import { render, screen, userEvent } from "@/testUtils.jsx";
 import { describe, it } from "vitest";
 import UpdateSource from "../SourceDetail";
 import { mockFunds } from "@/__mocks__/mock_features/funds";

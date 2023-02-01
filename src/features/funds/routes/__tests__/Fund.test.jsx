@@ -1,5 +1,5 @@
 import { describe, it, vi } from "vitest";
-import { screen, render } from "@/test-utils.jsx";
+import { screen, render } from "@/testUtils.jsx";
 import Fund from "../Fund";
 
 vi.mock("react-router-dom", async () => ({

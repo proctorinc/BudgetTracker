@@ -27,7 +27,6 @@ export const AuthProvider = ({ children }) => {
   }, [location]);
 
   useEffect(() => {
-    console.log("Hello???")
     if (!user) {
       setIsLoading(true);
       userProfileMutation

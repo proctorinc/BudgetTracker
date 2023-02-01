@@ -9,8 +9,6 @@ import useAuth from "@/features/auth/hooks/useAuth";
 const Profile = () => {
   const { user } = useAuth();
 
-  console.log(user)
-
   return (
     <Layout title="Profile" size="sm">
       <motion.div

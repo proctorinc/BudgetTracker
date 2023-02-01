@@ -1,5 +1,5 @@
 import { AutocompleteInput } from "@/components/Form/AutocompleteInput";
-import { render, screen } from "@/test-utils.jsx";
+import { render, screen } from "@/testUtils.jsx";
 import { describe, it, vi } from "vitest";
 import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import TransactionUpdateDetail from "../TransactionDetail";

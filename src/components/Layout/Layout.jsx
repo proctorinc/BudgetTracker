@@ -9,7 +9,7 @@ export const Layout = ({ title, subtitle, children, isLoading, size }) => {
   }
 
   return (
-    <div className="flex flex-col items-center bg-gray-100 text-gray-800 min-h-screen">
+    <div className="flex flex-col items-center bg-gray-100 min-h-screen">
       <div className={`${maxWidth} w-full p-3 flex-grow`}>
         {title && <AnimatedHeader title={title} subtitle={subtitle} />}
         {isLoading ? (

@@ -44,11 +44,11 @@ export const Button = ({
 
   return (
     <motion.button
-      className={`${className} px-3 py-2 rounded-md bg-${backgroundColor} ${
+      className={`${className} px-3 py-2 rounded-md bg-${backgroundColor} text-${textColor} ${
         disabled
           ? "hover:bg-gray-200 hover:text-gray-800"
-          : "hover:bg-black hover:text-white"
-      } text-${textColor}`}
+          : "hover:bg-black hover:text-gray-50"
+      }`}
       whileHover={hover}
       initial="hidden"
       animate="show"

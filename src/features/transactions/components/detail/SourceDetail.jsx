@@ -27,8 +27,6 @@ const SourceDetail = ({
     }
   };
 
-  console.log(source?.is_transfer);
-
   return (
     <TransactionUpdateDetail
       label={"Source"}

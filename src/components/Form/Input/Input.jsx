@@ -19,6 +19,7 @@ export const Input = ({
         </label>
       )}
       <input
+        role="input"
         className={`${
           error ? "ring-4" : ""
         } ring-black ring-opacity-30 border-gray-300 border-2 bg-gray-50 placeholder-gray-400 py-2 px-3 rounded-md my-1`}

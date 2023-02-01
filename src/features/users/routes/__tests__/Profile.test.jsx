@@ -1,5 +1,5 @@
 import { describe, it, vi } from "vitest";
-import { screen, render, userEvent, withAuth } from "@/test-utils.jsx";
+import { screen, render, userEvent, withAuth } from "@/testUtils.jsx";
 import Profile from "../Profile";
 
 describe("Profile Route", () => {

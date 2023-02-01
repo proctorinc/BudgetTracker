@@ -1,5 +1,5 @@
 import { describe, it, vi } from "vitest";
-import { screen, render } from "@/test-utils.jsx";
+import { screen, render } from "@/testUtils.jsx";
 import Budgets from "../Budgets";
 import { mockBudgets } from "@/__mocks__/mock_features/budgets";
 

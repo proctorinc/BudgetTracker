@@ -1,5 +1,5 @@
 import { describe, it } from "vitest";
-import { render, screen } from "@/test-utils.jsx";
+import { render, screen } from "@/testUtils.jsx";
 import { mockAccountCategories } from "@/__mocks__/mock_features/accounts";
 
 import AccountList from "../AccountList";
