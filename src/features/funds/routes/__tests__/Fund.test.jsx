@@ -20,5 +20,8 @@ describe("Fund Route", () => {
     const amountTitle = screen.findByRole("heading", {
       name: /$1,234,567.89/i,
     });
+
+    expect(amountTitle).toBeInTheDocument()
+    expect(nameTitle).toBeInTheDocument()
   });
 });

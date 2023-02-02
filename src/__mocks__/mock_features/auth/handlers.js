@@ -15,13 +15,8 @@ export const authHandlers = [
 
   rest.post(`${API_URL}/auth/login`, async (req, res, ctx) => {
     const { email, password } = await req.json();
-    console.log(
-      "HELLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
-    );
-
-    console.log(email, password);
     if (email === mockUser.email && password === mockUser.password) {
-      return res(ctx.json(mockUser));
+      return res(ctx.json({ user: mockUser }));
     } else {
       return res(ctx.status(401));
     }

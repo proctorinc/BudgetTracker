@@ -5,7 +5,6 @@ import { LoadingScreen } from "@/components/Misc";
 import { useLoginAndFetchProfile } from "@/features/auth/hooks/useLoginAndFetchProfile";
 import { useUserProfile } from "@/features/auth/hooks/useUserProfile";
 import { useLogout, useSignUp } from "@/features/auth";
-import { useCSRFToken } from "@/features/auth/hooks/useCSRFToken";
 
 const AuthContext = createContext();
 
