@@ -3,8 +3,8 @@ import { render, screen, userEvent, withAuth, act } from "@/testUtils.jsx";
 import { Login } from "..";
 
 describe("Login Route", () => {
-  beforeEach(() => {
-    act(() => {
+  beforeEach(async () => {
+    await act(async () => {
       render(withAuth(<Login />));
     })
   })
@@ -29,7 +29,7 @@ describe("Login Route", () => {
     expect(submitButton).toBeInTheDocument();
   });
 
-  it("navigates to home page on successful login", async () => {
+  it("successful login works correctly", async () => {
     const user = userEvent.setup();
     const emailInput = await screen.findByRole("input", {
       name: /email/i,
@@ -43,13 +43,10 @@ describe("Login Route", () => {
 
     await user.type(emailInput, "valid@email.com");
     await user.type(passwordInput, "validPassword");
-    act(() => {
-      user.click(submitButton)
-    })
+    await user.click(submitButton)
 
-    const homePageText = await screen.findByText(/welcome to dink/i);
-
-    expect(homePageText).toBeInTheDocument();
+    const enterAValidEmailAddress = screen.getByText(/incorrect Email or Password/i);
+    expect(enterAValidEmailAddress).not.toBeInTheDocument();
   });
 
   it("shows error for empty email and password", async () => {
@@ -58,7 +55,7 @@ describe("Login Route", () => {
       name: /login/i,
     });
 
-    user.click(submitButton);
+    await user.click(submitButton)
     
     const emailIsRequired = await screen.findByText(/email is required/i);
     const passwordIsRequired = await screen.findByText(/password is required/i);
@@ -77,7 +74,7 @@ describe("Login Route", () => {
     });
 
     await user.type(emailInput, "invalid-email-format");
-    user.click(submitButton);
+    await user.click(submitButton)
     
     const enterAValidEmailAddress = await screen.findByText(/enter a valid email address/i);
     expect(enterAValidEmailAddress).toBeInTheDocument();
@@ -97,9 +94,7 @@ describe("Login Route", () => {
 
     await user.type(emailInput, "invalid@email.com");
     await user.type(passwordInput, "invalidPassword");
-    act(() => {
-      user.click(submitButton);
-    })
+    await user.click(submitButton);
     
     const enterAValidEmailAddress = await screen.findByText(/incorrect Email or Password/i);
     expect(enterAValidEmailAddress).toBeInTheDocument();

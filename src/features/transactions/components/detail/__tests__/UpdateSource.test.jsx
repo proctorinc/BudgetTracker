@@ -32,7 +32,7 @@ describe("Update source", () => {
     const nameBox = await screen.findByRole("button", {
       name: "Name:",
     });
-    user.click(nameBox);
+    await user.click(nameBox);
     const listItems = await screen.findAllByRole("option");
 
     expect(listItems).toHaveLength(mockFunds.length);
@@ -48,9 +48,9 @@ describe("Update source", () => {
     const typeBox = await screen.findByRole("button", {
       name: "Type:",
     });
-    user.click(typeBox);
+    await user.click(typeBox);
     const listItems = await screen.findAllByRole("option");
-    user.click(listItems[1]);
+    await user.click(listItems[1]);
     expect(typeBox).toHaveTextContent("budget");
     // const typeText = screen.getByText("budget");
 
@@ -58,9 +58,8 @@ describe("Update source", () => {
       name: "Name:",
     });
 
-    user.click(nameBox);
+    await user.click(nameBox);
     const budgetItems = await screen.findAllByRole("option");
-    console.table(budgetItems);
     expect(budgetItems).toHaveLength(mockBudgets.length);
     budgetItems.forEach((item, i) => {
       expect(item).toHaveTextContent(mockBudgets[i].name);
@@ -76,9 +75,9 @@ describe("Update source", () => {
     const typeBox = await screen.findByRole("button", {
       name: "Type:",
     });
-    user.click(typeBox);
+    await user.click(typeBox);
     const listItems = await screen.findAllByRole("option");
-    user.click(listItems[1]);
+    await user.click(listItems[1]);
     const typeText = screen.getByText("budget");
 
     expect(listItems).toHaveLength(2);

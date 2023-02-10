@@ -1,12 +1,16 @@
-import { describe, it, vi } from "vitest";
-import { screen, render } from "@/testUtils.jsx";
+import { describe, it } from "vitest";
+import { screen, render, act } from "@/testUtils.jsx";
 import Budgets from "../Budgets";
 import { mockBudgets } from "@/__mocks__/mock_features/budgets";
 
 describe("Budgets Route", () => {
-  it("renders properly", async () => {
-    render(<Budgets />);
+  beforeEach(async () => {
+    await act(async () => {
+      render(<Budgets />);
+    })
+  })
 
+  it("renders properly", async () => {
     const header = await screen.findByText("Budgets");
     const budgetEntries = await screen.findAllByRole("listitem");
 

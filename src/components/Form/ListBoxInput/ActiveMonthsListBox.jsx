@@ -10,6 +10,8 @@ export const ActiveMonthsListBox = ({ initialMonth, onSelect }) => {
   const [selectedMonth, setSelectedMonth] = useState(initialMonth);
   const monthsQuery = useActiveMonths();
 
+  console.log(monthsQuery.data);
+
   const renderMonthAndYear = ({ month, year }) => {
     return `${capitalizeFirstLetter(month)} ${year}`;
   };

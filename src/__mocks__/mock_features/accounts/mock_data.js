@@ -32,6 +32,7 @@ export const mockCashAccounts = [
     name: "Plaid Saving",
     official_name: "Plaid Silver Standard 0.1% Interest Saving",
     subtype: "savings",
+    type: "depository",
   },
 ];
 
@@ -49,6 +50,7 @@ export const mockCreditAccounts = [
     name: "Plaid Credit Card",
     official_name: "Plaid Diamond 12.5% APR Interest Credit Card",
     subtype: "credit card",
+    type: "credit",
   },
 ];
 
@@ -66,6 +68,7 @@ export const mockInvestmentAccounts = [
     name: "Plaid IRA",
     official_name: null,
     subtype: "ira",
+    type: "investment",
   },
 ];
 
@@ -83,6 +86,7 @@ export const mockLoanAccounts = [
     name: "Plaid Mortgage",
     official_name: null,
     subtype: "mortgage",
+    type: "loan",
   },
 ];
 

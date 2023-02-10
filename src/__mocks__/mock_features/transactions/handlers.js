@@ -15,4 +15,14 @@ export const transactionHandlers = [
       );
     }
   ),
+  rest.get(`${LOCAL_HOSTNAME}/transactions/unallocated`, (req, res, ctx) => {
+    return res(
+      ctx.json({
+        page: 1,
+        next_page: -1,
+        has_next: false,
+        transactions: mockTransactions,
+      })
+    );
+  }),
 ];

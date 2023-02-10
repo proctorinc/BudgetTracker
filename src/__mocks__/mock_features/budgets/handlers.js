@@ -9,6 +9,11 @@ export const budgetHandlers = [
     return res(
       ctx.json({
         budgets: mockBudgets,
+        total: {
+          goal: 500,
+          spent: 400,
+          leftover: 100,
+        },
       })
     );
   }),

@@ -46,7 +46,7 @@ export const ListBoxInput = ({
             }}
             className="absolute max-h-64 my-1 overflow-auto rounded-md bg-gray-200 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm z-40 w-fit font-light text-gray-600"
           >
-            {choices?.map((choice) => (
+            {choices && choices.map((choice) => (
               <Listbox.Option
                 key={itemKey ? itemKey(choice) : choice}
                 value={choice}

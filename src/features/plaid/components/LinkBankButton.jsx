@@ -21,7 +21,7 @@ export const LinkBankButton = () => {
 
   return (
     <div className="flex justify-center p-5">
-      <Button text={"Add Account"} onClick={open} isLoading={!isReadyToLink} />
+      <Button text="Add Account" onClick={open} isLoading={!isReadyToLink} />
     </div>
   );
 };

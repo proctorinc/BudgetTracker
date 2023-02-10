@@ -8,6 +8,7 @@ import { fetch } from "cross-fetch";
 expect.extend(matchers);
 
 global.fetch = fetch;
+global.IS_REACT_ACT_ENVIRONMENT = true;
 
 beforeAll(() => server.listen({ onUnhandledRequest: `error` }));
 

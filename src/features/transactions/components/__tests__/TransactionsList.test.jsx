@@ -1,10 +1,12 @@
 import { describe, it } from "vitest";
 import { render } from "@/testUtils.jsx";
-import { mockTransactions } from "@/__mocks__/mock_features/transactions";
-import TransactionsList from "../TransactionsList";
+import { TransactionsList } from "../TransactionsList";
+import { useUnallocatedTransactions } from "../../hooks/useUnallocatedTransactions";
 
 describe("Transactions List", () => {
   it("renders Transactions in list", () => {
-    render(<TransactionsList transactions={mockTransactions} />);
+    render(<TransactionsList title="testing" useHook={useUnallocatedTransactions} />);
+
+    expect(screen.getByText("testing")).toBeInTheDocument();
   });
 });

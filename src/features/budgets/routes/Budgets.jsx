@@ -31,7 +31,7 @@ const Budgets = () => {
       isLoading={budgetsQuery.isLoading}
     >
       <BudgetTotalStat spent={totalSpent} goal={totalGoal} />
-      <ActiveMonthsListBox initialMonth={date} onSelect={handleSelectedMonth} />
+      {/* <ActiveMonthsListBox initialMonth={date} onSelect={handleSelectedMonth} /> */}
       <BudgetList budgets={budgets} date={date} />
       <div className="flex justify-center p-5">
         <Button text="New Budget" onClick={() => navigate("/budgets/create")} />

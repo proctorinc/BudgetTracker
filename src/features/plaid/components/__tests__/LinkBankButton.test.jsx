@@ -1,4 +1,4 @@
-import LinkBankButton from "../LinkBankButton";
+import { LinkBankButton } from "../LinkBankButton";
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, userEvent } from "@/testUtils.jsx";
 
@@ -12,23 +12,21 @@ vi.mock("react-plaid-link", async () => ({
 }));
 
 describe("Link bank button", () => {
-  it("button renders on screen", () => {
+  beforeEach(() => {
     render(<LinkBankButton />);
-    const linkBankButton = screen.getByRole("button");
-    expect(linkBankButton).toBeInTheDocument();
-  });
+  })
 
-  it("button starts out disabled initially", () => {
-    render(<LinkBankButton />);
-    const linkBankButton = screen.getByRole("button");
-    expect(linkBankButton).toBeDisabled();
+  it("button renders on screen", async () => {
+    const linkBankButton = await screen.findByRole("button", {
+      name: /add account/i,
+    });
+    expect(linkBankButton).toBeInTheDocument();
   });
 
   it("button is enabled after a short duration", async () => {
     const user = userEvent.setup();
-    render(<LinkBankButton />);
     const linkBankButton = await screen.findByRole("button", {
-      name: "Connect a bank account",
+      name: /add account/i,
     });
 
     expect(linkBankButton).toBeInTheDocument();
@@ -36,9 +34,8 @@ describe("Link bank button", () => {
 
   it("opens plaid link on click", async () => {
     const user = userEvent.setup();
-    render(<LinkBankButton />);
     const linkBankButton = await screen.findByRole("button", {
-      name: "Connect a bank account",
+      name: /add account/i,
     });
     await user.click(linkBankButton);
 

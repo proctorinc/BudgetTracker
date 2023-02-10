@@ -1,6 +1,6 @@
 import { describe, it } from "vitest";
 
-import { render, screen } from "@/testUtils.jsx";
+import { render, screen, act } from "@/testUtils.jsx";
 import { mockAccountId } from "@/__mocks__/mock_features/accounts";
 
 import Account from "../Account";
@@ -11,9 +11,13 @@ vi.mock("react-router-dom", async () => ({
 }));
 
 describe("Account route", () => {
-  it("renders properly", async () => {
-    render(<Account />);
+  beforeEach(async () => {
+    await act(async () => {
+      render(<Account />);
+    })
+  })
 
+  it("renders properly", async () => {
     const backButton = screen.findByRole("button");
     const balance = await screen.findByRole("heading", {
       name: /$1,000,000.00/i,
